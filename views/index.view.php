@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agencia publicitaria</title>
-</head>
-<body>
-    
-</body>
-</html>
+<?php require 'components/header.php'; ?>
+<main class="anuncios">
+        <?php foreach ($anuncios as $anuncio): ?>
+            <?php require 'components/anuncio.php'; ?>
+        <?php endforeach; ?>
+</main>
+<?php require 'components/footer.php'; ?>
