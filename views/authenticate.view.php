@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login - NombreApp</title>
     <style>
         *, *::before, *::after{
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             font-family: Arial, Helvetica, sans-serif;
         }
         html, body {
@@ -161,9 +163,32 @@
             font-size: .75em;
             text-decoration: none;
         }
+        header {
+            position: absolute;
+            width: 100%;
+            top: 0;
+            padding: 1em;
+            left: 0;
+            display: flex;
+            align-items: center;
+            color: #fff;
+            border-bottom: 1px solid #333;
+        }
+        header h1 {
+            font-size: 1.5em;
+        }
+        header svg {
+            width: 3em;
+            height: 3em;
+            margin-right: 1em;
+        }
     </style>
 </head>
 <body>
+    <header>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="128" height="128" viewBox="0 0 24 24"><path fill="#059669" d="M4 22V6h4q0-1.65 1.175-2.825T12 2q1.65 0 2.825 1.175T16 6h4v16H4Zm2-2h12V8h-2v3h-2V8h-4v3H8V8H6v12Zm4-14h4q0-.825-.588-1.413T12 4q-.825 0-1.413.588T10 6ZM6 20V8v12Z"/></svg>
+        <h1>NombreApp</h1>
+    </header>
     <!-- Registro -->
     <div class="register">
         <div class="indicadores-paso">
