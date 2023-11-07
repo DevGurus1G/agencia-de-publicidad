@@ -14,3 +14,9 @@ function insertUsuario($usuario, $conn) {
     'imagen' => $usuario['imagen'],
   ]);
 }
+
+function getUsuarioLogin($email, $conn) {
+  $stmt = $conn->prepare('SELECT * FROM usuarios WHERE email = :email');
+  $stmt->execute(['email' => $email]);
+  return $stmt->fetch();
+}
