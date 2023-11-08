@@ -1,0 +1,12 @@
+FROM php:apache-bullseye
+
+RUN apt-get update && apt-get install -y \
+    unzip
+
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+RUN docker-php-ext-install pdo pdo_mysql
+RUN composer require vlucas/phpdotenv
+
+CMD ["apache2-foreground"]
