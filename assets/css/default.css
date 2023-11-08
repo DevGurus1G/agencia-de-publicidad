@@ -69,7 +69,7 @@ header {
 
 .icon > * {
   color: var(--dark-secondary-color);
-  fill: var(--dark-secondary-color);
+  fill: var(--dark-secondary-color);  /*Esto jode el de instagram*/
 }
 header h1 {
   font-size: 1em;
@@ -94,10 +94,11 @@ header form input:focus {
   outline: none;
 }
 
-.menu-toggle {
+.menu-toggle, .menu-filter {
   cursor: pointer;
   position: relative;
 }
+
 /* Luego se hara con un boton */
 nav ul {
   display: none;
@@ -111,7 +112,7 @@ nav ul {
   display: flex;
   flex-direction: column;
 }
-.show li a {
+.show li a , .show li label {
   display: flex;
   padding: 1em;
   width: 100%;
@@ -121,7 +122,7 @@ nav ul {
   text-decoration: none;
 }
 
-.show li a:hover {
+.show li a:hover, .show li label:hover {
   background-color: #424242;
 }
 
@@ -151,6 +152,31 @@ nav ul {
   text-decoration: none;
   color: var(--dark-secondary-color);
 }
+
+/* Estilos para el footer */
+
+footer {
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100%;
+  height: fit-content;
+  grid-area: 'footer';
+  background-color: /*var(--dark-primary-color)*/ #282828;
+  color: var(--dark-text-color);
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: 1em;
+  
+}
+
+footer p
+{
+  font-size: 0.75em;
+}
+
+
 
 /* Responsive */
 
