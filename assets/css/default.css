@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap');
+
 *,
 *::after,
 *::before {
@@ -19,26 +21,36 @@ button {
 img {
   width: 100%;
 }
+h1 {
+  font-family: 'Poppins', sans-serif;
+}
 :root {
-  --light-dark-color: #888;
-  --dark-primary-color: #121212;
-  --dark-text-color: #fff;
-  --light-text-color: #000;
-  --dark-secondary-color: #0b8f7f;
+  --border-color: #666;
+  --primary-color: #13c1ac;
+  --text-color: #000;
+  --background-color: #fff;
+  --input-color: #afafaf;
 }
 body {
   min-height: 100vh;
   font-size: 1em;
-  color: var(--dark-text-color);
+  color: var(--text-color);
   display: grid;
   min-width: 100%;
-  background-color: var(--dark-primary-color);
+  background-color: var(--primary-color);
   grid-template-areas:
     'header'
     'content'
     'footer';
   grid-template-columns: 1fr;
   grid-template-rows: 10fr 75fr 15fr;
+}
+body.dark {
+  --border-color: #333;
+  --primary-color: #0b8f7f;
+  --text-color: #fff;
+  --background-color: #000;
+  --input-color: #333;
 }
 /* Estilos para el header */
 header {
@@ -48,11 +60,12 @@ header {
   width: 100%;
   height: fit-content;
   grid-area: 'header';
-  background-color: /*var(--dark-primary-color)*/ #282828;
-  color: var(--dark-text-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
   border-bottom-left-radius: 2em;
   border-bottom-right-radius: 2em;
   padding: 1em;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .logo-nombre {
@@ -63,13 +76,13 @@ header {
 .icon {
   width: 2em;
   height: 2em;
-  color: var(--dark-secondary-color);
-  fill: var(--dark-secondary-color);
+  color: var(--primary-color);
+  fill: var(--primary-color);
 }
 
 .icon > * {
-  color: var(--dark-secondary-color);
-  fill: var(--dark-secondary-color);
+  color: var(--primary-color);
+  fill: var(--primary-color); /*Esto jode el de instagram*/
 }
 header h1 {
   font-size: 1em;
@@ -77,27 +90,38 @@ header h1 {
 
 header form {
   display: flex;
-  width: 100%;
-  max-width: 170px;
+  width: fit-content;
+  max-width: 120px;
   height: fit-content;
   justify-content: space-between;
   align-items: center;
-  background-color: #424242;
+  background-color: var(--background-color);
+  border-radius: 2em;
+  border: 1px solid var(--border-color);
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
-
+header form .icon {
+  margin: 0 1em 0 0;
+}
 header form input {
-  color: var(--dark-text-color);
+  color: var(--text-color);
   height: min-content;
   padding: 0.5em 1em;
+  width: 100%;
 }
 header form input:focus {
   outline: none;
 }
-
-.menu-toggle {
+.navs {
+  display: flex;
+  gap: 2em;
+}
+.menu-toggle,
+.menu-filter {
   cursor: pointer;
   position: relative;
 }
+
 /* Luego se hara con un boton */
 nav ul {
   display: none;
@@ -105,24 +129,26 @@ nav ul {
 }
 
 .show {
-  background-color: #282828;
+  background-color: var(--background-color);
   position: absolute;
   right: 1em;
   display: flex;
   flex-direction: column;
 }
-.show li a {
+.show li a,
+.show li label {
   display: flex;
   padding: 1em;
   width: 100%;
   gap: 0.5em;
   align-items: center;
-  color: var(--dark-text-color);
+  color: var(--text-color);
   text-decoration: none;
 }
 
-.show li a:hover {
-  background-color: #424242;
+.show li a:hover,
+.show li label:hover {
+  background-color: var(--input-color);
 }
 
 /* Anuncios */
@@ -139,17 +165,48 @@ nav ul {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  background-color: #282828;
+  background-color: var(--background-color);
   padding: 1em;
-  border-radius: 1em;
+  border-radius: 2em;
   width: 100%;
   max-width: 300px;
-  border: 2px solid #949494;
+  border: 2px solid var(--border-color);
 }
 
 .anuncio-card a {
   text-decoration: none;
-  color: var(--dark-secondary-color);
+  color: var(--primary-color);
+}
+
+/* Estilos para el footer */
+
+footer {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100%;
+  height: fit-content;
+  grid-area: 'footer';
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: 1em;
+  box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+footer p {
+  font-size: 0.75em;
+}
+
+body footer .logo-empresa {
+  filter: invert(100%);
+}
+
+body.dark footer .logo-empresa {
+  filter: invert(0%);
 }
 
 /* Responsive */

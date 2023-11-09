@@ -1,4 +1,5 @@
 <div class="anuncio-card">
+    
     <img src="assets/img/test.png" alt="">
     <div class="anuncio-card-info">
         <h2><?= $anuncio['titulo'] ?></h2>
