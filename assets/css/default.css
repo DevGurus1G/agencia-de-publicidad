@@ -112,10 +112,12 @@ header form input {
 header form input:focus {
   outline: none;
 }
+
 .navs {
   display: flex;
   gap: 2em;
 }
+
 .menu-toggle,
 .menu-filter {
   cursor: pointer;
@@ -135,6 +137,7 @@ nav ul {
   display: flex;
   flex-direction: column;
 }
+
 .show li a,
 .show li label {
   display: flex;
@@ -207,6 +210,27 @@ body footer .logo-empresa {
 
 body.dark footer .logo-empresa {
   filter: invert(0%);
+}
+
+/* Estilos para el footer */
+
+footer {
+  display: flex;
+  align-self: flex-end;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100%;
+  height: fit-content;
+  grid-area: 'footer';
+  background-color: /*var(--dark-primary-color)*/ #282828;
+  color: var(--dark-text-color);
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: 1em;
+}
+
+footer p {
+  font-size: 0.75em;
 }
 
 /* Responsive */

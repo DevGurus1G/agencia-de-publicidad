@@ -16,4 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
   modo.addEventListener('click', function () {
     document.querySelector('body').classList.toggle('dark');
   });
+
+  menuFilter.addEventListener('click', function () {
+    navFilter.classList.toggle('show');
+  });
+
+  modo.addEventListener('click', function () {
+    alert('pinga');
+  });
 });
