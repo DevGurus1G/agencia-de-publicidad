@@ -222,7 +222,7 @@ footer {
   width: 100%;
   height: fit-content;
   grid-area: 'footer';
-  background-color: /*var(--dark-primary-color)*/ #282828;
+  background-color: var(--background-color);
   color: var(--dark-text-color);
   border-top-left-radius: 2em;
   border-top-right-radius: 2em;

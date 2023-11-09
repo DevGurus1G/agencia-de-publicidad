@@ -20,8 +20,4 @@ document.addEventListener('DOMContentLoaded', function () {
   menuFilter.addEventListener('click', function () {
     navFilter.classList.toggle('show');
   });
-
-  modo.addEventListener('click', function () {
-    alert('pinga');
-  });
 });
