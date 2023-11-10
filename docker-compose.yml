@@ -28,6 +28,7 @@ services:
       - default
     volumes:
       - ./:/var/www/html
+      - ./copiar/:/etc/apache2/sites-enabled
 
   phpmyadmin:
     image: phpmyadmin:latest
