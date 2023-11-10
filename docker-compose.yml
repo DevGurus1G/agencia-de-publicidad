@@ -1,0 +1,45 @@
+version: '3.1'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NOMBRE}
+      MYSQL_USER: ${USER}
+      MYSQL_PASSWORD: ${USER_PASSWORD}
+    ports:
+      - '3306:3306'
+    networks:
+      - default
+    volumes:
+      - ./db/sql/:/docker-entrypoint-initdb.d
+
+  apache:
+    build:
+      context: ./docker
+      dockerfile: DockerFApache
+    container_name: apache
+    ports:
+      - '80:80'
+    links:
+      - mysql
+    networks:
+      - default
+    volumes:
+      - ./:/var/www/html
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: ${USER}
+      PMA_PASSWORD: ${USER_PASSWORD}
+    ports:
+      - '8080:80'
+    networks:
+      - default
+    links:
+      - mysql:mysql
+# volumes:
+#   mysql-data:

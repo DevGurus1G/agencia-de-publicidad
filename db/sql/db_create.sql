@@ -9,18 +9,19 @@ CREATE TABLE IF NOT EXISTS usuarios (
     imagen LONGBLOB NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS categorias (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(255) NOT NULL,
-)
+-- CREATE TABLE IF NOT EXISTS categorias (
+--     id INT PRIMARY KEY AUTO_INCREMENT,
+--     nombre VARCHAR(255) NOT NULL,
+-- )
 CREATE TABLE IF NOT EXISTS anuncios (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    categoria_id INT NOT NULL,
     titulo VARCHAR(255) NOT NULL,
     descripcion VARCHAR(255) NOT NULL,
-    precio VARCHAR(255) NOT NULL,
-    FOREIGN KEY (categoria_id) REFERENCES categorias (id)
+    precio DECIMAL(10, 2) NOT NULL -- Cambiado a DECIMAL
+    -- categoria_id INT NOT NULL,
+    -- FOREIGN KEY (categoria_id) REFERENCES categorias (id)
 );
+
 
 CREATE TABLE IF NOT EXISTS imagenes_anuncios (
     id INT PRIMARY KEY AUTO_INCREMENT,

@@ -1,0 +1,26 @@
+FROM php:apache-bullseye
+
+# Instalar paquetes necesarios
+RUN apt update && apt install -y unzip git anacron
+
+# Clonar tu repositorio Git
+RUN git clone https://github.com/DevGurus1G/agencia-de-publicidad.git /var/www/html
+
+# Crear el directorio para el script y copiar actualizarGit.sh
+RUN mkdir /etc/script
+RUN echo "#!/bin/bash" >> /etc/script/actualizarGit.sh && echo "cd /var/www/html" >> /etc/script/actualizarGit.sh &&  echo "git pull" >> /etc/script/actualizarGit.sh
+RUN chmod ugo+x /etc/script/actualizarGit.sh
+
+# Agregar una tarea cron
+RUN echo "1   15    cron.daily     /bin/sh /etc/script/actualizarGit.sh > /var/log/logActualizar.txt" >> /etc/anacrontab
+
+# Instalar Composer
+RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
+RUN php -r "unlink('composer-setup.php');"
+
+# Instalar extensiones de PHP y paquete Composer
+RUN docker-php-ext-install pdo pdo_mysql
+RUN composer require vlucas/phpdotenv
+
+CMD ["apache2-foreground"]
