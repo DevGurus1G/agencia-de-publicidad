@@ -212,27 +212,6 @@ body.dark footer .logo-empresa {
   filter: invert(0%);
 }
 
-/* Estilos para el footer */
-
-footer {
-  display: flex;
-  align-self: flex-end;
-  justify-content: space-around;
-  gap: 1em;
-  width: 100%;
-  height: fit-content;
-  grid-area: 'footer';
-  background-color: var(--background-color);
-  color: var(--dark-text-color);
-  border-top-left-radius: 2em;
-  border-top-right-radius: 2em;
-  padding: 1em;
-}
-
-footer p {
-  font-size: 0.75em;
-}
-
 /* Responsive */
 
 @media screen and (min-width: 500px) {
@@ -273,6 +252,15 @@ main {
   border-radius: 50%;
 }
 
+.perfil
+{
+  display: flex;
+  gap: 1em;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
 #favorito {
   display: none;
 }
@@ -280,6 +268,7 @@ label[for='favorito'] {
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 label[for='favorito'] svg {
   width: 2em;
@@ -315,6 +304,7 @@ label[for='favorito'],
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
+  border-radius: 1em;;
 }
 
 .botones-carrusel {

@@ -2,8 +2,10 @@
   <div class="anuncio-tarjeta">
     <div class="anunciante">
       <div>
+        <a href="#" class="perfil">
         <img src="assets/img/default_avatar.webp" alt="avatar" />
-        <p>Pedro Sanchez</p>
+        <h4>Pedro Sanchez</h4>
+        </a>
       </div>
       <div>
         <div>
