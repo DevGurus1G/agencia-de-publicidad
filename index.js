@@ -4,20 +4,20 @@ document.addEventListener('DOMContentLoaded', function () {
   const menuFilter = document.querySelector('.menu-filter');
   const navMenu = document.querySelector('.navMenu');
   const navFilter = document.querySelector('.navFilter');
-  console.log(navMenu);
 
   menuToggle.addEventListener('click', function () {
     navMenu.classList.toggle('show');
   });
 
-menuFilter.addEventListener('click', function () 
-{
+  menuFilter.addEventListener('click', function () {
     navFilter.classList.toggle('show');
-})
+  });
 
-modo.addEventListener('click', function () 
-{
-  alert('pinga');
-})
+  modo.addEventListener('click', function () {
+    document.querySelector('body').classList.toggle('dark');
+  });
 
+  menuFilter.addEventListener('click', function () {
+    navFilter.classList.toggle('show');
+  });
 });

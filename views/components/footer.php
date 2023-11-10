@@ -6,7 +6,7 @@
 </div>
 
 <div class="copyright">
-    <p>© 2023-24 NombrePagina - DevGurus. Queda prohibida la reproducción parcial o total de los contenidos de esta publicación sin permiso.</p>
+    <p>© 2023-24 Merkatu Libre - DevGurus. Queda prohibida la reproducción parcial o total de los contenidos de esta publicación sin permiso.</p>
 </div>
 
 <div class="enlaces"></div>
