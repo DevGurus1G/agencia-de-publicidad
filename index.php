@@ -1,22 +1,14 @@
 <?php
-// Supuesta llamada
+$request_uri = $_SERVER['REQUEST_URI'];
 
-$anuncios = [
-  [
-    'titulo' => 'Titulo 1',
-    'desc' => 'Descripcion 1',
-    'publicado_por' => 'Admin',
-  ],
-  [
-    'titulo' => 'Titulo 2',
-    'desc' => 'Descripcion 2',
-    'publicado_por' => 'Admin',
-  ],
-  [
-    'titulo' => 'Titulo 3',
-    'desc' => 'Descripcion 3',
-    'publicado_por' => 'Admin',
-  ],
+$routes = [
+  '/' => 'controllers/home.php',
+  '/login' => 'login.php',
+  '/register' => 'register.php',
 ];
-require_once 'views/index.view.php';
-?>
+
+if (array_key_exists($request_uri, $routes)) {
+  include $routes[$request_uri];
+} else {
+  include '404.php';
+}
