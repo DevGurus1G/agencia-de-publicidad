@@ -27,7 +27,6 @@ services:
     networks:
       - default
     volumes:
-      - ./:/var/www/html
       - ./copiar/:/etc/apache2/sites-enabled
 
   phpmyadmin:
