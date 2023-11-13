@@ -1,10 +1,10 @@
 <div class="anuncio-card">
-    
-    <img src="assets/img/test.png" alt="">
+    <!-- <?php $base64img = base64_encode($anuncio['fot1']); ?> -->
+    <!-- <img src="data:image/png;base64,<?= $base64img ?>" alt=""> -->
     <div class="anuncio-card-info">
         <h2><?= $anuncio['titulo'] ?></h2>
-        <p><?= $anuncio['desc'] ?></p>
+        <p><?= $anuncio['descripcion'] ?></p>
     <!-- <span><i class="fa fa-user"></i> Publicado por: Admin</span> -->
-        <a href="#">Publicado por <?= $anuncio['publicado_por'] ?></a>
+        <a href="#">Publicado por <?= $anuncio['anunciante'] ?></a>
     </div>
 </div>

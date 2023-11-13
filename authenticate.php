@@ -4,9 +4,17 @@ require 'db/db_connection.php';
 
 // Para el tipo de autenticacion
 
-$tipo = $_POST['tipo'];
+require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
+$dotenv = Dotenv\Dotenv::createImmutable('./');
+$dotenv->load();
 
-$conn = connect('localhost', 'agencia-de-publicidad', 'root', '');
+$conn = connect(
+  $_ENV['HOST'],
+  $_ENV['DB_NOMBRE'],
+  $_ENV['USER'],
+  $_ENV['USER_PASSWORD']
+);
+$tipo = $_POST['tipo'];
 if (tipoPeticion($tipo) === 0) {
   comprobarLogin($_POST['email'], $_POST['password'], $conn);
 } elseif (tipoPeticion($tipo) === 1) {
@@ -45,14 +53,15 @@ function comprobarLogin($email, $password, $conn) {
 }
 
 function registrar($conn) {
+  print_r($_FILES['imagen']);
   $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
   $usuario = [
     'username' => $_POST['username'],
-    'password' => $_POST['password'],
+    'pass' => $_POST['password'],
     'email' => $_POST['email'],
     'nombre' => $_POST['nombre'],
     'apellidos' => $_POST['apellidos'],
-    'rol' => $_POST['tipoUsuario'],
+    'tipo' => 'comprador',
     'imagen' => $imagen,
   ];
   insertUsuario($usuario, $conn);

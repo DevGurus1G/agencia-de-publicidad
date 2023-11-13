@@ -47,6 +47,7 @@ async function login() {
 }
 
 async function registro() {
+  console.log('sdfasdf');
   const nombre = document.getElementById('nombre-reg').value;
   const apellidos = document.getElementById('apellidos-reg').value;
   const email = document.getElementById('email-reg').value;
@@ -57,7 +58,7 @@ async function registro() {
     "input[type='radio']:checked",
   ).value;
   const tipo = registroForm.querySelector("input[type='hidden']").value;
-  console.log(tipo);
+  console.log(tipo + 'kjxzdhkjsh');
   const resultado = document.querySelector('.resultado');
 
   const formData = new FormData();
@@ -71,12 +72,14 @@ async function registro() {
   formData.append('tipo', tipo);
 
   try {
+    console.log('Antes');
     const response = await fetch('authenticate.php', {
       method: 'POST',
       body: formData, // Use FormData instead of JSON.stringify
     });
     if (response.ok) {
       const data = await response.text();
+      console.log(data);
       if (data === 'registrado') window.location.href = './index.php';
     } else {
       console.error(response);

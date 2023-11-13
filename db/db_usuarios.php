@@ -1,16 +1,16 @@
 <?php
 function insertUsuario($usuario, $conn) {
   $stmt = $conn->prepare(
-    'INSERT INTO usuarios (username, password, email, nombre, apellidos, rol, imagen) 
-    VALUES (:username, :password, :email, :nombre, :apellidos, :rol, :imagen)'
+    'INSERT INTO usuarios (username, pass, email, nombre, apellidos, tipo, imagen) 
+    VALUES (:username, :pass, :email, :nombre, :apellidos, :tipo, :imagen)'
   );
   $stmt->execute([
     'username' => $usuario['username'],
-    'password' => $usuario['password'],
+    'pass' => $usuario['pass'],
     'email' => $usuario['email'],
     'nombre' => $usuario['nombre'],
     'apellidos' => $usuario['apellidos'],
-    'rol' => $usuario['rol'],
+    'tipo' => $usuario['tipo'],
     'imagen' => $usuario['imagen'],
   ]);
 }

@@ -3,8 +3,9 @@ $request_uri = $_SERVER['REQUEST_URI'];
 
 $routes = [
   '/' => 'controllers/home.php',
-  '/login' => 'login.php',
-  '/register' => 'register.php',
+  '/login' => 'controllers/login.php',
+  '/register' => 'controllers/register.php',
+  '/anuncios' => 'controllers/anuncios.php',
 ];
 
 if (array_key_exists($request_uri, $routes)) {
