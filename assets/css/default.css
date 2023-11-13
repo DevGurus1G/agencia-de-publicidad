@@ -52,6 +52,19 @@ body.dark {
   --background-color: #000;
   --input-color: #333;
 }
+
+.icon {
+  width: 2em;
+  height: 2em;
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
+.icon > * {
+  color: var(--primary-color);
+  fill: var(--primary-color);
+}
+
 /* Estilos para el header */
 header {
   display: flex;
@@ -73,17 +86,6 @@ header {
   align-items: center;
 }
 
-.icon {
-  width: 2em;
-  height: 2em;
-  color: var(--primary-color);
-  fill: var(--primary-color);
-}
-
-.icon > * {
-  color: var(--primary-color);
-  fill: var(--primary-color); /*Esto jode el de instagram*/
-}
 header h1 {
   font-size: 1em;
 }
@@ -122,6 +124,37 @@ header form input:focus {
 .menu-filter {
   cursor: pointer;
   position: relative;
+}
+
+/* Estilos para el footer */
+
+footer {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: space-around;
+  gap: 1em;
+  width: 100%;
+  height: fit-content;
+  grid-area: 'footer';
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border-top-left-radius: 2em;
+  border-top-right-radius: 2em;
+  padding: 1em;
+  box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+footer p {
+  font-size: 0.75em;
+}
+
+body footer .logo-empresa {
+  filter: invert(100%);
+}
+
+body.dark footer .logo-empresa {
+  filter: invert(0%);
 }
 
 /* Luego se hara con un boton */
@@ -181,37 +214,6 @@ nav ul {
   color: var(--primary-color);
 }
 
-/* Estilos para el footer */
-
-footer {
-  display: flex;
-  align-items: center;
-  align-self: flex-end;
-  justify-content: space-around;
-  gap: 1em;
-  width: 100%;
-  height: fit-content;
-  grid-area: 'footer';
-  background-color: var(--background-color);
-  color: var(--text-color);
-  border-top-left-radius: 2em;
-  border-top-right-radius: 2em;
-  padding: 1em;
-  box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-footer p {
-  font-size: 0.75em;
-}
-
-body footer .logo-empresa {
-  filter: invert(100%);
-}
-
-body.dark footer .logo-empresa {
-  filter: invert(0%);
-}
-
 /* Responsive */
 
 @media screen and (min-width: 500px) {
@@ -252,8 +254,7 @@ main {
   border-radius: 50%;
 }
 
-.perfil
-{
+.perfil {
   display: flex;
   gap: 1em;
   align-items: center;
@@ -304,7 +305,7 @@ label[for='favorito'],
   width: 100%;
   aspect-ratio: 1;
   object-fit: cover;
-  border-radius: 1em;;
+  border-radius: 1em;
 }
 
 .botones-carrusel {
@@ -348,4 +349,227 @@ label[for='favorito'],
 .precio {
   font-size: 1.5em;
   font-weight: bold;
+}
+
+/* ConfigMenu */
+
+.configMenu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 2em;
+  background-color: var(--background-color);
+  height: fit-content;
+}
+
+.configMenu a {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 2em;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.configMenu a:hover {
+  background-color: var(--input-color);
+  cursor: pointer;
+}
+
+.configPerfil {
+  border-bottom: 2px solid var(--border-color);
+}
+
+.configPerfil:hover {
+  border-top-right-radius: 2em;
+  border-top-left-radius: 2em;
+}
+
+.configFavorito:hover,
+.configProducto:hover {
+  border-bottom-right-radius: 2em;
+  border-bottom-left-radius: 2em;
+}
+
+/* configPerfil */
+
+.configPerfilMenu {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  height: fit-content;
+}
+
+.configPerfilMenu input {
+  background-color: var(--background-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--text-color);
+}
+
+.configPerfilMenu a {
+  background-color: var(--background-color);
+  text-align: center;
+  padding: 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.configPerfilMenu a:hover {
+  background-color: var(--input-color);
+}
+
+/* Lector de imagenes */
+.imagen-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.imagen-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.imagen-input div input {
+  display: none;
+}
+.imagen-input div {
+  justify-content: center;
+  align-items: center;
+}
+.imagen-input div label {
+  color: var(--text-color);
+  font-size: 1em;
+  background-color: var(--background-color);
+  line-height: normal;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  width: 100%;
+  cursor: pointer;
+}
+.imagen-input div label:hover {
+  background-color: var(--input-color);
+}
+#avatar {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/*AnuncioMenu*/
+
+.tarjeta-anuncio {
+  display: flex;
+  justify-content: center;
+  border-radius: 2em;
+  gap: 1em;
+  background-color: var(--background-color);
+  height: fit-content;
+  max-width: 550px;
+}
+
+.tarjeta-anuncio img {
+  border-top-left-radius: 2em;
+  border-bottom-left-radius: 2em;
+  overflow: auto;
+  object-fit: cover;
+}
+
+.tarjeta-anuncio-texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.texto-cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.texto-descripcion {
+  padding: 1em;
+}
+.texto-cabecera a {
+  text-decoration: none;
+}
+
+.texto-cabecera svg {
+  width: 2em;
+  height: 2em;
+}
+
+.texto-cabecera .corazon > path {
+  fill: #e11d48;
+}
+
+/*configAnuncio*/
+
+.configAnuncio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: fit-content;
+  gap: 2em;
+}
+
+#eliminarAnuncio {
+  padding: 1em;
+  border-radius: 1em;
+  background-color: var(--background-color);
+  border: 2px solid #e11d48;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+#eliminarAnuncio:hover {
+  background-color: #e11d48;
+  border: 2px solid var(--border-color);
+}
+
+.configAnuncio input,
+.configAnuncio select,
+.configAnuncio textarea {
+  background-color: var(--background-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.configAnuncio a {
+  background-color: var(--background-color);
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.configAnuncio input:focus,
+.configAnuncio select:focus,
+.configAnuncio textarea:focus {
+  outline: none;
+}
+
+.configAnuncio a:hover {
+  background-color: var(--input-color);
+}
+
+.precioAnuncio {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  padding-right: 0.5em;
+  width: 100%;
 }
