@@ -23,4 +23,6 @@ RUN php -r "unlink('composer-setup.php');"
 RUN docker-php-ext-install pdo pdo_mysql
 RUN composer require vlucas/phpdotenv
 
+RUN a2enmod rewrite
+RUN service apache2 restart
 CMD ["apache2-foreground"]
