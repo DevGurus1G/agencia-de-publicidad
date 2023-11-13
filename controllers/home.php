@@ -6,7 +6,7 @@ include 'db/db_connection.php';
 
 require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '../');
+$dotenv = Dotenv\Dotenv::createImmutable('./');
 $dotenv->load();
 // Cargar todos los anuncios
 $conn = connect(
