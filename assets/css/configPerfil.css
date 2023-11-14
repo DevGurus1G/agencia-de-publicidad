@@ -1,0 +1,71 @@
+/* ConfigPerfil */
+
+.configPerfilMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    height: fit-content;
+  }
+  
+  .configPerfilMenu input {
+    background-color: var(--background-color);
+    padding: 1em;
+    border-radius: 0.5em;
+    color: var(--text-color);
+  }
+  
+  .configPerfilMenu a {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  .configPerfilMenu a:hover {
+    background-color: var(--input-color);
+  }
+  
+  /* Lector de imagenes */
+  .imagen-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+  }
+  
+  .imagen-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  .imagen-input div input {
+    display: none;
+  }
+  .imagen-input div {
+    justify-content: center;
+    align-items: center;
+  }
+  .imagen-input div label {
+    color: var(--text-color);
+    font-size: 1em;
+    background-color: var(--background-color);
+    line-height: normal;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+    width: 100%;
+    cursor: pointer;
+  }
+  .imagen-input div label:hover {
+    background-color: var(--input-color);
+  }
+  #avatar {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  

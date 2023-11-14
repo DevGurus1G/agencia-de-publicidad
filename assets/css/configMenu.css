@@ -1,0 +1,39 @@
+/* ConfigMenu */
+
+.configMenu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 2em;
+    background-color: var(--background-color);
+    height: fit-content;
+  }
+  
+  .configMenu a {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding: 2em;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  .configMenu a:hover {
+    background-color: var(--input-color);
+    cursor: pointer;
+  }
+  
+  .configPerfil {
+    border-bottom: 2px solid var(--border-color);
+  }
+  
+  .configPerfil:hover {
+    border-top-right-radius: 2em;
+    border-top-left-radius: 2em;
+  }
+  
+  .configFavorito:hover,
+  .configProducto:hover {
+    border-bottom-right-radius: 2em;
+    border-bottom-left-radius: 2em;
+  }

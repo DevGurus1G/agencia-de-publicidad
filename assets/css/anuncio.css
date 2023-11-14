@@ -1,0 +1,129 @@
+/* Anuncio */
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+  }
+  .anuncio-tarjeta {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-color);
+    width: 100%;
+    max-width: 550px;
+    border-radius: 2em;
+    padding: 1em;
+    gap: 1em;
+  }
+  .anunciante,
+  .anunciante div {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+  }
+  .anunciante {
+    justify-content: space-between;
+  }
+  
+  .anunciante img {
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+  }
+  
+  .perfil {
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+  }
+  
+  #favorito {
+    display: none;
+  }
+  label[for='favorito'] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+  label[for='favorito'] svg {
+    width: 2em;
+    height: 2em;
+  }
+  
+  #favorito:checked + label[for='favorito'] svg > path {
+    fill: #e11d48;
+  }
+  
+  .chat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  label[for='favorito'],
+  .chat {
+    padding: 0.25em 2em;
+    border: 1px solid var(--border-color);
+    border-radius: 2em;
+  }
+  .imagenes-anuncio {
+    overflow: hidden;
+  }
+  
+  .carrusel {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .carrusel img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 1em;
+  }
+  
+  .botones-carrusel {
+    margin: 1em;
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .boton-carrusel:disabled svg path {
+    fill: var(--border-color);
+  }
+  
+  .boton-carrusel svg {
+    width: 2em;
+    height: 2em;
+  }
+  
+  .boton-carrusel svg path {
+    fill: var(--primary-color);
+  }
+  
+  .info-anuncio {
+    line-height: 1.5;
+  }
+  
+  .categoria {
+    padding: 1em 2em;
+    width: fit-content;
+    border: 1px solid var(--border-color);
+    border-radius: 2em;
+  }
+  
+  .categoria:hover {
+    background-color: var(--input-color);
+    /* Va a ser un enlace? */
+    cursor: pointer;
+  }
+  
+  .precio {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
