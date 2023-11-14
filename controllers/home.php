@@ -4,7 +4,7 @@
 include 'db/db_anuncios.php';
 include 'db/db_connection.php';
 
-require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
+require 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable('./');
 $dotenv->load();

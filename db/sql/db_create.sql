@@ -2,7 +2,8 @@
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) UNIQUE NOT NULL,
-    pass VARCHAR(255) NOT NULL,
+    hashed_pass VARCHAR(255) NOT NULL,
+    salt VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
@@ -53,15 +54,15 @@ CREATE TABLE IF NOT EXISTS favoritos (
     FOREIGN KEY (anuncio_id) REFERENCES anuncios(id)
 );
 
-insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("Comprador1","Pass1","comprador1@gmail.com","nombre1","apellido1 apellido2","comprador");
-insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("Comprador2","Pass2","comprador2@gmail.com","nombre2","apellido1 apellido2","comprador");
-insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("tienda1","Pass3","tienda1@gmail.com","nombre3","apellido1 apellido2","tienda");
-insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("tienda2","Pass4","tienda2@gmail.com","nombre4","apellido1 apellido2","tienda");
+-- insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("Comprador1","Pass1","comprador1@gmail.com","nombre1","apellido1 apellido2","comprador");
+-- insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("Comprador2","Pass2","comprador2@gmail.com","nombre2","apellido1 apellido2","comprador");
+-- insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("tienda1","Pass3","tienda1@gmail.com","nombre3","apellido1 apellido2","tienda");
+-- insert into usuarios (username,pass,email,nombre,apellidos,tipo) values ("tienda2","Pass4","tienda2@gmail.com","nombre4","apellido1 apellido2","tienda");
 
-insert into categorias (nombre) values ("Vehiculos");
-insert into categorias (nombre) values ("Electronica");
-insert into categorias (nombre) values ("Deporte");
+-- insert into categorias (nombre) values ("Vehiculos");
+-- insert into categorias (nombre) values ("Electronica");
+-- insert into categorias (nombre) values ("Deporte");
 
-insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Vendo opel corsa","Coche seminuevo en perfecto estado",1000,3,1);
-insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Zapatillas runner","Zapatillas para correr a una super velocidad",105.20,4,3);
-insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Raton gaming","Raton gaming con 10000dpis y que cocina",15,3,2);
+-- insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Vendo opel corsa","Coche seminuevo en perfecto estado",1000,3,1);
+-- insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Zapatillas runner","Zapatillas para correr a una super velocidad",105.20,4,3);
+-- insert into anuncios (titulo,descripcion,precio,anunciante,categoria_id) values ("Raton gaming","Raton gaming con 10000dpis y que cocina",15,3,2);

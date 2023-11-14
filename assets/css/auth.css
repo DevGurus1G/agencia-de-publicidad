@@ -1,0 +1,185 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --border-color: #ccc;
+  --primary-color: #13c1ac;
+  --text-color: #000;
+  --background-color: #fff;
+  --input-color: #afafaf;
+}
+
+html,
+body {
+  min-height: 100vh;
+}
+
+body.dark {
+  --border-color: #333;
+  --primary-color: #0b8f7f;
+  --text-color: #fff;
+  --background-color: #000;
+  --input-color: #333;
+}
+
+body {
+  font-size: 1em;
+  color: var(--text-color);
+  background-color: var(--background-color);
+  display: grid;
+  grid-template-rows: 10fr 90fr;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  padding-left: 1em;
+}
+
+svg {
+  width: 2em;
+  height: 2em;
+}
+
+svg > * {
+  fill: var(--primary-color);
+}
+
+h1 {
+  font-size: 1.5em;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.login,
+.register {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  max-width: 500px;
+  padding: 1em;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+input:not(input[type='radio']) {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: var(--text-color);
+  padding: 1em;
+  box-shadow: 0 0 0 1px hsla(0, 0%, 20%, 0.24);
+  border-radius: 0.5em;
+}
+
+input:hover:not(input[type='radio']) {
+  box-shadow: 0 0 0 1px hsla(0, 0%, 20%, 0.4);
+}
+
+input:focus:not(input[type='radio']) {
+  box-shadow:
+    0 0 0 4px hsla(0, 0%, 20%, 0.24),
+    0 0 0 1px hsla(0, 0%, 20%, 0.4);
+}
+button {
+  padding: 1em;
+  border: none;
+  outline: none;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 0.5em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  --primary-color: #0b8f7f;
+}
+.cambiar {
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.cambiar:hover {
+  --primary-color: #0b8f7f;
+}
+
+/* Indicadores posicion */
+
+.indicadores-paso {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.indicador {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-color);
+  width: 2em;
+  height: 2em;
+  border: 1px solid hsla(0, 0%, 20%, 0.24);
+  border-radius: 50%;
+  margin: 0 1em;
+}
+
+.indicador-activo {
+  background-color: hsla(0, 0%, 100%, 0.24);
+}
+/* Formulario de registro */
+.formulario-paso {
+  display: none;
+}
+
+.formulario-paso-activo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+img {
+  width: 4em;
+  height: 4em;
+}
+
+input[type='file'] {
+  display: none;
+}
+
+label[for='imagen'] {
+  color: #fff;
+  border-radius: 0.5em;
+  cursor: pointer;
+  padding: 1em;
+  background-color: var(--primary-color);
+}
+label[for='imagen']:hover {
+  --primary-color: #0b8f7f;
+}
+
+#paso3 {
+  gap: 1em;
+}

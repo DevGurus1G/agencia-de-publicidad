@@ -1,14 +1,25 @@
 <?php
+include 'db/db_connection.php';
+include 'db/db_usuarios.php';
+require 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable('./');
+$dotenv->load();
+// Cargar todos los anuncios
+$conn = connect(
+  $_ENV['HOST'],
+  $_ENV['DB_NOMBRE'],
+  $_ENV['USER'],
+  $_ENV['USER_PASSWORD']
+);
 function comprobarLogin($email, $password, $conn) {
   $usuario = getUsuarioLogin($email, $conn);
-  // session_start()
   if ($usuario) {
-    // para hash de la contras
-    //$user_pass = md5($password);
-    //$enc_pass = $row['password'];
-
-    if ($password === $usuario['password']) {
-      $_SESSION[$usuario] = $usuario;
+    if (
+      password_verify($password . $usuario['salt'], $usuario['hashed_password'])
+    ) {
+      session_start();
+      $_SESSION['usuario'] = $usuario;
       die('conectado');
     } else {
       die('Contraseña o email incorrecto');
@@ -16,5 +27,12 @@ function comprobarLogin($email, $password, $conn) {
   } else {
     die("$email - Este email no existe");
   }
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  comprobarLogin($_POST['email'], $_POST['pass'], $conn);
+} else {
+  $titulo = 'Login | Merkatu Libre';
+  require 'views/login.view.php';
 }
 ?>
