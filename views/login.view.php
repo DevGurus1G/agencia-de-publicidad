@@ -1,8 +1,7 @@
 <?php include 'views/components/header_auth.php'; ?>
     <main>
       <div class="login">
-        <form action="authenticate" method="post" id="login-form">
-          <input type="hidden" name="tipo" value="login" />
+        <form action="/login" method="post">
           <input
             type="text"
             name="email"
@@ -17,10 +16,9 @@
           />
           <button type="submit" id="login-btn">Login</button>
         </form>
-        <a href="/register" class="cambiar" id="btn-ir-registro"
-          >¿Eres nuevo? Registrate</a
-        >
+        <a href="/register" class="cambiar">¿Eres nuevo? Registrate</a>
       </div>
     </main>
+    <script src="assets/js/login.js"></script>
   </body>
 </html>

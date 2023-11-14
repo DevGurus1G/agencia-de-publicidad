@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(255) UNIQUE NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
-    tipo VARCHAR(255) NOT NULL CHECK (tipo IN ('tienda', 'comprador', "admin")),
+    tipo VARCHAR(255) NOT NULL CHECK (tipo IN ('tienda', 'comprador', 'admin')),
     imagen LONGBLOB
 );
 

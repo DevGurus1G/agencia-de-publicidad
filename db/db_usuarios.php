@@ -1,12 +1,13 @@
 <?php
 function insertUsuario($usuario, $conn) {
   $stmt = $conn->prepare(
-    'INSERT INTO usuarios (username, pass, email, nombre, apellidos, tipo, imagen) 
-    VALUES (:username, :pass, :email, :nombre, :apellidos, :tipo, :imagen)'
+    'INSERT INTO usuarios (username, hashed_pass, salt, email, nombre, apellidos, tipo, imagen) 
+    VALUES (:username, :hashed_pass, :salt, :email, :nombre, :apellidos, :tipo, :imagen)'
   );
   $stmt->execute([
     'username' => $usuario['username'],
-    'pass' => $usuario['pass'],
+    'hashed_pass' => $usuario['hashed_pass'],
+    'salt' => $usuario['salt'],
     'email' => $usuario['email'],
     'nombre' => $usuario['nombre'],
     'apellidos' => $usuario['apellidos'],

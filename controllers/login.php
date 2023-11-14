@@ -16,7 +16,7 @@ function comprobarLogin($email, $password, $conn) {
   $usuario = getUsuarioLogin($email, $conn);
   if ($usuario) {
     if (
-      password_verify($password . $usuario['salt'], $usuario['hashed_password'])
+      password_verify($password . $usuario['salt'], $usuario['hashed_pass'])
     ) {
       session_start();
       $_SESSION['usuario'] = $usuario;
@@ -30,7 +30,7 @@ function comprobarLogin($email, $password, $conn) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  comprobarLogin($_POST['email'], $_POST['pass'], $conn);
+  comprobarLogin($_POST['email'], $_POST['password'], $conn);
 } else {
   $titulo = 'Login | Merkatu Libre';
   require 'views/login.view.php';

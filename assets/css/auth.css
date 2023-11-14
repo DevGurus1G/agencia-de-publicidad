@@ -81,20 +81,24 @@ form {
 }
 
 input:not(input[type='radio']) {
+  --border-color: #33333333;
   border: none;
   outline: none;
   background-color: transparent;
   color: var(--text-color);
   padding: 1em;
-  box-shadow: 0 0 0 1px hsla(0, 0%, 20%, 0.24);
+  box-shadow: 0 0 0 1px var(--border-color);
   border-radius: 0.5em;
 }
 
 input:hover:not(input[type='radio']) {
-  box-shadow: 0 0 0 1px hsla(0, 0%, 20%, 0.4);
+  --border-color: #33333366;
+  box-shadow: 0 0 0 1px var(--border-color);
 }
 
 input:focus:not(input[type='radio']) {
+  --border-color: #33333333;
+  --border-color-extendido: #33333366;
   box-shadow:
     0 0 0 4px hsla(0, 0%, 20%, 0.24),
     0 0 0 1px hsla(0, 0%, 20%, 0.4);
@@ -135,19 +139,21 @@ button:hover {
 }
 
 .indicador {
+  --border-color: #33333333;
   display: flex;
   justify-content: center;
   align-items: center;
   color: var(--text-color);
   width: 2em;
   height: 2em;
-  border: 1px solid hsla(0, 0%, 20%, 0.24);
+  border: 1px solid var(--border-color);
   border-radius: 50%;
   margin: 0 1em;
 }
 
 .indicador-activo {
-  background-color: hsla(0, 0%, 100%, 0.24);
+  --border-color: #33333333;
+  background-color: var(--border-color);
 }
 /* Formulario de registro */
 .formulario-paso {
@@ -163,6 +169,7 @@ button:hover {
 img {
   width: 4em;
   height: 4em;
+  border-radius: 50%;
 }
 
 input[type='file'] {
@@ -170,6 +177,9 @@ input[type='file'] {
 }
 
 label[for='imagen'] {
+  display: block;
+  text-align: center;
+  font-weight: bold;
   color: #fff;
   border-radius: 0.5em;
   cursor: pointer;
@@ -183,3 +193,27 @@ label[for='imagen']:hover {
 #paso3 {
   gap: 1em;
 }
+
+.imagen-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+.imagen-form div {
+  width: 100%;
+}
+
+.radio {
+  --border-color: #33333333;
+  box-shadow: 0 0 0 1px var(--border-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* Test */
+/* input[type='radio'] {
+  accent-color: var(--primary-color);
+} */

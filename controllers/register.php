@@ -17,7 +17,7 @@ function registrar($conn) {
   // Encryptar contraseña
   $options = ['cost' => 12];
   $salt = password_hash(uniqid(mt_rand(), true), PASSWORD_BCRYPT, $options);
-  $pass = $_POST['pass'];
+  $pass = $_POST['password'];
   $hashed_password = password_hash($pass . $salt, PASSWORD_BCRYPT, $options);
   $usuario = [
     'username' => $_POST['username'],
@@ -26,7 +26,7 @@ function registrar($conn) {
     'email' => $_POST['email'],
     'nombre' => $_POST['nombre'],
     'apellidos' => $_POST['apellidos'],
-    'tipo' => $_POST['tipo-usuario'],
+    'tipo' => $_POST['tipo'],
     'imagen' => $imagen,
   ];
   insertUsuario($usuario, $conn);
