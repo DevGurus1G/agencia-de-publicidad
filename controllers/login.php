@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   comprobarLogin($_POST['email'], $_POST['password'], $conn);
 } else {
   $titulo = 'Login | Merkatu Libre';
+  $estilos = ['assets/css/auth.css'];
   require 'views/login.view.php';
 }
 ?>

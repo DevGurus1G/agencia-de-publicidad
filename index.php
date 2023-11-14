@@ -5,8 +5,13 @@ $routes = [
   '/' => 'controllers/home.php',
   '/login' => 'controllers/login.php',
   '/register' => 'controllers/register.php',
-  '/anuncios' => 'controllers/anuncios.php',
-  '/anuncioRegistro' => "./configAnuncio.php",
+  '/anuncioRegistro' => './configAnuncio.php',
+  '/anuncio' => 'controllers/anuncio.php',
+  '/anuncio/manage' => 'controllers/manage_anuncio.php',
+  '/admin' => 'controllers/admin.php',
+  '/anuncio/panel' => 'controllers/panel_anuncio.php',
+  '/panel' => 'controllers/panel.php',
+  '/perfil' => 'controllers/perfil.php',
 ];
 
 if (array_key_exists($request_uri, $routes)) {

@@ -36,6 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   registrar($conn);
 } else {
   $titulo = 'Register | Merkatu Libre';
+  $estilos = ['assets/css/auth.css'];
   require 'views/register.view.php';
 }
 ?>

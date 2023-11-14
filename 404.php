@@ -1,4 +1,6 @@
-<?php require 'views/components/header.php'; ?>
+<?php $estilos = ['assets/css/default.css', 'assets/css/404.css'];
+require 'views/components/header.php';
+?>
 
 <main>
     <p class="mensaje">

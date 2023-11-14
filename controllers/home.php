@@ -17,5 +17,6 @@ $conn = connect(
 );
 
 $anuncios = getAllAnuncios($conn);
+$estilos = ['assets/css/default.css'];
 include 'views/home.view.php';
 ?>

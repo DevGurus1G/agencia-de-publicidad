@@ -1,6 +1,6 @@
 <main>
   <div class="tarjeta-anuncio">
-    <img src="assets/img/foto_anuncio_default_2.png" alt="" />
+    <img src="../assets/img/foto_anuncio_default_2.png" alt="" />
 
     <div class="targe-anuncio-texto">
       <div class="texto-cabecera">

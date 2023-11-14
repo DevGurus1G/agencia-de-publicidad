@@ -1,10 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agencia publicitaria</title>
-    <link id="estilos" rel="stylesheet" href="assets/css/default.css" />
+    <? foreach ($estilos as $estilo) : ?>
+      <link rel="stylesheet" href="<?= $estilo ?>" />
+    <? endforeach; ?>
   </head>
   <body>
     <header>

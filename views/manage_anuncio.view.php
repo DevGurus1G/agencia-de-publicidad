@@ -8,19 +8,19 @@
       <div class="imagen-input" id="imagen-input">
 
         <div class="imagen-grupo">
-        <img src="assets/img/default_avatar.webp" id="avatar" />
+        <img src="../assets/img/default_avatar.webp" id="avatar" />
           <input type="file" name="imagen" id="imagen" />
           <label for="imagen">Subir</label>
         </div>
 
         <div class="imagen-grupo">
-        <img src="assets/img/default_avatar.webp" id="avatar" />
+        <img src="../assets/img/default_avatar.webp" id="avatar" />
           <input type="file" name="imagen" id="imagen2" />
           <label for="imagen2">Subir</label>
         </div>
 
         <div class="imagen-grupo">
-        <img src="assets/img/default_avatar.webp" id="avatar" />
+        <img src="../assets/img/default_avatar.webp" id="avatar" />
           <input type="file" name="imagen" id="imagen3" />
           <label for="imagen3">Subir</label>
         </div>
@@ -48,4 +48,4 @@
   </div>
 </form>
 </main>
-<script src="./assets/js/configAnuncio.js"></script>
+<script src="../assets/js/configAnuncio.js"></script>
