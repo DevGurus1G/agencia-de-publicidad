@@ -1,0 +1,46 @@
+/* Admin */
+
+main{
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    flex-direction: column;
+    gap: 	2em;
+  }
+  
+  .busqueda{
+    display: flex;
+    justify-content: center;
+    height: fit-content;
+    width: fit-content;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 0.5em;
+    border-radius: 0.5em;
+  }
+  
+  .busqueda form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  }
+  
+  .busqueda input{
+    outline: none;
+  }
+  
+  .filtro form{
+    display: flex;
+    gap: 2em;
+  }
+  
+  .filtro form input[type='button']{
+    padding: 1em;
+    background-color: var(--background-color);
+    border-radius: 0.5em;
+    border: 2px solid var(--border-color);
+  }
+  .filtro form input[type='button']:hover{
+    background-color: var(--input-color);
+  }

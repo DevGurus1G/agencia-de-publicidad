@@ -46,7 +46,7 @@ body {
   grid-template-rows: 10fr 75fr 15fr;
 }
 body.dark {
-  --border-color: #333;
+  --border-color: #fff;
   --primary-color: #0b8f7f;
   --text-color: #fff;
   --background-color: #000;
@@ -189,7 +189,7 @@ body.dark footer .logo-empresa {
   filter: invert(0%);
 }
 
-/* Anuncios */
+/* Home */
 
 .anuncios {
   display: grid;
@@ -239,6 +239,7 @@ main {
   border-radius: 2em;
   padding: 1em;
   gap: 1em;
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 .anunciante,
 .anunciante div {
@@ -319,7 +320,7 @@ label[for='favorito'],
 }
 
 .boton-carrusel:disabled svg path {
-  fill: var(--border-color);
+  fill: var(--input-color);
 }
 
 .boton-carrusel svg {
@@ -407,6 +408,7 @@ label[for='favorito'],
   padding: 1em;
   border-radius: 0.5em;
   color: var(--text-color);
+  outline: none;
 }
 
 .configPerfilMenu a {
@@ -417,6 +419,7 @@ label[for='favorito'],
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
+  border: 2px solid var(--border-color);
 }
 
 .configPerfilMenu a:hover {
@@ -453,6 +456,7 @@ label[for='favorito'],
   border-radius: 1em;
   width: 100%;
   cursor: pointer;
+  border: 2px solid var(--border-color);
 }
 .imagen-input div label:hover {
   background-color: var(--input-color);
@@ -462,9 +466,10 @@ label[for='favorito'],
   height: 5em;
   border-radius: 50%;
   overflow: hidden;
+  border: 2px solid var(--border-color);
 }
 
-/*AnuncioMenu*/
+/* AnuncioMenu */
 
 .tarjeta-anuncio {
   display: flex;
@@ -474,6 +479,7 @@ label[for='favorito'],
   background-color: var(--background-color);
   height: fit-content;
   max-width: 550px;
+  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 .tarjeta-anuncio img {
@@ -512,7 +518,7 @@ label[for='favorito'],
   fill: #e11d48;
 }
 
-/*configAnuncio*/
+/* ConfigAnuncio */
 
 .configAnuncio {
   display: flex;
@@ -554,6 +560,7 @@ label[for='favorito'],
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
+  border: 2px solid var(--border-color);
 }
 
 .configAnuncio input:focus,
@@ -576,7 +583,60 @@ label[for='favorito'],
   width: 100%;
 }
 
-/* Error404*/
+.tabla{
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}
+
+/* Admin */
+
+main{
+  display: flex;
+  height: fit-content;
+  align-items: center;
+  flex-direction: column;
+  gap: 	2em;
+}
+
+.busqueda{
+  display: flex;
+  justify-content: center;
+  height: fit-content;
+  width: fit-content;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+.busqueda form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+}
+
+.busqueda input{
+  outline: none;
+}
+
+.filtro form{
+  display: flex;
+  gap: 2em;
+}
+
+.filtro form input[type='button']{
+  padding: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}
+.filtro form input[type='button']:hover{
+  background-color: var(--input-color);
+}
+
+/* Error 404*/
 
 .mensaje {
   width: 100%;
@@ -587,7 +647,7 @@ label[for='favorito'],
   font: 400 0.75em/1.5 'Neuton';
   color: var(--text-color);
   display: inline-block;
-  border: 4px double #ffffff40;
+  border: 4px double var(--text-color);
   border-width: 4px 0;
   padding: 1.5em 0em;
 }
