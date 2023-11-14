@@ -6,6 +6,7 @@ $routes = [
   '/login' => 'controllers/login.php',
   '/register' => 'controllers/register.php',
   '/anuncios' => 'controllers/anuncios.php',
+  '/anuncioRegistro' => "./configAnuncio.php",
 ];
 
 if (array_key_exists($request_uri, $routes)) {
