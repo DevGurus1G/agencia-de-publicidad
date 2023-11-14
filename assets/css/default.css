@@ -66,6 +66,7 @@ body.dark {
 }
 
 /* Estilos para el header */
+
 header {
   display: flex;
   justify-content: space-around;
@@ -126,6 +127,37 @@ header form input:focus {
   position: relative;
 }
 
+/* Navegador del Header (Luego se hara con un boton) */
+
+nav ul {
+  display: none;
+  list-style: none;
+}
+
+.show {
+  background-color: var(--background-color);
+  position: absolute;
+  right: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.show li a,
+.show li label {
+  display: flex;
+  padding: 1em;
+  width: 100%;
+  gap: 0.5em;
+  align-items: center;
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.show li a:hover,
+.show li label:hover {
+  background-color: var(--input-color);
+}
+
 /* Estilos para el footer */
 
 footer {
@@ -155,36 +187,6 @@ body footer .logo-empresa {
 
 body.dark footer .logo-empresa {
   filter: invert(0%);
-}
-
-/* Luego se hara con un boton */
-nav ul {
-  display: none;
-  list-style: none;
-}
-
-.show {
-  background-color: var(--background-color);
-  position: absolute;
-  right: 1em;
-  display: flex;
-  flex-direction: column;
-}
-
-.show li a,
-.show li label {
-  display: flex;
-  padding: 1em;
-  width: 100%;
-  gap: 0.5em;
-  align-items: center;
-  color: var(--text-color);
-  text-decoration: none;
-}
-
-.show li a:hover,
-.show li label:hover {
-  background-color: var(--input-color);
 }
 
 /* Anuncios */
@@ -574,9 +576,9 @@ label[for='favorito'],
   width: 100%;
 }
 
-/*Magic*/
+/* Error404*/
 
-.hola {
+.mensaje {
   width: 100%;
   max-width: 80em;
   text-align: center;
@@ -590,7 +592,7 @@ label[for='favorito'],
   padding: 1.5em 0em;
 }
 
-.Error {
+.error {
   font:
     700 4em/1 'Oswald',
     sans-serif;
@@ -599,12 +601,12 @@ label[for='favorito'],
   display: block;
   margin: 0 auto;
   text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
-  background: url('https://codetheworld.io/wp-content/uploads/2023/11/rNPwjWM-animated-text-fill.png')
+  background: url('/assets/img/404_animation.png')
     repeat-y;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: anim 80s linear infinite;
+  animation: anim 100s linear infinite;
 }
 
 @-webkit-keyframes anim {

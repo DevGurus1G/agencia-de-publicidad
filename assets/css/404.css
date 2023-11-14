@@ -1,10 +1,13 @@
-.hola {
-  width: 40em;
+/* Error 404 */
+
+.mensaje {
+  width: 100%;
+  max-width: 80em;
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.5em;
   font: 400 0.75em/1.5 'Neuton';
-  color: #ffffff40;
+  color: var(--text-color);
   display: inline-block;
   border: 4px double #ffffff40;
   border-width: 4px 0;
@@ -20,12 +23,12 @@
   display: block;
   margin: 0 auto;
   text-shadow: 0 0 80px rgba(255, 255, 255, 0.5);
-  background: url('https://codetheworld.io/wp-content/uploads/2023/11/rNPwjWM-animated-text-fill.png')
+  background: url('/assets/img/404_animation.png')
     repeat-y;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: anim 80s linear infinite;
+  animation: anim 100s linear infinite;
 }
 
 @-webkit-keyframes anim {
