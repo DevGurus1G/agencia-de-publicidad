@@ -2,7 +2,6 @@ const btnPaso1 = document.getElementById('btn-paso1');
 const btnPaso2Volver = document.getElementById('btn-paso2-volver');
 const btnPaso2Seguir = document.getElementById('btn-paso2-seguir');
 const btnPaso3 = document.getElementById('btn-paso3');
-console.log(btnPaso1);
 // Para registar
 
 const formRegister = document.querySelector('form');
@@ -71,8 +70,10 @@ async function registro() {
     });
     if (response.ok) {
       const data = await response.text();
-      console.log(data);
-      if (data === 'registrado') window.location.href = '/';
+      console.log(data + 'lñksadfñkjas');
+      if (data === 'registrado') {
+        window.location.href = '/';
+      }
     } else {
       console.error(response);
     }
