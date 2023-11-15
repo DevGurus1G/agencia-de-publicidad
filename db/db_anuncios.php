@@ -19,4 +19,13 @@ function insertAnuncio($anuncio,$conn){
     'categoria_id' => $anuncio['categoria'],
   ]);
 }
+
+function getAnunciosById($anuncio,$conn) {
+  $stmt = $conn->prepare('SELECT * FROM anuncios 
+                          WHERE id = :id');
+  $stmt->execute([
+      'id'=> $anuncio
+  ]);
+  return $stmt->fetch();
+}
 ?>
