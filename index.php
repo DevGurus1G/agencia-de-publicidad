@@ -15,6 +15,7 @@ $routes = [
   '/anuncio/panel' => 'controllers/panel_anuncio.php',
   '/panel' => 'controllers/panel.php',
   '/perfil' => 'controllers/perfil.php',
+  '/chat' => 'controllers/chat.php',
 ];
 
 if (array_key_exists($request_uri, $routes)) {
