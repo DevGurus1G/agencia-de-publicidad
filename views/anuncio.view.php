@@ -87,15 +87,13 @@
       </div>
     </div>
     <div class="info-anuncio">
-      <h2>Vendo españa a Puigdemont</h2>
-      <p class="precio">0€</p>
+      <h2><?= $anuncio['titulo'] ?></h2>
+      <p class="precio"><?= $anuncio['precio'] ?>€</p>
       <p class="descripcion">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Id esse
-        delectus voluptatum perferendis sequi repellat! Neque culpa fugit
-        accusamus veritatis ducimus aliquid temporibus quae. Quis?
+        <?= $anuncio['descripcion'] ?>
       </p>
     </div>
-    <div class="categoria">Robo</div>
+    <div class="categoria"><?= $anuncio['categoria_id'] ?></div>
   </div>
 </main>
 <script src="./assets/js/anuncio.js"></script>
