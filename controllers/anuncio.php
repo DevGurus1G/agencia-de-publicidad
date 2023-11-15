@@ -17,31 +17,26 @@ $conn = connect(
   $_ENV['USER_PASSWORD']
 );
 
-$estilos = ['assets/css/default.css', 'assets/css/anuncio.css'];
-require 'views/components/header.php';
+global $anuncio;
 
 if (isset($_GET['id'])) {
-    $anuncio =  getAnunciosById($_GET['id'], $conn);
+  $anuncio = getAnunciosById($_GET['id'], $conn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    if ($_POST['favorito'] == true)
-    {
-        insertarFavorito($_SESSION['usuario']['id'] ,$_POST['anuncio'], $conn);
-    }else
-    {
-        borrarFavorito($_SESSION['usuario']['id'] ,$_POST['anuncio'], $conn);
-    }
-
-       
-    } else {
-        $titulo = 'Anuncio | Merkatu Libre';
-        $estilos = ['assets/css/default.css', 'assets/css/anuncio.css'];
-        require 'views/anuncio.view.php';
+  if ($_POST['favorito'] == true) {
+    insertarFavorito($_SESSION['usuario']['id'], $_POST['anuncio'], $conn);
+  } else {
+    borrarFavorito($_SESSION['usuario']['id'], $_POST['anuncio'], $conn);
+  }
+} else {
+  $titulo = isset($anuncio['titulo'])
+    ? $anuncio['titulo']
+    : '' . ' | Gateiz Denda';
+  $estilos = ['assets/css/default.css', 'assets/css/anuncio.css'];
+  $scripts = ['assets/js/nav.js', 'assets/js/anuncio.js'];
+  require 'session.php';
+  require 'views/anuncio.view.php';
 }
-
-require 'views/components/footer.php';
-
 
 ?>

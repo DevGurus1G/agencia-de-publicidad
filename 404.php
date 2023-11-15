@@ -1,4 +1,6 @@
-<?php $estilos = ['assets/css/default.css', 'assets/css/404.css'];
+<?php $estilos = ['/assets/css/default.css', '/assets/css/404.css'];
+$titulo = 'Error | Gasteiz Denda';
+$scripts = ['/assets/js/nav.js'];
 require 'views/components/header.php';
 ?>
 

@@ -1,18 +1,3 @@
-:root {
-  --border-color: #666;
-  --primary-color: #13c1ac;
-  --text-color: #000;
-  --background-color: #fff;
-  --input-color: #afafaf;
-}
-
-body.dark {
-  --border-color: #fff;
-  --primary-color: #0b8f7f;
-  --text-color: #fff;
-  --background-color: #000;
-  --input-color: #333;
-}
 a {
   color: var(--text-color);
   text-decoration: none;

@@ -13,6 +13,9 @@ $conn = connect(
   $_ENV['USER_PASSWORD']
 );
 $chats = getUserChats($conn, 1);
+$titulo = 'Chats | Gasteiz Denda';
+$estilos = ['assets/css/default.css', 'assets/css/chat.css'];
+$scripts = ['assets/js/nav.js'];
 // print_r($chats);
 require 'views/chat.view.php';
 ?>

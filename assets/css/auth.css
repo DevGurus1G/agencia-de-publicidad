@@ -9,7 +9,7 @@
 
 :root {
   --border-color: #ccc;
-  --primary-color: #13c1ac;
+  --primary-color: #0490da;
   --text-color: #000;
   --background-color: #fff;
   --input-color: #afafaf;
@@ -22,7 +22,7 @@ body {
 
 body.dark {
   --border-color: #333;
-  --primary-color: #0b8f7f;
+  --primary-color: #004fa3;
   --text-color: #fff;
   --background-color: #000;
   --input-color: #333;

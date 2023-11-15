@@ -1,9 +1,7 @@
 <?php
 $estilos = ['assets/css/default.css', 'assets/css/admin.css'];
-require 'views/components/header.php';
-
+$titulo = 'Admin | Gasteiz Denda';
+$scripts = ['assets/js/nav.js'];
 require 'views/admin.view.php';
-
-require 'views/components/footer.php';
 
 ?>

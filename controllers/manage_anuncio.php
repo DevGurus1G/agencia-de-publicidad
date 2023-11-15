@@ -18,31 +18,28 @@ $conn = connect(
 $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
 
 function registrar($conn) {
-    // print_r($_FILES['imagen']);
-    // $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-    $anuncio = [
-      'titulo' => $_POST['titulo'],
-      'descripcion' => $_POST['descripcion'],
-      'precio' => $_POST['precio'],
-      'anunciante' => 1,
-      'categoria' => $_POST['categoria'],
-    ];
-    insertAnuncio($anuncio, $conn);
-    die('registrado');
-  }
+  // print_r($_FILES['imagen']);
+  // $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
+  $anuncio = [
+    'titulo' => $_POST['titulo'],
+    'descripcion' => $_POST['descripcion'],
+    'precio' => $_POST['precio'],
+    'anunciante' => 1,
+    'categoria' => $_POST['categoria'],
+  ];
+  insertAnuncio($anuncio, $conn);
+  die('registrado');
+}
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    registrar($conn);
-  } else {
-    $titulo = 'Registro anuncio | Merkatu Libre';
-    $estilos = ['../assets/css/default.css','../assets/css/manage_anuncio.css'];
-    $categorias = getAllCategorias($conn);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  registrar($conn);
+} else {
+  $titulo = 'Registro anuncio | Gasteiz Denda';
+  $scripts = ['../assets/js/nav.js', '../assets/js/manage_anuncio.js'];
+  $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
+  $categorias = getAllCategorias($conn);
 
-    require 'views/components/header.php';
+  require 'views/manage_anuncio.view.php';
+}
 
-    require 'views/manage_anuncio.view.php';
-
-    //require 'views/components/footer.php';
-  }
-  
-  ?>
+?>

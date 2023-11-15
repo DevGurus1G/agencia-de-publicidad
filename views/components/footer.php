@@ -19,6 +19,8 @@
     </a>
 </footer>
 
-<script src="index.js"></script>
+<? foreach ($scripts as $script) : ?>
+      <script src="<?= $script ?>" ></script>
+<? endforeach; ?>
 </body>
 </html>

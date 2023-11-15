@@ -1,6 +1,6 @@
 const registroForm = document.getElementById('registroAnuncio-form');
 
-registroForm.addEventListener("submit",(e)=>e.preventDefault());
+registroForm.addEventListener('submit', (e) => e.preventDefault());
 
 const registroBtn = document.getElementById('registroAnuncio-btn');
 
@@ -21,20 +21,19 @@ async function registrarAnuncio() {
   const categoria = document.getElementById('categoriaAnuncio').value;
   const descripcion = document.getElementById('descripcionAnuncio').value;
   const precio = document.getElementById('precioAnuncio').value;
-//   const imagen1 = document.getElementById('imagenAnuncio1').files[0];
-//   const imagen2 = document.getElementById('imagenAnuncio2').files[0];
-//   const imagen3 = document.getElementById('imagenAnuncio3').files[0];
-
+  //   const imagen1 = document.getElementById('imagenAnuncio1').files[0];
+  //   const imagen2 = document.getElementById('imagenAnuncio2').files[0];
+  //   const imagen3 = document.getElementById('imagenAnuncio3').files[0];
 
   const formData = new FormData();
   formData.append('titulo', titulo);
   formData.append('categoria', categoria);
   formData.append('descripcion', descripcion);
   formData.append('precio', precio);
-//   Esto tiene que ir a la tabla imagen_anuncio
-//   formData.append('imagen1', imagen1);
-//   formData.append('imagen1', imagen2);
-//   formData.append('imagen1', imagen3);
+  //   Esto tiene que ir a la tabla imagen_anuncio
+  //   formData.append('imagen1', imagen1);
+  //   formData.append('imagen1', imagen2);
+  //   formData.append('imagen1', imagen3);
   // Validaciones
   try {
     const response = await fetch('/anuncio/manage', {
@@ -46,7 +45,7 @@ async function registrarAnuncio() {
       if (data === 'registrado') {
         window.location.href = '/';
       } else {
-        console.log(data)
+        console.log(data);
       }
     } else {
       resultado.textContent = 'Error en la solicitud intentelo mas tarde';

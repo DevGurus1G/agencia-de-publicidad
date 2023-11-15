@@ -1,6 +1,8 @@
+<?php
+require 'views/components/header.php'; ?>
 <main>
   <div class="configMenu">
-    <a class="configPerfil" href="#"
+    <a class="configPerfil" href="/user/edit"
       ><svg
         class="icon"
         width="32"
@@ -68,3 +70,5 @@
     >
   </div>
 </main>
+<?php require 'views/components/footer.php';
+?>

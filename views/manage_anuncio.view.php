@@ -1,3 +1,4 @@
+<?php require 'views/components/header.php'; ?>
 <main>
 <form action="authenticate" method="post" id="registroAnuncio-form">
   <div class="configAnuncio">
@@ -31,7 +32,9 @@
 
       <select id="categoriaAnuncio">
       <? foreach ($categorias as $categoria) : ?>
-        <option value="<?=$categoria["id"]?>"><?=$categoria["nombre"]?></option>
+        <option value="<?= $categoria['id'] ?>"><?= $categoria[
+  'nombre'
+] ?></option>
       <? endforeach; ?>
       </select>
 
@@ -47,7 +50,5 @@
   </div>
 </form>
 </main>
-<script src="../assets/js/manage_anuncio.js"></script>
-      <!--TODO MIRAR ESTO PORQUE DABA ERROR EL FOOTER  -->
-</body>
-      </html>
+<?php require 'views/components/footer.php';
+?>

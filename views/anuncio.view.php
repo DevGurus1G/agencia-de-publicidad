@@ -1,3 +1,4 @@
+<?php require 'views/components/header.php'; ?>
 <main>
   <div class="anuncio-tarjeta">
     <div class="anunciante">
@@ -96,4 +97,4 @@
     <div class="categoria"><?= $anuncio['categoria_id'] ?></div>
   </div>
 </main>
-<script src="./assets/js/anuncio.js"></script>
+<?php require 'views/components/footer.php'; ?>

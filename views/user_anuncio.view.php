@@ -1,3 +1,4 @@
+<?php require 'views/components/header.php'; ?>
 <main>
   <div class="tarjeta-anuncio">
     <img src="../assets/img/foto_anuncio_default_2.png" alt="" />
@@ -49,3 +50,5 @@
     </div>
   </div>
 </main>
+<?php require 'views/components/footer.php';
+?>
