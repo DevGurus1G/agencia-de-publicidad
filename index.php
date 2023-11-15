@@ -5,7 +5,6 @@ $routes = [
   '/' => 'controllers/home.php',
   '/login' => 'controllers/login.php',
   '/register' => 'controllers/register.php',
-  '/anuncioRegistro' => './configAnuncio.php',
   '/anuncio' => 'controllers/anuncio.php',
   '/anuncio/manage' => 'controllers/manage_anuncio.php',
   '/admin' => 'controllers/admin.php',
