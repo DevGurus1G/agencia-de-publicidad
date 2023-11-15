@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
 require 'db/db_connection.php';
@@ -23,8 +25,8 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-    if ($_POST['favorito'] === true)
+
+    if ($_POST['favorito'] == true)
     {
         insertarFavorito($_SESSION['usuario']['id'] ,$_POST['anuncio'], $conn);
     }else

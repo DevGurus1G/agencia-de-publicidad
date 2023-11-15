@@ -57,6 +57,11 @@ async function registrarFavorito()
       method: 'POST',
       body: formData,
     });
+    if(response.ok)
+    {
+      const data = await response.text();
+      console.log(data);
+    }
   } catch (error) {
     console.log(error);
   }

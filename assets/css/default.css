@@ -26,7 +26,7 @@ h1 {
 }
 :root {
   --border-color: #666;
-  --primary-color: #13c1ac;
+  --primary-color: #0490da;
   --text-color: #000;
   --background-color: #fff;
   --input-color: #afafaf;
@@ -47,7 +47,7 @@ body {
 }
 body.dark {
   --border-color: #fff;
-  --primary-color: #0b8f7f;
+  --primary-color: #004fa3;
   --text-color: #fff;
   --background-color: #000;
   --input-color: #333;
@@ -58,11 +58,13 @@ body.dark {
   height: 2em;
   color: var(--primary-color);
   fill: var(--primary-color);
+  stroke: var(--primary-color);
 }
 
 .icon > * {
   color: var(--primary-color);
   fill: var(--primary-color);
+  stroke: var(--primary-color);
 }
 
 /* Estilos para el header */
