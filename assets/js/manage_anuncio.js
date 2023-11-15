@@ -7,14 +7,14 @@ const registroBtn = document.getElementById('registroAnuncio-btn');
 registroBtn.addEventListener('click', registrarAnuncio);
 
 //TODO NO funciona todavia
-document.getElementById('imagen1').addEventListener('change', () => {
-    const file = document.getElementById('imagen1').files[0];
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      document.querySelector('#imagen1').src = reader.result;
-    });
-    reader.readAsDataURL(file);
-  });
+// document.getElementById('imagen1').addEventListener('change', () => {
+//     const file = document.getElementById('imagen1').files[0];
+//     const reader = new FileReader();
+//     reader.addEventListener('load', () => {
+//       document.querySelector('#imagen1').src = reader.result;
+//     });
+//     reader.readAsDataURL(file);
+//   });
 
 async function registrarAnuncio() {
   const titulo = document.getElementById('tituloAnuncio').value;
@@ -37,7 +37,7 @@ async function registrarAnuncio() {
 //   formData.append('imagen1', imagen3);
   // Validaciones
   try {
-    const response = await fetch('registroAnuncio.php', {
+    const response = await fetch('/anuncio/manage', {
       method: 'POST',
       body: formData,
     });

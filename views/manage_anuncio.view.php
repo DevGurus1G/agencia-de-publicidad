@@ -30,10 +30,9 @@
       <input type="text" placeholder="Titulo" id="tituloAnuncio"/>
 
       <select id="categoriaAnuncio">
-          <option value="1">  CATEGORIA </option>
-          <option value="2">Antoine Griezmann Lopes</option>
-          <option value="3">Lionel Andres Messi Cuccitini</option>
-          <option value="3">Cristiano Ronaldo Dus Santos Aveiro</option>
+      <? foreach ($categorias as $categoria) : ?>
+        <option value="<?=$categoria["id"]?>"><?=$categoria["nombre"]?></option>
+      <? endforeach; ?>
       </select>
 
       <textarea placeholder="Descripcion" id="descripcionAnuncio"></textarea>
@@ -48,4 +47,7 @@
   </div>
 </form>
 </main>
-<script src="../assets/js/configAnuncio.js"></script>
+<script src="../assets/js/manage_anuncio.js"></script>
+      <!--TODO MIRAR ESTO PORQUE DABA ERROR EL FOOTER  -->
+</body>
+      </html>
