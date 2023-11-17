@@ -104,7 +104,7 @@
 .imagen-input div label:hover {
   background-color: var(--input-color);
 }
-#avatar {
+.avatar {
   width: 5em;
   height: 5em;
   border-radius: 50%;

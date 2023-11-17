@@ -18,6 +18,8 @@ function insertAnuncio($anuncio,$conn){
     'anunciante' => $anuncio['anunciante'],
     'categoria_id' => $anuncio['categoria'],
   ]);
+  //Devuelve el ultimo id que ha siso insertado en la tabla, este sirve para saber el id del anuncio que se acaba de publicar
+  return $conn->lastInsertId();
 }
 
 function getAnunciosById($anuncio,$conn) {

@@ -2,6 +2,7 @@
 
 require 'db/db_anuncios.php';
 require 'db/db_categorias.php';
+require 'db/db_imagenes_anuncios.php';
 require 'db/db_connection.php';
 require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
 
@@ -18,17 +19,29 @@ $conn = connect(
 $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
 
 function registrar($conn) {
-  // print_r($_FILES['imagen']);
-  // $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
+  if (!isset($_SESSION)) {
+    session_start();
+  }
+  $usuarioId = $_SESSION['usuario']['id'];
   $anuncio = [
     'titulo' => $_POST['titulo'],
     'descripcion' => $_POST['descripcion'],
     'precio' => $_POST['precio'],
-    'anunciante' => 1,
+    'anunciante' => $usuarioId,
     'categoria' => $_POST['categoria'],
   ];
-  insertAnuncio($anuncio, $conn);
+  $anuncioId = insertAnuncio($anuncio, $conn);
+  agregarFotos($anuncioId,$conn);
   die('registrado');
+}
+
+function agregarFotos($anuncioId,$conn){
+  $imagen1 = file_get_contents($_FILES['imagen1']['tmp_name']);
+  $imagen2 = file_get_contents($_FILES['imagen2']['tmp_name']);
+  $imagen3 = file_get_contents($_FILES['imagen3']['tmp_name']);
+  insertImagenAnuncio($imagen1,$anuncioId,$conn);
+  insertImagenAnuncio($imagen2,$anuncioId,$conn);
+  insertImagenAnuncio($imagen3,$anuncioId,$conn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

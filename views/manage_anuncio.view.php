@@ -9,19 +9,19 @@
       <div class="imagen-input" id="imagen-input">
 
         <div class="imagen-grupo">
-        <img src="../assets/img/default_avatar.webp" id="avatar" />
-          <input type="file" name="imagen" id="imagen" />
-          <label for="imagen">Subir</label>
+        <img src="../assets/img/default_avatar.webp" id="avatar1" class="avatar"/>
+          <input type="file" name="imagen1" id="imagen1" />
+          <label for="imagen1">Subir</label>
         </div>
 
         <div class="imagen-grupo">
-        <img src="../assets/img/default_avatar.webp" id="avatar" />
+        <img src="../assets/img/default_avatar.webp" id="avatar2" class="avatar"/>
           <input type="file" name="imagen" id="imagen2" />
           <label for="imagen2">Subir</label>
         </div>
 
         <div class="imagen-grupo">
-        <img src="../assets/img/default_avatar.webp" id="avatar" />
+        <img src="../assets/img/default_avatar.webp" id="avatar3" class="avatar" />
           <input type="file" name="imagen" id="imagen3" />
           <label for="imagen3">Subir</label>
         </div>
