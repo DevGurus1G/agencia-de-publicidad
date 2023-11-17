@@ -17,6 +17,7 @@ $routes = [
   '/user' => 'controllers/user.php',
   '/user/edit' => 'controllers/user_edit.php',
   '/chat' => 'controllers/chat.php',
+  '/chat/conversation' => 'controllers/chat_conversation.php',
 ];
 
 $routes_login = [
