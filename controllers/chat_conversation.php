@@ -15,16 +15,18 @@ $conn = connect(
   $_ENV['USER_PASSWORD']
 );
 
-if (isset($_GET['para_usuario_id'])) {
-  mostrarChat($conn);
-}
-
 if (isset($_GET['getNewMessages'])) {
   obtenerNuevosMensajes($conn);
+  exit();
 }
 
 if (isset($_GET['sendNewMessage'])) {
   enviarNuevoMensaje($conn);
+  exit();
+}
+
+if (isset($_GET['para_usuario_id'])) {
+  mostrarChat($conn);
 }
 
 function mostrarChat($conn) {
