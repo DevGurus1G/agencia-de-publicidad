@@ -40,9 +40,23 @@ async function registrarAnuncio() {
   const descripcion = document.getElementById('descripcionAnuncio').value;
   const precio = document.getElementById('precioAnuncio').value;
   
-  const imagen1 = document.getElementById('imagen1').files[0];
-  const imagen2 = document.getElementById('imagen2').files[0];
-  const imagen3 = document.getElementById('imagen3').files[0];
+  let imagen1 = document.getElementById('imagen1').files[0];
+  let imagen2 = document.getElementById('imagen2').files[0];
+  let imagen3 = document.getElementById('imagen3').files[0];
+  //Si no se sube una imagen le agrega una por defecto en formato blob para evitar errores
+  const imagenPorDefecto = await fetch('/assets/img/noPhoto.png');
+  const imagenPorDefectoBlob = await imagenPorDefecto.blob();
+ 
+  if(document.getElementById('imagen1').files[0] == undefined){
+    imagen1 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
+  }
+  if(document.getElementById('imagen2').files[0] === undefined){
+    imagen2 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
+  }
+  if(document.getElementById('imagen3').files[0] === undefined){
+    imagen3 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
+  }
+
 
   const formData = new FormData();
   formData.append('titulo', titulo);
