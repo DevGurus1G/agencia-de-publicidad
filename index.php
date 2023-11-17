@@ -1,7 +1,7 @@
 <?php
 $request_uri_entera = $_SERVER['REQUEST_URI'];
 
-$request_uri_array = explode("?",$request_uri_entera);
+$request_uri_array = explode('?', $request_uri_entera);
 
 $request_uri = $request_uri_array[0];
 
@@ -16,6 +16,7 @@ $routes = [
   '/panel' => 'controllers/panel.php',
   '/perfil' => 'controllers/perfil.php',
   '/chat' => 'controllers/chat.php',
+  '/chat/conversation' => 'controllers/chat_conversation.php',
 ];
 
 if (array_key_exists($request_uri, $routes)) {
