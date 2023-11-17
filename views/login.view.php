@@ -16,6 +16,7 @@
           />
           <button type="submit" id="login-btn">Login</button>
         </form>
+        <div id="resultado" class="resultado"></div>
         <a href="/register" class="cambiar">¿Eres nuevo? Registrate</a>
       </div>
     </main>

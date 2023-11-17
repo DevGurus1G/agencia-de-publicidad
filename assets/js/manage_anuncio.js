@@ -47,13 +47,13 @@ async function registrarAnuncio() {
   const imagenPorDefecto = await fetch('/assets/img/noPhoto.png');
   const imagenPorDefectoBlob = await imagenPorDefecto.blob();
  
-  if(document.getElementById('imagen1').files[0] == undefined){
+  if(imagen1 === undefined){
     imagen1 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
   }
-  if(document.getElementById('imagen2').files[0] === undefined){
+  if(imagen2 === undefined){
     imagen2 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
   }
-  if(document.getElementById('imagen3').files[0] === undefined){
+  if(imagen3 === undefined){
     imagen3 = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
   }
 

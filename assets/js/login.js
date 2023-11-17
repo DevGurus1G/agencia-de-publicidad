@@ -21,7 +21,6 @@ async function login() {
     if (response.ok) {
       const data = await response.text();
       if (data === 'conectado') {
-        console.log('data');
         window.location.href = '/';
       } else {
         resultado.textContent = data;

@@ -213,6 +213,12 @@ label[for='imagen']:hover {
   align-items: center;
   justify-content: space-between;
 }
+
+/* Estilo para mensaje error login */
+.resultado{
+  color: red;
+}
+
 /* Test */
 /* input[type='radio'] {
   accent-color: var(--primary-color);

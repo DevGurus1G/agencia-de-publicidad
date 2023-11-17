@@ -19,7 +19,7 @@ $conn = connect(
 $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
 
 function registrar($conn) {
-  if (!isset($_SESSION)) {
+  if (session_status() === PHP_SESSION_NONE) {
     session_start();
   }
   $usuarioId = $_SESSION['usuario']['id'];

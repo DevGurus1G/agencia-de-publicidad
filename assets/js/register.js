@@ -48,7 +48,17 @@ async function registro() {
   const email = document.getElementById('email').value;
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  const imagen = document.getElementById('imagen').files[0];
+  
+  //Si no se sube una imagen le agrega una por defecto en formato blob para evitar errores
+  
+  const imagenPorDefecto = await fetch('/assets/img/noPhoto.png');
+  const imagenPorDefectoBlob = await imagenPorDefecto.blob();
+ 
+  let imagen = document.getElementById('imagen').files[0];
+  if(imagen === undefined){
+    imagen = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/png' });
+  }
+  
   const tipoUsuario = document.querySelector(
     "input[type='radio']:checked",
   ).value;
