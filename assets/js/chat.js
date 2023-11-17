@@ -1,33 +1,108 @@
-document.addEventListener('DOMContentLoaded', function () {
-  // Conectar al servidor WebSocket
-  let socket = new WebSocket('ws://localhost:8080');
+let ultimoIdMensajeConocido = 0;
+const formulario = document.querySelector('.chat-form');
+formulario.addEventListener('submit', function (event) {
+  event.preventDefault();
+  console.log('Formulario enviado'); // Agrega este log para verificar si el evento se está capturando
+  const mensajeInput = document.getElementById('mensaje');
+  const mensaje = mensajeInput.value.trim();
+  console.log(mensaje);
 
-  // Manejar el envío del formulario
-  document.getElementById('chat-form').addEventListener('submit', function (e) {
-    e.preventDefault();
-    let message = document.getElementById('message-input').value;
-    sendMessage(message);
-    document.getElementById('message-input').value = '';
+  if (mensaje !== '') {
+    enviarMensaje(mensaje);
+    mensajeInput.value = '';
+  }
+});
+
+async function enviarMensaje(mensaje) {
+  console.log('Enviando mensaje:', mensaje);
+
+  try {
+    const paraUsuarioId = obtenerParaUsuarioIdDesdeURL();
+    const url = `/chat/conversation?sendNewMessage&para_usuario_id=${paraUsuarioId}`;
+    const formData = new FormData();
+    formData.append('mensaje', mensaje);
+
+    const respuesta = await fetch(url, {
+      method: 'POST',
+      body: formData, // No establezcas 'Content-Type' aquí, se configurará automáticamente
+    });
+
+    const nuevoMensaje = await respuesta.json();
+    console.log(nuevoMensaje);
+    procesarNuevosMensajes([nuevoMensaje]);
+  } catch (error) {
+    console.error('Error al enviar el mensaje:', error);
+  }
+}
+
+async function obtenerMensajesNuevos(ultimoIdMensaje) {
+  try {
+    const paraUsuarioId = obtenerParaUsuarioIdDesdeURL();
+    const url = `/chat/conversation?getNewMessages&lastMessageId=${ultimoIdMensaje}&para_usuario_id=${paraUsuarioId}`;
+    const respuesta = await fetch(url);
+    const nuevosMensajes = await respuesta.text(); // Cambia de text a json
+    console.log('MENSAJESSSSSSSSSSSSSSSS');
+    console.log(nuevosMensajes);
+    procesarNuevosMensajes(nuevosMensajes);
+  } catch (error) {
+    console.error('Error al obtener mensajes nuevos:', error);
+  }
+}
+
+function obtenerParaUsuarioIdDesdeURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('para_usuario_id');
+}
+
+function procesarNuevosMensajes(nuevosMensajes) {
+  // Obtener el contenedor de la conversación
+  const historialConversacion = document.querySelector(
+    '.historial-conversacion',
+  );
+
+  nuevosMensajes.forEach((mensaje) => {
+    const nuevoElementoLi = document.createElement('li');
+
+    const claseMensaje =
+      mensaje.de_usuario_id === usuario ? 'msg-mio' : 'msg-otro';
+    nuevoElementoLi.classList.add(claseMensaje);
+
+    nuevoElementoLi.innerHTML = `
+          ${mensaje.mensaje}
+          <span class="fecha">${mensaje.fecha_envio}</span>
+      `;
+
+    nuevoElementoLi.dataset.idMensaje = mensaje.id;
+
+    historialConversacion.appendChild(nuevoElementoLi);
   });
 
-  // Función para enviar mensajes al servidor WebSocket
-  function sendMessage(message) {
-    let data = {
-      type: 'message',
-      message: message,
-      // Otros datos como usuario_id, para_usuario_id, etc.
-    };
-
-    socket.send(JSON.stringify(data));
+  const ultimoIdMensajeElemento = document.querySelector(
+    '.historial-conversacion li:last-child',
+  );
+  if (ultimoIdMensajeElemento && ultimoIdMensajeElemento.dataset.idMensaje) {
+    ultimoIdMensajeConocido = parseInt(
+      ultimoIdMensajeElemento.dataset.idMensaje,
+      10,
+    );
   }
+}
 
-  // Manejar los mensajes recibidos del servidor WebSocket
-  socket.onmessage = function (event) {
-    let data = JSON.parse(event.data);
-    // Aquí deberías manejar la lógica para mostrar el mensaje en el chat-box
-    let chatBox = document.getElementById('chat-box');
-    let messageElement = document.createElement('p');
-    messageElement.textContent = data.message;
-    chatBox.appendChild(messageElement);
-  };
-});
+setInterval(function () {
+  console.log('Consultando mensajes nuevos'); // Agrega este log para verificar si la consulta periódica se ejecuta
+  const ultimoIdMensaje = obtenerUltimoIdMensajeConocido();
+  console.log('ULTIMO: ' + ultimoIdMensaje);
+  obtenerMensajesNuevos(ultimoIdMensaje);
+}, 5000);
+
+function obtenerUltimoIdMensajeConocido() {
+  const ultimoIdMensajeElemento = document.querySelector(
+    '.historial-conversacion li:last-child',
+  );
+
+  if (ultimoIdMensajeElemento && ultimoIdMensajeElemento.dataset.idMensaje) {
+    return parseInt(ultimoIdMensajeElemento.dataset.idMensaje, 10);
+  } else {
+    return 0;
+  }
+}

@@ -46,4 +46,46 @@ function getChatHistoryBetweenUsers($conn, $user1Id, $user2Id) {
   return $chatHistory;
 }
 
+function getNuevosMensajes($conn, $usuario, $lastMessageId) {
+  $stmt = $conn->prepare(
+    'SELECT * FROM chat WHERE (de_usuario_id = :usuario OR para_usuario_id = :usuario) AND id > :lastMessageId ORDER BY fecha_envio ASC'
+  );
+  $stmt->execute([':usuario' => $usuario, ':lastMessageId' => $lastMessageId]);
+
+  $newMessages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  return $newMessages;
+}
+function insertarNuevoMensaje($conn, $deUsuarioId, $paraUsuarioId, $mensaje) {
+  try {
+    $query = "INSERT INTO chat (de_usuario_id, para_usuario_id, mensaje, fecha_envio) 
+                VALUES (:de_usuario_id, :para_usuario_id, :mensaje, CURRENT_TIMESTAMP)";
+
+    $stmt = $conn->prepare($query);
+
+    $stmt->execute([
+      ':de_usuario_id' => $deUsuarioId,
+      ':para_usuario_id' => $paraUsuarioId,
+      ':mensaje' => $mensaje,
+    ]);
+
+    return true;
+  } catch (PDOException $e) {
+    return false;
+  }
+}
+
+function obtenerMensajePorId($conn, $mensajeId) {
+  try {
+    $query = 'SELECT * FROM chat WHERE id = :id';
+    $stmt = $conn->prepare($query);
+    $stmt->execute([':id' => $mensajeId]);
+
+    $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    return $resultado;
+  } catch (PDOException $e) {
+    return false;
+  }
+}
+
 ?>

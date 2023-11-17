@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'db/db_connection.php';
 include 'db/db_chat.php';
 require 'vendor/autoload.php';
@@ -12,7 +13,7 @@ $conn = connect(
   $_ENV['USER'],
   $_ENV['USER_PASSWORD']
 );
-$chats = getUserChats($conn, 1);
+$chats = getUserChats($conn, $_SESSION['usuario']['id']);
 // print_r($chats);
 require 'views/chat.view.php';
 ?>
