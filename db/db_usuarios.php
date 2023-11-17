@@ -16,6 +16,42 @@ function insertUsuario($usuario, $conn) {
   ]);
 }
 
+function updateUsuarioPassword($usuario,$conn){
+  $stmt = $conn->prepare(
+    'UPDATE  usuarios 
+     SET username = :username , hashed_pass = :hashed_pass , salt = :salt , nombre = :nombre , apellidos = :apellidos , email = :email, imagen = :imagen 
+     WHERE id = :id'
+  );
+
+  $stmt->execute([
+    'id' => $usuario['id'],
+    'username' => $usuario['username'],
+    'hashed_pass' => $usuario['hashed_pass'],
+    'salt' => $usuario['salt'],
+    'email' => $usuario['email'],
+    'nombre' => $usuario['nombre'],
+    'apellidos' => $usuario['apellidos'],
+    'imagen' => $usuario['imagen'],
+  ]);
+}
+
+function updateUsuarioNoPassword($usuario,$conn){
+  $stmt = $conn->prepare(
+    'UPDATE  usuarios 
+     SET username = :username , nombre = :nombre , apellidos = :apellidos , email = :email, imagen = :imagen 
+     WHERE id = :id'
+  );
+
+  $stmt->execute([
+    'id' => $usuario['id'],
+    'username' => $usuario['username'],
+    'email' => $usuario['email'],
+    'nombre' => $usuario['nombre'],
+    'apellidos' => $usuario['apellidos'],
+    'imagen' => $usuario['imagen'],
+  ]);
+}
+
 function getUsuarioLogin($email, $conn) {
   $stmt = $conn->prepare('SELECT * FROM usuarios WHERE email = :email');
   $stmt->execute(['email' => $email]);
