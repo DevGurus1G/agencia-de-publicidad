@@ -63,3 +63,9 @@ function getUsernameById($id,$conn){
   $stmt->execute(['id' => $id]);
   return $stmt->fetch();
 }
+
+function getAllUsernameAndId($conn){
+  $stmt = $conn->prepare('SELECT id,username FROM usuarios');
+  $stmt->execute();
+  return $stmt->fetchAll();
+}

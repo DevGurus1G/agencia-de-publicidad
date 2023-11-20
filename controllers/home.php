@@ -6,6 +6,7 @@ include 'db/db_anuncios.php';
 require 'db/db_imagenes_anuncios.php';
 require 'db/db_categorias.php';
 require 'utils/db_common.php';
+require 'db/db_usuarios.php';
 
 
 $titulo = 'Home | Gasteiz Denda';
@@ -22,6 +23,7 @@ if (isset($_GET['id'])) {
 }
 $imagenes = getAllImagenesAnuncio($conn);
 $categorias = getAllCategorias($conn);
+$anunciantes= getAllUsernameAndId($conn);
 require 'utils/session.php';
 include 'views/home.view.php';
 ?>
