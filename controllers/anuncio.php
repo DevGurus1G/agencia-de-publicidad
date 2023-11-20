@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     : '' . ' | Gateiz Denda';
   $estilos = ['assets/css/default.css', 'assets/css/anuncio.css'];
   $scripts = ['assets/js/nav.js', 'assets/js/anuncio.js'];
-  require 'session.php';
+  require 'utils/session.php';
   require 'views/anuncio.view.php';
 }
 
