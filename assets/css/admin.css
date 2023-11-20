@@ -17,6 +17,7 @@ main{
     color: var(--text-color);
     padding: 0.5em;
     border-radius: 0.5em;
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
   }
   
   .busqueda form{
@@ -33,6 +34,8 @@ main{
   .filtro form{
     display: flex;
     gap: 2em;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .filtro form input[type='button']{
@@ -44,3 +47,81 @@ main{
   .filtro form input[type='button']:hover{
     background-color: var(--input-color);
   }
+
+  /* Add these styles for modern table design */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+  border: 2px solid var(--border-color);
+  border-radius: 0.5em;
+  overflow: hidden;
+}
+
+
+
+th, td {
+  
+  padding: 1em;
+  text-align: left;
+}
+
+th {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+td a{
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 0.5em;
+}
+
+tr:nth-child(even) {
+  background-color: grey;
+}
+
+tr:nth-child(odd){
+  background-color: lightgrey;
+}
+
+tr:first-child th:first-child{
+  border-top-left-radius: 0.5em;
+}
+
+tr:first-child th:last-child{
+  border-top-right-radius: 0.5em;
+}
+
+tr:last-child td:first-child{
+  border-bottom-left-radius: 0.5em;
+}
+
+tr:last-child td:last-child{
+  border-bottom-right-radius: 0.5em;
+}
+
+/* Add this style for responsive tables on small screens */
+@media only screen and (max-width: 600px) {
+  table {
+      border: 0;
+  }
+
+  table thead {
+      display: none;
+  }
+
+  table tr {
+      margin-bottom: 1em;
+      display: block;
+      border: 1px solid var(--border-color);
+  }
+
+  table td {
+      display: block;
+      text-align: right;
+      font-size: 14px;
+      border: none;
+  }
+}
