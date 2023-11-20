@@ -7,20 +7,7 @@
     <? foreach ($estilos as $estilo) : ?>
       <link rel="stylesheet" href="<?= $estilo ?>" />
     <? endforeach; ?>
-    <?php 
 
-    include 'db/db_categorias.php';
-
-    $conn = connect(
-      $_ENV['HOST'],
-      $_ENV['DB_NOMBRE'],
-      $_ENV['USER'],
-      $_ENV['USER_PASSWORD']
-    );
-
-    $categorias = getAllCategorias($conn);
-
-    ?>
   </head>
   <body>
     <header>

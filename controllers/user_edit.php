@@ -1,17 +1,7 @@
 <?php
 include 'db/db_connection.php';
 include 'db/db_usuarios.php';
-require 'vendor/autoload.php';
-
-$dotenv = Dotenv\Dotenv::createImmutable('./');
-$dotenv->load();
-// Cargar todos los anuncios
-$conn = connect(
-  $_ENV['HOST'],
-  $_ENV['DB_NOMBRE'],
-  $_ENV['USER'],
-  $_ENV['USER_PASSWORD']
-);
+require 'db_common.php';
 
 function editar($conn) {
 

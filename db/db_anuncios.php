@@ -1,6 +1,6 @@
 <?php
 function getAllAnuncios($conn) {
-  $stmt = $conn->prepare('SELECT * FROM anuncios');
+  $stmt = $conn->prepare('SELECT * FROM anuncios order by id desc');
   $stmt->execute();
   return $stmt->fetchAll();
 }

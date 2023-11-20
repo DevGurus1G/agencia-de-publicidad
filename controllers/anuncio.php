@@ -6,19 +6,8 @@ if (session_status() === PHP_SESSION_NONE) {
 
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
-require 'db/db_connection.php';
 require 'db/db_imagenes_anuncios.php';
-
-require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
-$dotenv = Dotenv\Dotenv::createImmutable('./');
-$dotenv->load();
-
-$conn = connect(
-  $_ENV['HOST'],
-  $_ENV['DB_NOMBRE'],
-  $_ENV['USER'],
-  $_ENV['USER_PASSWORD']
-);
+require 'db_common.php';
 
 global $anuncio;
 
