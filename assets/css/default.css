@@ -159,6 +159,14 @@ nav ul {
   text-decoration: none;
 }
 
+ svg{
+  width: 2em;
+  height: 2em;
+  color: var(--primary-color);
+  fill: var(--primary-color);
+  stroke: var(--primary-color);
+}
+
 .show li a:hover,
 .show li label:hover {
   background-color: var(--input-color);

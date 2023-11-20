@@ -30,4 +30,14 @@ function getAnunciosById($anuncio,$conn) {
   ]);
   return $stmt->fetch();
 }
+
+function getAnunciosByCategoria($categoria,$conn){
+  $stmt = $conn->prepare('SELECT * FROM anuncios
+                          WHERE categoria_id = :categoria_id');
+  $stmt->execute([
+      'categoria_id' => $categoria
+  ]);
+  return $stmt->fetchAll();
+}
+
 ?>

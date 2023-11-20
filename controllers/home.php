@@ -20,7 +20,12 @@ $conn = connect(
   $_ENV['USER_PASSWORD']
 );
 
-$anuncios = getAllAnuncios($conn);
+if (isset($_GET['id'])) {
+  $anuncios = getAnunciosByCategoria($_GET['id'],$conn);
+}else{
+  $anuncios = getAllAnuncios($conn);
+}
+
 require 'session.php';
 include 'views/home.view.php';
 ?>
