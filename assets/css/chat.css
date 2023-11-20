@@ -20,6 +20,12 @@ body {
 }
 body {
   background-color: var(--border-color);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15fr 75fr 10fr;
+  grid-template-areas:
+    'header'
+    'main';
 }
 
 body.dark {
@@ -72,15 +78,24 @@ header {
   display: flex;
   align-items: center;
   padding: 1em;
+  grid-area: header;
+}
+main {
+  grid-area: main;
 }
 
 .historial-conversacion {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  height: 100%;
+  height: 100%; /* Set a fixed height for the container */
   list-style: none;
   padding: 0.5em;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.historial-conversacion li:last-child {
+  margin-bottom: 2.5em;
 }
 .msg-mio,
 .msg-otro {
@@ -106,7 +121,7 @@ header {
 }
 
 .chat-form {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
