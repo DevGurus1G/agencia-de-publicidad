@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include 'db/db_anuncios.php';
 include 'db/db_connection.php';
+require 'db/db_imagenes_anuncios.php';
 require 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable('./');
@@ -21,6 +22,7 @@ $conn = connect(
 );
 
 $anuncios = getAllAnuncios($conn);
+$imagenes = getAllImagenesAnuncio($conn);
 require 'session.php';
 include 'views/home.view.php';
 ?>

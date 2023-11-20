@@ -1,6 +1,20 @@
 <div class="anuncio-card">
-    <!-- <?php $base64img = base64_encode($anuncio['fot1']); ?> -->
-    <!-- <img src="data:image/png;base64,<?= $base64img ?>" alt=""> -->
+<?php
+    if (!empty($imagenes)) {
+        $imagenEncontrada = false;
+        foreach ($imagenes as $imagen) {
+            if ($imagen['anuncio_id'] == $anuncio['id'] && !$imagenEncontrada) {
+                echo '<img src="data:image/jpeg;base64,' . base64_encode($imagen['imagen']) . '" alt="Foto del anuncio mostrado" />';
+                $imagenEncontrada = true;
+            }
+        }
+        if (!$imagenEncontrada) {
+            echo "No se encontró la imagen para este anuncio";
+        }
+    } else {
+        echo "No se encontraron imágenes";
+    }
+?>
     <div class="anuncio-card-info">
         <h2><?= $anuncio['titulo'] ?></h2>
         <p><?= $anuncio['descripcion'] ?></p>

@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
 require 'db/db_connection.php';
+require 'db/db_imagenes_anuncios.php';
 
 require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
 $dotenv = Dotenv\Dotenv::createImmutable('./');
@@ -23,6 +24,7 @@ global $anuncio;
 
 if (isset($_GET['id'])) {
   $anuncio = getAnunciosById($_GET['id'], $conn);
+  $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['id'], $conn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

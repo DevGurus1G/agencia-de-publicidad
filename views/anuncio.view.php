@@ -54,9 +54,15 @@
     </div>
     <div class="imagenes-anuncio">
       <div class="carrusel">
-      <img src="assets/img/foto_anuncio_default_2.png" alt="" />
-      <img src="assets/img/foto_anuncio_default.png" alt="" />
-        <!-- Agrega más imágenes aquí según sea necesario -->
+      <?php
+      if (!empty($imagenes)) {
+        foreach ($imagenes as $imagen) {
+            echo '<img src="data:image/jpeg;base64,' . base64_encode($imagen['imagen']) . '" alt="Foto del anuncio mostrado" />';
+        }
+    } else {
+        echo "No se encontraron imágenes";
+    }
+      ?>
       </div>
       <div class="botones-carrusel">
         <button class="boton-carrusel" id="anterior" disabled>

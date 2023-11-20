@@ -9,4 +9,18 @@ function insertImagenAnuncio($imagen,$anuncioId, $conn) {
     'anuncio' => $anuncioId,
   ]);
 }
+
+function getAllImagenesAnuncioByIdAnuncio($id,$conn){
+  $stmt = $conn->prepare('select * from imagenes_anuncios where anuncio_id = :id');
+  $stmt->execute([
+    'id' => $id,
+  ]);
+  return $stmt->fetchAll();
+}
+
+function getAllImagenesAnuncio($conn){
+  $stmt = $conn->prepare('select * from imagenes_anuncios');
+  $stmt->execute();
+  return $stmt->fetchAll();
+}
 ?>
