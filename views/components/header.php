@@ -1,4 +1,5 @@
-<!doctype html>
+<?php require 'utils/cookie.php'; ?>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -9,7 +10,11 @@
     <? endforeach; ?>
 
   </head>
-  <body>
+  <body 
+  <?php
+    echo ($modo === "dark") ? 'class="dark"' : "";
+  ?>
+  >
     <header>
       <a class="logo-nombre" href="/">
         <svg

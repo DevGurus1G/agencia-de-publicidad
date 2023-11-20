@@ -1,6 +1,6 @@
 <?php
 include 'db/db_usuarios.php';
-require 'db_common.php';
+require 'utils/db_common.php';
 //Para que el filtro de categorias del header funcione
 require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);

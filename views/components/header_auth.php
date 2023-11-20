@@ -1,3 +1,10 @@
+<?php 
+//Si esta loegueado redirecciona al home y con el exit para la ejecucion
+if(isset($_SESSION['usuario'])){
+  header("Location: /");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>

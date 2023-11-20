@@ -5,7 +5,7 @@ if (session_status() === PHP_SESSION_NONE) {
 include 'db/db_anuncios.php';
 require 'db/db_imagenes_anuncios.php';
 require 'db/db_categorias.php';
-require 'db_common.php';
+require 'utils/db_common.php';
 
 
 $titulo = 'Home | Gasteiz Denda';
@@ -22,6 +22,6 @@ if (isset($_GET['id'])) {
 }
 $imagenes = getAllImagenesAnuncio($conn);
 $categorias = getAllCategorias($conn);
-require 'session.php';
+require 'utils/session.php';
 include 'views/home.view.php';
 ?>

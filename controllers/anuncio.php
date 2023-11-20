@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
 require 'db/db_imagenes_anuncios.php';
-require 'db_common.php';
+require 'utils/db_common.php';
 
 //Para que el filtro de categorias del header funcione
 require 'db/db_categorias.php';

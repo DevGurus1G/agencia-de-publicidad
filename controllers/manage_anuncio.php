@@ -3,7 +3,7 @@
 require 'db/db_anuncios.php';
 require 'db/db_categorias.php';
 require 'db/db_imagenes_anuncios.php';
-require 'db_common.php';
+require 'utils/db_common.php';
 //Para que el filtro de categorias del header funcione
 $categorias = getAllCategorias($conn);
 

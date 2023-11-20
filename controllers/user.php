@@ -1,6 +1,6 @@
 <?php
 //Para que el filtro de categorias del header funcione
-require 'db_common.php';
+require 'utils/db_common.php';
 require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);
 $estilos = ['assets/css/default.css', 'assets/css/user.css'];

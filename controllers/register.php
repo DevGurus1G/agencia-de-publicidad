@@ -1,7 +1,6 @@
 <?php
-include 'db/db_connection.php';
 include 'db/db_usuarios.php';
-require 'db_common.php';
+require 'utils/db_common.php';
 
 function registrar($conn) {
   $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
@@ -27,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   registrar($conn);
 } else {
   $titulo = 'Register | Gasteiz Denda';
-  $estilos = ['assets/css/auth.css'];
   require 'views/register.view.php';
 }
 ?>
