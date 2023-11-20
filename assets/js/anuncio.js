@@ -34,7 +34,13 @@ function actualizarBotones() {
     imagenActual === totalDeImagenes - 1;
 }
 
-favorito.addEventListener('click', registrarFavorito);
+favorito.addEventListener('click', gestionarFavorito);
+
+async function gestionarFavorito() {
+  console.log(favorito.checked);
+  if (favorito.checked === false) borrarFavorito();
+  else registrarFavorito();
+}
 
 async function registrarFavorito() {
   let queryString = window.location.search;
@@ -63,13 +69,17 @@ async function registrarFavorito() {
     console.log(error);
   }
 }
-
+function obtenerIdDesdeURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');
+}
 async function borrarFavorito() {
   try {
-    const response = await fetch('/anuncio?borrar', {
-      method: 'GET',
-    });
-    if (response.ok) {
-    }
+    const response = await fetch(
+      `/anuncio?id=${obtenerIdDesdeURL()}&borrar_fav`,
+      {
+        method: 'GET',
+      },
+    );
   } catch (error) {}
 }

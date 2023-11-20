@@ -28,6 +28,10 @@ if (isset($_GET['id'])) {
   );
 }
 
+if (isset($_GET['borrar_fav'])) {
+  borrarFavorito($_SESSION['usuario']['id'], $_GET['id'], $conn);
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($_POST['favorito'] == true) {
     insertarFavorito($_SESSION['usuario']['id'], $_POST['anuncio'], $conn);
