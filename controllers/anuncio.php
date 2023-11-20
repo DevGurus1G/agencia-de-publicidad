@@ -7,6 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
 require 'db/db_imagenes_anuncios.php';
+require 'db/db_usuarios.php';
 require 'utils/db_common.php';
 
 //Para que el filtro de categorias del header funcione
@@ -18,6 +19,8 @@ global $anuncio;
 if (isset($_GET['id'])) {
   $anuncio = getAnunciosById($_GET['id'], $conn);
   $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['id'], $conn);
+  $anuncianteUsername = getUsernameById($anuncio['anunciante'],$conn);
+  $nombreCategoria = getCategoriaNameById($anuncio['categoria_id'],$conn);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {

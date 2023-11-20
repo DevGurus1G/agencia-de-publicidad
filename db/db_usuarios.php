@@ -57,3 +57,9 @@ function getUsuarioLogin($email, $conn) {
   $stmt->execute(['email' => $email]);
   return $stmt->fetch();
 }
+
+function getUsernameById($id,$conn){
+  $stmt = $conn->prepare('SELECT username FROM usuarios WHERE id = :id');
+  $stmt->execute(['id' => $id]);
+  return $stmt->fetch();
+}

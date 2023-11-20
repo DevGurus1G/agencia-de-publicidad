@@ -5,7 +5,7 @@
       <div>
         <a href="#" class="perfil">
         <img src="assets/img/default_avatar.webp" alt="avatar" />
-        <h4>Pedro Sanchez</h4>
+        <h4><?= $anuncianteUsername[0]?></h4>
         </a>
       </div>
       <div>
@@ -100,7 +100,7 @@
         <?= $anuncio['descripcion'] ?>
       </p>
     </div>
-    <div class="categoria"><?= $anuncio['categoria_id'] ?></div>
+    <div class="categoria"><?= $nombreCategoria[0] ?></div>
   </div>
 </main>
 <?php require 'views/components/footer.php'; ?>
