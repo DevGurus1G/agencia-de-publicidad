@@ -1,6 +1,6 @@
 let carrusel = document.querySelector('.carrusel');
 let imagenActual = 0;
-let totalDeImagenes = 2; // Ajusta el total de imágenes según sea necesario
+let totalDeImagenes = 3; // Ajusta el total de imágenes según sea necesario
 
 let favorito = document.querySelector('#favorito');
 

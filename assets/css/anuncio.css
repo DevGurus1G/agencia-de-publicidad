@@ -71,20 +71,21 @@ label[for='favorito'],
   border-radius: 2em;
 }
 .imagenes-anuncio {
-  overflow: hidden;
+  width: 500px; /* Ancho del carrusel */
+  overflow: hidden; /* Oculta las imágenes que exceden el ancho del carrusel */
 }
 
 .carrusel {
-  display: flex;
-  transition: transform 0.5s ease;
+  display: flex; /* Para alinear las imágenes horizontalmente */
+  transition: transform 0.5s ease; /* Añade transición para un desplazamiento suave */
 }
 
 .carrusel img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  border-radius: 1em;
+  width: 500px; /* Ancho de cada imagen */
+  min-width: 500px; /* Ancho mínimo para cada imagen */
+  height: auto; /* Altura automática para mantener la proporción */
 }
+
 
 .botones-carrusel {
   margin: 1em;
