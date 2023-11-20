@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 include 'db/db_anuncios.php';
 require 'db/db_imagenes_anuncios.php';
+require 'db/db_categorias.php';
 require 'db_common.php';
 
 
@@ -20,7 +21,7 @@ if (isset($_GET['id'])) {
   $anuncios = getAllAnuncios($conn);
 }
 $imagenes = getAllImagenesAnuncio($conn);
-
+$categorias = getAllCategorias($conn);
 require 'session.php';
 include 'views/home.view.php';
 ?>

@@ -255,7 +255,7 @@
             
             foreach ($categorias as $categoria) {
               echo "<li>
-                    <a href='?id=$categoria[id]'>$categoria[imagen]" .  ucfirst($categoria['nombre']) . "</a>
+                    <a href='/?id=$categoria[id]'>$categoria[imagen]" .  ucfirst($categoria['nombre']) . "</a>
                     </li>";
             }
 

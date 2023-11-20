@@ -9,6 +9,10 @@ require 'db/db_favoritos.php';
 require 'db/db_imagenes_anuncios.php';
 require 'db_common.php';
 
+//Para que el filtro de categorias del header funcione
+require 'db/db_categorias.php';
+$categorias = getAllCategorias($conn);
+
 global $anuncio;
 
 if (isset($_GET['id'])) {
