@@ -57,3 +57,9 @@ function getUsuarioLogin($email, $conn) {
   $stmt->execute(['email' => $email]);
   return $stmt->fetch();
 }
+
+function getUsuariosByTipo($tipo, $conn){
+  $stmt = $conn->prepare('SELECT * FROM usuarios WHERE tipo = :tipo');
+  $stmt->execute(['tipo' => $tipo]);
+  return $stmt->fetchAll();
+}
