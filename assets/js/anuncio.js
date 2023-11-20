@@ -36,9 +36,7 @@ function actualizarBotones() {
 
 favorito.addEventListener('click', registrarFavorito);
 
-async function registrarFavorito()
-{
-  
+async function registrarFavorito() {
   let queryString = window.location.search;
 
   let params = new URLSearchParams(queryString);
@@ -46,10 +44,10 @@ async function registrarFavorito()
   const anuncio = params.get('id');
 
   const formData = new FormData();
-  
+
   formData.append('anuncio', anuncio);
 
-  formData.append('favorito', favorito.checked)
+  formData.append('favorito', favorito.checked);
 
   // Validaciones
   try {
@@ -57,12 +55,21 @@ async function registrarFavorito()
       method: 'POST',
       body: formData,
     });
-    if(response.ok)
-    {
+    if (response.ok) {
       const data = await response.text();
       console.log(data);
     }
   } catch (error) {
     console.log(error);
   }
+}
+
+async function borrarFavorito() {
+  try {
+    const response = await fetch('/anuncio?borrar', {
+      method: 'GET',
+    });
+    if (response.ok) {
+    }
+  } catch (error) {}
 }

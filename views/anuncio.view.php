@@ -3,14 +3,14 @@
   <div class="anuncio-tarjeta">
     <div class="anunciante">
       <div>
-        <a href="#" class="perfil">
+        <a href="/user?view=<?= $anuncianteUsername['id'] ?>" class="perfil">
         <img src="assets/img/default_avatar.webp" alt="avatar" />
-        <h4><?= $anuncianteUsername[0]?></h4>
+        <h4><?= $anuncianteUsername['username'] ?></h4>
         </a>
       </div>
       <div>
         <div>
-          <input type="checkbox" name="favorito" id="favorito" />
+          <input type="checkbox" name="favorito" id="favorito" <? echo ($favorito != null) ? "checked" : "" ?> />
           <label for="favorito">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,15 +54,15 @@
     </div>
     <div class="imagenes-anuncio">
       <div class="carrusel">
-      <?php
-      if (!empty($imagenes)) {
+      <?php if (!empty($imagenes)) {
         foreach ($imagenes as $imagen) {
-            echo '<img src="data:image/jpeg;base64,' . base64_encode($imagen['imagen']) . '" alt="Foto del anuncio mostrado" />';
+          echo '<img src="data:image/jpeg;base64,' .
+            base64_encode($imagen['imagen']) .
+            '" alt="Foto del anuncio mostrado" />';
         }
-    } else {
-        echo "No se encontraron imágenes";
-    }
-      ?>
+      } else {
+        echo 'No se encontraron imágenes';
+      } ?>
       </div>
       <div class="botones-carrusel">
         <button class="boton-carrusel" id="anterior" disabled>

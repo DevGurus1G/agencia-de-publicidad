@@ -16,7 +16,7 @@ function insertUsuario($usuario, $conn) {
   ]);
 }
 
-function updateUsuarioPassword($usuario,$conn){
+function updateUsuarioPassword($usuario, $conn) {
   $stmt = $conn->prepare(
     'UPDATE  usuarios 
      SET username = :username , hashed_pass = :hashed_pass , salt = :salt , nombre = :nombre , apellidos = :apellidos , email = :email, imagen = :imagen 
@@ -35,7 +35,7 @@ function updateUsuarioPassword($usuario,$conn){
   ]);
 }
 
-function updateUsuarioNoPassword($usuario,$conn){
+function updateUsuarioNoPassword($usuario, $conn) {
   $stmt = $conn->prepare(
     'UPDATE  usuarios 
      SET username = :username , nombre = :nombre , apellidos = :apellidos , email = :email, imagen = :imagen 
@@ -58,13 +58,13 @@ function getUsuarioLogin($email, $conn) {
   return $stmt->fetch();
 }
 
-function getUsernameById($id,$conn){
-  $stmt = $conn->prepare('SELECT username FROM usuarios WHERE id = :id');
+function getUsernameById($id, $conn) {
+  $stmt = $conn->prepare('SELECT * FROM usuarios WHERE id = :id');
   $stmt->execute(['id' => $id]);
   return $stmt->fetch();
 }
 
-function getAllUsernameAndId($conn){
+function getAllUsernameAndId($conn) {
   $stmt = $conn->prepare('SELECT id,username FROM usuarios');
   $stmt->execute();
   return $stmt->fetchAll();

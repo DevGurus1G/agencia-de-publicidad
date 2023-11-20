@@ -5,7 +5,6 @@ formulario.addEventListener('submit', function (event) {
   console.log('Formulario enviado');
   const mensajeInput = document.getElementById('mensaje');
   const mensaje = mensajeInput.value.trim();
-  console.log(mensaje);
 
   if (mensaje !== '') {
     enviarNuevoMensaje(mensaje);
@@ -14,8 +13,6 @@ formulario.addEventListener('submit', function (event) {
 });
 
 async function enviarNuevoMensaje(mensaje) {
-  console.log('Enviando mensaje:', mensaje);
-
   try {
     const paraUsuarioId = obtenerParaUsuarioIdDesdeURL();
     const url = `/chat/conversation?sendNewMessage&para_usuario_id=${paraUsuarioId}`;
@@ -28,7 +25,6 @@ async function enviarNuevoMensaje(mensaje) {
     });
 
     const nuevoMensaje = await respuesta.json();
-    console.log(nuevoMensaje);
 
     procesarNuevosMensajes([nuevoMensaje]);
   } catch (error) {
@@ -45,8 +41,6 @@ async function obtenerMensajesNuevos(ultimoIdMensaje) {
 
     if (nuevosMensajes.length > 0) {
       const usuario = nuevosMensajes[0].de_usuario_id;
-      console.log('Mensajes nuevos:');
-      console.log(nuevosMensajes);
       procesarNuevosMensajes(nuevosMensajes, usuario);
     } else {
       console.log('No hay mensajes nuevos.');
@@ -112,9 +106,7 @@ function procesarNuevosMensajes(nuevosMensajes, usuario) {
 }
 
 setInterval(function () {
-  console.log('Consultando mensajes nuevos');
   const ultimoIdMensaje = obtenerUltimoIdMensajeConocido();
-  console.log('ULTIMO: ' + ultimoIdMensaje);
   obtenerMensajesNuevos(ultimoIdMensaje);
 }, 500);
 

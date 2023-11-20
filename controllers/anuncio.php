@@ -19,8 +19,13 @@ global $anuncio;
 if (isset($_GET['id'])) {
   $anuncio = getAnunciosById($_GET['id'], $conn);
   $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['id'], $conn);
-  $anuncianteUsername = getUsernameById($anuncio['anunciante'],$conn);
-  $nombreCategoria = getCategoriaNameById($anuncio['categoria_id'],$conn);
+  $anuncianteUsername = getUsernameById($anuncio['anunciante'], $conn);
+  $nombreCategoria = getCategoriaNameById($anuncio['categoria_id'], $conn);
+  $favorito = getFavoritoByUserAndAnuncio(
+    $_SESSION['usuario']['id'],
+    $_GET['id'],
+    $conn
+  );
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
