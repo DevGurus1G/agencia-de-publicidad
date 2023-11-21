@@ -1,11 +1,19 @@
 <?php require 'views/components/header.php'; ?>
 <main>
+  <?php foreach($anuncios as $anuncio): ?>
   <div class="tarjeta-anuncio">
-    <img src="../assets/img/foto_anuncio_default_2.png" alt="" />
-
+    <?php
+      $imagenEncontrada = false;
+      foreach ($imagenes as $imagen) {
+        if ($imagen['anuncio_id'] == $anuncio['id'] && !$imagenEncontrada) {
+          echo '<img src="data:image/jpeg;base64,' . base64_encode($imagen['imagen']) .'" alt="Foto del anuncio mostrado" />';
+          $imagenEncontrada = true;
+        }
+      }
+      ?>
     <div class="targe-anuncio-texto">
       <div class="texto-cabecera">
-        <h2>The Rock</h2>
+        <h2><?= $anuncio['titulo']; ?></h2>
         <a href="#">
           <svg
             class="corazon"
@@ -45,10 +53,10 @@
         </a>
       </div>
       <div class="texto-descripcion">
-        <p>Es una fvking roca.</p>
+        <p><?= $anuncio['descripcion']; ?></p>
       </div>
     </div>
   </div>
+  <?php endforeach; ?>
 </main>
-<?php require 'views/components/footer.php';
-?>
+<?php require 'views/components/footer.php';?>
