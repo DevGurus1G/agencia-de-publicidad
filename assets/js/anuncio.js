@@ -38,22 +38,23 @@ favorito.addEventListener('click', gestionarFavorito);
 
 async function gestionarFavorito() {
   console.log(favorito.checked);
-  if (favorito.checked === false) borrarFavorito();
-  else registrarFavorito();
+  if (favorito.checked == false) {
+    borrarFavorito();
+  } else if (favorito.checked) {
+    registrarFavorito();
+  }
 }
-
+function obtenerIdDesdeURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');
+}
 async function registrarFavorito() {
-  let queryString = window.location.search;
-
-  let params = new URLSearchParams(queryString);
-
-  const anuncio = params.get('id');
-
+  console.log('EN registro');
   const formData = new FormData();
 
-  formData.append('anuncio', anuncio);
+  formData.append('anuncio', obtenerIdDesdeURL());
 
-  formData.append('favorito', favorito.checked);
+  formData.append('favorito', 'insertar');
 
   // Validaciones
   try {
@@ -63,23 +64,33 @@ async function registrarFavorito() {
     });
     if (response.ok) {
       const data = await response.text();
-      console.log(data);
+      console.log('data');
     }
   } catch (error) {
     console.log(error);
   }
 }
-function obtenerIdDesdeURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get('id');
-}
+
 async function borrarFavorito() {
+  const anuncioId = obtenerIdDesdeURL();
+
+  const formData = new FormData();
+  formData.append('anuncio', anuncioId);
+  formData.append('favorito', 'borrar');
+
   try {
-    const response = await fetch(
-      `/anuncio?id=${obtenerIdDesdeURL()}&borrar_fav`,
-      {
-        method: 'GET',
-      },
-    );
-  } catch (error) {}
+    const response = await fetch('/anuncio', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.text();
+      console.log(data);
+    } else {
+      console.error('Error al borrar favorito:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud para borrar favorito:', error);
+  }
 }

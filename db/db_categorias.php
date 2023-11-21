@@ -5,8 +5,8 @@ function getAllCategorias($conn) {
   return $stmt->fetchAll();
 }
 
-function getCategoriaNameById($id,$conn) {
-  $stmt = $conn->prepare('SELECT nombre FROM categorias where id = :id');
+function getCategoriaNameById($id, $conn) {
+  $stmt = $conn->prepare('SELECT * FROM categorias where id = :id');
   $stmt->execute(['id' => $id]);
   return $stmt->fetch();
 }

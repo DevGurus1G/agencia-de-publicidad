@@ -1,4 +1,3 @@
-
 /* Anuncio */
 main {
   display: flex;
@@ -86,7 +85,6 @@ label[for='favorito'],
   height: auto; /* Altura automática para mantener la proporción */
 }
 
-
 .botones-carrusel {
   margin: 1em;
   display: flex;
@@ -113,6 +111,8 @@ label[for='favorito'],
 }
 
 .categoria {
+  text-decoration: none;
+  color: var(--text-color);
   padding: 1em 2em;
   width: fit-content;
   border: 1px solid var(--border-color);
@@ -121,8 +121,6 @@ label[for='favorito'],
 
 .categoria:hover {
   background-color: var(--input-color);
-  /* Va a ser un enlace? */
-  cursor: pointer;
 }
 
 .precio {

@@ -4,13 +4,17 @@
     <div class="anunciante">
       <div>
         <a href="/user?view=<?= $anunciante['id'] ?>" class="perfil">
-        <img src="assets/img/default_avatar.webp" alt="avatar" />
+        <?php $base64img = base64_encode($anunciante['imagen']); ?>
+        <img src="data:image/png;base64,<?= $base64img ?>" alt="">
         <h4><?= $anunciante['username'] ?></h4>
         </a>
       </div>
       <div>
         <div>
-          <input type="checkbox" name="favorito" id="favorito" <? echo ($favorito != null) ? "checked" : "" ?> />
+          <input type="checkbox" name="favorito" id="favorito" <? 
+          if (isset($favorito))
+            echo ($favorito != null) ? "checked" : "" 
+          ?> />
           <label for="favorito">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +106,9 @@
         <?= $anuncio['descripcion'] ?>
       </p>
     </div>
-    <div class="categoria"><?= $nombreCategoria[0] ?></div>
+    <a href="/?id=<?= $categoria['id'] ?>" class="categoria"><?= $categoria[
+  'nombre'
+] ?></a>
   </div>
 </main>
 <?php require 'views/components/footer.php'; ?>

@@ -20,22 +20,20 @@ if (isset($_GET['id'])) {
   $anuncio = getAnunciosById($_GET['id'], $conn);
   $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['id'], $conn);
   $anunciante = getUsernameById($anuncio['anunciante'], $conn);
-  $nombreCategoria = getCategoriaNameById($anuncio['categoria_id'], $conn);
-  $favorito = getFavoritoByUserAndAnuncio(
-    $_SESSION['usuario']['id'],
-    $_GET['id'],
-    $conn
-  );
+  $categoria = getCategoriaNameById($anuncio['categoria_id'], $conn);
+  if (isset($_SESSION['usuario'])) {
+    $favorito = getFavoritoByUserAndAnuncio(
+      $_SESSION['usuario']['id'],
+      $_GET['id'],
+      $conn
+    );
+  }
 }
 
-if (isset($_GET['borrar_fav'])) {
-  borrarFavorito($_SESSION['usuario']['id'], $_GET['id'], $conn);
-}
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  if ($_POST['favorito'] == true) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['usuario'])) {
+  if ($_POST['favorito'] == 'insertar') {
     insertarFavorito($_SESSION['usuario']['id'], $_POST['anuncio'], $conn);
-  } else {
+  } elseif ($_POST['favorito'] == 'borrar') {
     borrarFavorito($_SESSION['usuario']['id'], $_POST['anuncio'], $conn);
   }
 } else {
