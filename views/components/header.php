@@ -1,4 +1,7 @@
-<?php require 'utils/cookie.php'; ?>
+<?php 
+  require 'utils/cookie.php';
+  require 'utils/session.php'; 
+?>
 <!DOCTYPE html>
 <html>
   <head>

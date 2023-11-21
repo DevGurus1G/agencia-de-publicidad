@@ -1,11 +1,11 @@
 <?php
 //Para que el filtro de categorias del header funcione
-require 'db_common.php';
+require 'utils/db_common.php';
 require 'db/db_categorias.php';
 require 'db/db_anuncios.php';
 require 'db/db_usuarios.php';
 $categorias = getAllCategorias($conn);
-require 'session.php';
+require 'utils/session.php';
 
 $tabla = isset($_POST['tabla']) ? $_POST['tabla'] : '';
 
