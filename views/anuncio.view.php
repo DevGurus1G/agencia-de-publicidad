@@ -3,9 +3,9 @@
   <div class="anuncio-tarjeta">
     <div class="anunciante">
       <div>
-        <a href="/user?view=<?= $anuncianteUsername['id'] ?>" class="perfil">
+        <a href="/user?view=<?= $anunciante['id'] ?>" class="perfil">
         <img src="assets/img/default_avatar.webp" alt="avatar" />
-        <h4><?= $anuncianteUsername['username'] ?></h4>
+        <h4><?= $anunciante['username'] ?></h4>
         </a>
       </div>
       <div>
@@ -36,7 +36,9 @@
             </svg>
           </label>
         </div>
-        <a href="#" class="chat">
+        <a href="/chat/conversation?para_usuario_id=<?= $anunciante[
+          'id'
+        ] ?>" class="chat">
           <svg
             class="icon"
             xmlns="http://www.w3.org/2000/svg"
