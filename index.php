@@ -18,6 +18,7 @@ $routes = [
   '/user/edit' => 'controllers/user_edit.php',
   '/chat' => 'controllers/chat.php',
   '/chat/conversation' => 'controllers/chat_conversation.php',
+  '/anunciante' => 'controllers/anunciante.php',
 ];
 
 $routes_login = [
@@ -27,6 +28,7 @@ $routes_login = [
   '/user' => 'controllers/user.php',
   '/user/edit' => 'controllers/user_edit.php',
   '/chat' => 'controllers/chat.php',
+  '/anunciante' => 'controllers/anunciante.php',
 ];
 
 $routes_nologin = [
