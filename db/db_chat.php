@@ -1,17 +1,40 @@
 <?php
 function getUserChats($conn, $userId) {
   $stmt = $conn->prepare(
-    'SELECT c.id, c.de_usuario_id, c.para_usuario_id, c.mensaje, c.fecha_envio,
-    u.username AS remitente, u.imagen AS imagen_remitente
-    FROM chat c
-    JOIN usuarios u ON c.de_usuario_id = u.id
-    WHERE (c.de_usuario_id = :userId OR c.para_usuario_id = :userId)
-    AND c.fecha_envio = (
-        SELECT MAX(fecha_envio)
-        FROM chat
-        WHERE (de_usuario_id = :userId OR para_usuario_id = :userId)
-    )
-    ORDER BY c.para_usuario_id;'
+    'SELECT
+    c.id AS mensaje_id,
+    c.mensaje,
+    c.fecha_envio,
+    remitente.username AS remitente,
+    destinatario.username AS destinatario,
+    remitente.imagen AS imagen_remitente,
+    destinatario.imagen AS imagen_destinatario, c.para_usuario_id, c.de_usuario_id
+FROM
+    chat c
+JOIN
+    usuarios remitente ON c.de_usuario_id = remitente.id
+JOIN
+    usuarios destinatario ON c.para_usuario_id = destinatario.id
+JOIN (
+    SELECT
+        MAX(fecha_envio) AS max_fecha,
+        CASE
+            WHEN de_usuario_id = :userId THEN para_usuario_id
+            ELSE de_usuario_id
+        END AS otro_usuario_id
+    FROM
+        chat
+    WHERE
+        de_usuario_id = :userId OR para_usuario_id = :userId
+    GROUP BY
+        otro_usuario_id
+) AS ultimos_mensajes ON (
+    (c.de_usuario_id = :userId AND c.para_usuario_id = ultimos_mensajes.otro_usuario_id)
+    OR (c.para_usuario_id = :userId AND c.de_usuario_id = ultimos_mensajes.otro_usuario_id)
+) AND c.fecha_envio = ultimos_mensajes.max_fecha
+ORDER BY
+    c.fecha_envio DESC;
+'
   );
 
   $stmt->execute([':userId' => $userId]);

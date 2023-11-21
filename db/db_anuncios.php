@@ -9,20 +9,27 @@ function getAllAnuncios($conn) {
     anuncios.categoria_id,
     categorias.nombre AS nombre_categoria,
     usuarios.username AS nombre_anunciante,
-    MIN(imagenes_anuncios.id) AS primera_imagen_id,
-    imagenes_anuncios.imagen as primera_imagen
-  FROM
+    imagenes_anuncios.id AS primera_imagen_id,
+    imagenes_anuncios.imagen AS primera_imagen
+FROM
     anuncios
-  JOIN
+JOIN
     categorias ON anuncios.categoria_id = categorias.id
-  JOIN
+JOIN
     usuarios ON anuncios.anunciante = usuarios.id
-  LEFT JOIN
-    imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
-  GROUP BY
-    anuncios.id, anuncios.titulo, anuncios.descripcion, anuncios.precio, anuncios.anunciante, anuncios.categoria_id, categorias.nombre, usuarios.username, imagenes_anuncios.imagen
-  ORDER BY
-    anuncios.id DESC');
+LEFT JOIN (
+    SELECT
+        anuncio_id,
+        MIN(id) AS id,
+        imagen
+    FROM
+        imagenes_anuncios
+    GROUP BY
+        anuncio_id, imagen
+) AS imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+ORDER BY
+    anuncios.id DESC;
+');
 
   $stmt->execute();
 
