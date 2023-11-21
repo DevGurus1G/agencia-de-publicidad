@@ -11,7 +11,6 @@ require 'utils/session.php';
     <? foreach ($estilos as $estilo) : ?>
       <link rel="stylesheet" href="<?= $estilo ?>" />
     <? endforeach; ?>
-    <script src="/assets/js/search.js" defer></script>
   </head>
   <body 
   <?php echo $modo === 'dark' ? 'class="dark"' : ''; ?>

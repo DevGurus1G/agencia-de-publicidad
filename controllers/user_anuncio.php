@@ -8,15 +8,15 @@ require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);
 
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
 
 $tipoUsuario = $_SESSION['usuario']['tipo'];
 
-if($tipoUsuario == "tienda"){
-    $anuncios = getAnunciosByAnunciante($_SESSION['usuario']['id'],$conn);   
-}else{
-    $anuncios = getAnunciosbyUserIdFavorito($_SESSION['usuario']['id'],$conn);
+if ($tipoUsuario == 'tienda') {
+  $anuncios = getAnunciosByAnunciante($_SESSION['usuario']['id'], $conn);
+} else {
+  $anuncios = getAnunciosbyUserIdFavorito($_SESSION['usuario']['id'], $conn);
 }
 $imagenes = getAllImagenesAnuncio($conn);
 

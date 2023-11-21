@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // Para buscar
-  const searchFormInput = document.querySelectord('#form-search input');
+  const searchFormInput = document.querySelector('#form-search input');
   searchFormInput.addEventListener('change', search);
 
   async function search() {
@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
       anuncios.forEach((anuncio) => {
         cadena = `<div class='anuncio-card'>`;
+
         cadena += `</div>`;
       });
     }
