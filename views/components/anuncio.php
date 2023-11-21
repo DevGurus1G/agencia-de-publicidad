@@ -7,7 +7,7 @@
         <h2><?= $anuncio['titulo'] ?></h2>
         <p><?= $anuncio['descripcion'] ?></p>
     <!-- <span><i class="fa fa-user"></i> Publicado por: Admin</span> -->
-        <a href="/anuncio?id=<?= $anuncio['anunciante'] ?>">Publicado por 
+        <a href="/anuncio?id=<?= $anuncio['anuncio_id'] ?>">Publicado por 
         <?= $anuncio['nombre_anunciante'] ?>
         </a>
     </div>
