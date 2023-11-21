@@ -3,8 +3,9 @@
   <div class="anuncio-tarjeta">
     <div class="anunciante">
       <div>
+        <?php $base64img = base64_encode($anunciante['imagen']); ?>
         <a href="/anunciante?id=<?= $anunciante['id'] ?>" class="perfil">
-        <img src="assets/img/default_avatar.webp" alt="avatar" />
+        <img src="data:image/png;base64,<?= $base64img ?>" alt="">
         <h4><?= $anunciante['username'] ?></h4>
         </a>
       </div>
