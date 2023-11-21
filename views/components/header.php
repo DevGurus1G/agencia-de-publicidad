@@ -1,6 +1,6 @@
-<?php 
-  require 'utils/cookie.php';
-  require 'utils/session.php'; 
+<?php
+require 'utils/cookie.php';
+require 'utils/session.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,12 +11,10 @@
     <? foreach ($estilos as $estilo) : ?>
       <link rel="stylesheet" href="<?= $estilo ?>" />
     <? endforeach; ?>
-
+    <script src="/assets/js/search.js" defer></script>
   </head>
   <body 
-  <?php
-    echo ($modo === "dark") ? 'class="dark"' : "";
-  ?>
+  <?php echo $modo === 'dark' ? 'class="dark"' : ''; ?>
   >
     <header>
       <a class="logo-nombre" href="/">
@@ -34,7 +32,7 @@
         </svg>
         <h1>Gasteiz Denda</h1>
     </a>
-      <form action="../../index.php" method="get">
+      <form action="/" method="get" id="form-search" >
         <input type="text" name="search" placeholder="Buscar" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -259,15 +257,13 @@
                 >Todas las categorias</a
               >
             </li>
-            <?php 
-            
-            foreach ($categorias as $categoria) {
+            <?php foreach ($categorias as $categoria) {
               echo "<li>
-                    <a href='/?id=$categoria[id]'>$categoria[imagen]" .  ucfirst($categoria['nombre']) . "</a>
+                    <a href='/?id=$categoria[id]'>$categoria[imagen]" .
+                ucfirst($categoria['nombre']) .
+                "</a>
                     </li>";
-            }
-
-            ?>
+            } ?>
             
           </ul>
         </nav>
