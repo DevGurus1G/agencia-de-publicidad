@@ -97,6 +97,10 @@ header h1 {
   font-size: 1em;
 }
 
+h2{
+  font-family: 'Poppins';
+}
+
 header form {
   display: flex;
   width: fit-content;

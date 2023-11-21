@@ -3,7 +3,7 @@
   <div class="anuncio-tarjeta">
     <div class="anunciante">
       <div>
-        <a href="/user?view=<?= $anunciante['id'] ?>" class="perfil">
+        <a href="/anunciante?id=<?= $anunciante['id'] ?>" class="perfil">
         <img src="assets/img/default_avatar.webp" alt="avatar" />
         <h4><?= $anunciante['username'] ?></h4>
         </a>
