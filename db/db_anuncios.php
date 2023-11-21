@@ -40,4 +40,19 @@ function getAnunciosByCategoria($categoria,$conn){
   return $stmt->fetchAll();
 }
 
+function getAnunciosByAnunciante($anuncio,$conn) {
+  $stmt = $conn->prepare('SELECT * FROM anuncios 
+                          WHERE anunciante = :id');
+  $stmt->execute(['id'=> $anuncio]);
+  return $stmt->fetchAll();
+}
+
+function getAnunciosbyUserIdFavorito($id,$conn){
+  $stmt = $conn->prepare('SELECT anuncios.*
+  FROM anuncios
+  INNER JOIN favoritos ON anuncios.id = favoritos.anuncio_id
+  WHERE favoritos.usuario_id = :id');
+  $stmt->execute(['id'=> $id]);
+  return $stmt->fetchAll();
+}
 ?>
