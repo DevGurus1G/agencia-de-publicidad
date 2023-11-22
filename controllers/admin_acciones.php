@@ -1,7 +1,7 @@
 <?php 
-require 'db/db_connection.php';
-require 'vendor/autoload.php';
-require 'db/db_categorias.php';
+require_once 'db/db_connection.php';
+require_once 'vendor/autoload.php';
+require_once 'db/db_categorias.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable('./');
 $dotenv->load();

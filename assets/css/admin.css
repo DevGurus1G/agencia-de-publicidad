@@ -48,7 +48,16 @@ main{
     background-color: var(--input-color);
   }
 
-  /* Add these styles for modern table design */
+  .insertar {
+    display: flex;
+    width: fit-content;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
 table {
   width: 100%;
   border-collapse: collapse;

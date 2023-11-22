@@ -1,10 +1,11 @@
 <?php
 //Para que el filtro de categorias del header funcione
-require 'utils/db_common.php';
-require 'db/db_categorias.php';
-require 'db/db_anuncios.php';
-require 'db/db_usuarios.php';
-require 'utils/session.php';
+require_once 'utils/db_common.php';
+require_once 'db/db_categorias.php';
+require_once 'db/db_anuncios.php';
+$categorias = getAllCategorias($conn);
+require_once 'db/db_usuarios.php';
+require_once 'utils/session.php';
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
@@ -43,8 +44,10 @@ if (!empty($tabla)) {
 switch ($tabla) {
   case 'Usuarios':
   case 'Empresas':
-    $cadena =
-      '<table><tr><th>Username</th><th>Nombre</th><th>Apellido</th><th>Tipo</th><th>Email</th><th>Acciones</th></tr>';
+
+    $cadena = "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=user'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
+
+    $cadena .= "<table><tr><th>Username</th><th>Nombre</th><th>Apellido</th><th>Tipo</th><th>Email</th><th>Acciones</th></tr>";
 
     foreach ($tablas as $celda) {
       $cadena .= '<tr>';
@@ -68,7 +71,7 @@ switch ($tabla) {
       $cadena .= '</tr>';
     }
 
-    $cadena .= '</table>';
+    $cadena .= "</table>";
 
     echo $cadena;
 
@@ -101,7 +104,11 @@ switch ($tabla) {
     break;
 
   case 'Categorias':
-    $cadena = '<table><tr><th>Nombre</th><th>Acciones</th></tr>';
+
+    $cadena = "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=categoria'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
+
+
+    $cadena .= '<table><tr><th>Nombre</th><th>Acciones</th></tr>';
 
     foreach ($tablas as $celda) {
       $cadena .= '<tr>';

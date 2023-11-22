@@ -15,13 +15,15 @@
 
         $var = $var + 1;
 
+        if($var == 4){
+
+            echo "<input type='password' placeholder='Contraseña'>";
+    
+        }
+
     }
 
-    if($tipo == 'user'){
-
-        echo "<input type='password' placeholder='Contraseña'>";
-
-    }
+    
 
     echo $hidden;
 

@@ -20,6 +20,7 @@ $routes = [
   '/chat/conversation' => 'controllers/chat_conversation.php',
   '/anunciante' => 'controllers/anunciante.php',
   '/admin/editar' => 'controllers/admin_acciones.php',
+  '/admin/insertar' => 'controllers/admin_insertar.php',
 ];
 
 $routes_login = [
@@ -30,6 +31,8 @@ $routes_login = [
   '/user/edit' => 'controllers/user_edit.php',
   '/chat' => 'controllers/chat.php',
   '/anunciante' => 'controllers/anunciante.php',
+  '/admin/editar' => 'controllers/admin_acciones.php',
+  '/admin/insertar' => 'controllers/admin_insertar.php',
 ];
 
 $routes_nologin = [
