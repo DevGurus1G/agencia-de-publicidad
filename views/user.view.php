@@ -19,7 +19,7 @@ require 'views/components/header.php'; ?>
       Configuración</a
     >
     <? if($tipo == "tienda"):?>
-    <a class="configProducto" href="#"
+    <a class="configProducto" href="/user/anuncio"
       ><svg
         class="icon"
         width="30"
@@ -35,7 +35,7 @@ require 'views/components/header.php'; ?>
         Productos</a
     >
     <? else:?>
-    <a class="configFavorito" href="#"
+    <a class="configFavorito" href="/user/anuncio"
       ><svg
         class="icon"
         width="34"
