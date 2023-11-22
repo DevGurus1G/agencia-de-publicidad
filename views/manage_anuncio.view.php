@@ -32,9 +32,7 @@
 
       <select id="categoriaAnuncio">
       <? foreach ($categorias as $categoria) : ?>
-        <option value="<?= $categoria['id'] ?>"><?= $categoria[
-  'nombre'
-] ?></option>
+        <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
       <? endforeach; ?>
       </select>
 

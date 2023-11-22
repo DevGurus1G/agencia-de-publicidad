@@ -7,10 +7,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
   menuToggle.addEventListener('click', function () {
     navMenu.classList.toggle('show');
+    if (navFilter.classList.contains('show')) {
+      navFilter.classList.remove('show');
+    }
   });
 
   menuFilter.addEventListener('click', function () {
     navFilter.classList.toggle('show');
+    if (navMenu.classList.contains('show')) {
+      navMenu.classList.remove('show');
+    }
   });
 
   modo.addEventListener('click', function () {

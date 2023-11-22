@@ -1,4 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+//Si el que intenta acceder no es un usuario de tipo tienda se redirecciona a la pagina principal
+if($_SESSION['usuario']['tipo'] != "tienda") {
+  header("Location: /");
+  exit(); 
+}
 
 require 'db/db_anuncios.php';
 require 'db/db_categorias.php';
@@ -10,9 +19,6 @@ $categorias = getAllCategorias($conn);
 $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
 
 function registrar($conn) {
-  if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-  }
   $usuarioId = $_SESSION['usuario']['id'];
   $anuncio = [
     'titulo' => $_POST['titulo'],

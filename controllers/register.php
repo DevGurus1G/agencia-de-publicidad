@@ -2,6 +2,16 @@
 include 'db/db_usuarios.php';
 require 'utils/db_common.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+//Si existe un usuario logueado se redirecciona a home
+if(isset($_SESSION['usuario'])){
+  header("Location: /");
+  exit();
+}
+
 function registrar($conn) {
   $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
   // Encryptar contraseña

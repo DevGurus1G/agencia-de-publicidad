@@ -10,6 +10,7 @@ if (!isset($_SESSION['usuario'])) {
   $estaLogueado = false;
 } else {
   $estaLogueado = true;
+  $tipo = $_SESSION['usuario']['tipo'];
 }
 
 ?>
