@@ -37,30 +37,68 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Para buscar
   const searchFormInput = document.querySelector('#form-search input');
-  searchFormInput.addEventListener('change', search);
+  let searchTimeout;
+
+  searchFormInput.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(search, 1000);
+  });
 
   async function search() {
-    // Esperar a que termine de teclear
-    setTimeout(() => '', 500);
     try {
-      const response = await fetch(`/?search=${searchFormInput.value.trim()}`);
+      const response = await fetch(
+        `/?search=${searchFormInput.value.toLowerCase().trim()}`,
+      );
       if (response.ok) {
         const data = await response.json();
+        console.log('Respuesta:', data);
         mostrarAnunciosBuscados(data);
+      } else {
+        console.error(
+          'Error en la respuesta del servidor:',
+          response.status,
+          response.statusText,
+        );
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error al realizar la búsqueda:', error);
+    }
   }
 
-  function mostrarAnunciosBuscados(anuncios) {
-    $cadena = '';
-    if (window.location.href != '/') {
-      window.location.href = '/';
-    } else {
-      anuncios.forEach((anuncio) => {
-        cadena = `<div class='anuncio-card'>`;
+  async function mostrarAnunciosBuscados(anuncios) {
+    let cadena = '';
 
-        cadena += `</div>`;
-      });
+    for (const anuncio of anuncios) {
+      cadena += `<div class='anuncio-card'>`;
+
+      // Imagen
+      try {
+        const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
+
+        if (response.ok) {
+          const blob = await response.blob();
+          const imagenUrl = URL.createObjectURL(blob);
+          cadena += `<img src="${imagenUrl}" alt="Foto del anuncio mostrado" />`;
+        } else {
+          console.error(
+            'Error en la respuesta del servidor:',
+            response.status,
+            response.statusText,
+          );
+        }
+      } catch (error) {
+        console.error('Error al cargar la imagen:', error);
+      }
+
+      // Contenido del anuncio
+      cadena += `<div class="anuncio-card-info">`;
+      cadena += `<h2>${anuncio.titulo}</h2>`;
+      cadena += `<p>${anuncio.descripcion}</p>`;
+      cadena += `</div>`;
+
+      cadena += `</div>`;
     }
+
+    document.body.innerHTML += cadena;
   }
 });

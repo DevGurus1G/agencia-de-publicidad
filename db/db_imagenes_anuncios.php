@@ -1,5 +1,5 @@
 <?php
-function insertImagenAnuncio($imagen,$anuncioId, $conn) {
+function insertImagenAnuncio($imagen, $anuncioId, $conn) {
   $stmt = $conn->prepare(
     'INSERT INTO imagenes_anuncios (imagen, anuncio_id) 
     VALUES (:imagen,:anuncio)'
@@ -10,17 +10,25 @@ function insertImagenAnuncio($imagen,$anuncioId, $conn) {
   ]);
 }
 
-function getAllImagenesAnuncioByIdAnuncio($id,$conn){
-  $stmt = $conn->prepare('select * from imagenes_anuncios where anuncio_id = :id');
+function getAllImagenesAnuncioByIdAnuncio($id, $conn) {
+  $stmt = $conn->prepare(
+    'select * from imagenes_anuncios where anuncio_id = :id'
+  );
   $stmt->execute([
     'id' => $id,
   ]);
   return $stmt->fetchAll();
 }
 
-function getAllImagenesAnuncio($conn){
+function getAllImagenesAnuncio($conn) {
   $stmt = $conn->prepare('select * from imagenes_anuncios');
   $stmt->execute();
   return $stmt->fetchAll();
+}
+
+function getImagenById($id, $conn) {
+  $stmt = $conn->prepare('SELECT imagen from imagenes_anuncios where id = :id');
+  $stmt->execute(['id' => $id]);
+  return $stmt->fetch();
 }
 ?>

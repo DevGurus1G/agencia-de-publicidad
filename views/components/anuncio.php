@@ -1,5 +1,4 @@
 <div class="anuncio-card">
-<?php  ?>
 <img src="data:image/jpeg;base64,<?= base64_encode(
   $anuncio['primera_imagen']
 ) ?>" alt="Foto del anuncio mostrado" />

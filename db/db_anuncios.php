@@ -116,7 +116,7 @@ function getAnunciosbyUserIdFavorito($id, $conn) {
   return $stmt->fetchAll();
 }
 
-function deleteAnuncioById($id,$conn){
+function deleteAnuncioById($id, $conn) {
   $stmt = $conn->prepare(
     'DELETE FROM anuncios 
         WHERE id = :id'
@@ -125,6 +125,43 @@ function deleteAnuncioById($id,$conn){
   $stmt->execute([
     'id' => $id,
   ]);
+}
+
+function searchAnuncios($buscar, $conn) {
+  $stmt = $conn->prepare('SELECT
+      anuncios.id AS anuncio_id,
+      anuncios.titulo,
+      anuncios.descripcion,
+      anuncios.precio,
+      anuncios.anunciante,
+      anuncios.categoria_id,
+      categorias.nombre AS nombre_categoria,
+      usuarios.username AS nombre_anunciante,
+      imagenes_anuncios.id AS primera_imagen_id
+    FROM
+      anuncios
+    JOIN
+      categorias ON anuncios.categoria_id = categorias.id
+    JOIN
+      usuarios ON anuncios.anunciante = usuarios.id
+    LEFT JOIN (
+      SELECT
+        anuncio_id,
+        MIN(id) AS id
+      FROM
+        imagenes_anuncios
+      GROUP BY
+        anuncio_id
+    ) AS imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+    WHERE
+      LOWER(anuncios.titulo) LIKE LOWER(:buscar)
+      OR LOWER(anuncios.descripcion) LIKE LOWER(:buscar)
+    ORDER BY
+      anuncios.id DESC
+  ');
+
+  $stmt->execute(['buscar' => "%$buscar%"]);
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 ?>
