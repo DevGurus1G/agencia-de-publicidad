@@ -45,9 +45,10 @@ function mostrarChat($conn) {
 
 function obtenerNuevosMensajes($conn) {
   $lastMessageId = $_GET['lastMessageId'];
-  $newMessages = getNuevosMensajes(
+  $newMessages = getNuevosMensajesConversacion(
     $conn,
     $_SESSION['usuario']['id'],
+    $_GET['para_usuario_id'],
     $lastMessageId
   );
 
