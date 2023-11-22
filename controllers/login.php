@@ -6,6 +6,12 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
+//Si existe un usuario logueado se redirecciona a home
+if(isset($_SESSION['usuario'])){
+  header("Location: /");
+  exit();
+}
+
 function comprobarLogin($email, $password, $conn) {
   $usuario = getUsuarioLogin($email, $conn);
   if ($usuario) {
