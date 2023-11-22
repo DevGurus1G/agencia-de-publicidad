@@ -16,7 +16,7 @@ if (!empty($tabla)) {
       break;
 
     case 'Empresas':
-      $tablas = getUsuariosByTipo('vendedor', $conn);
+      $tablas = getUsuariosByTipo('tienda', $conn);
       break;
 
     case 'Anuncios':
