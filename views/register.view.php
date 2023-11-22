@@ -26,7 +26,7 @@
           </div>
           <div id="paso2" class="formulario-paso">
             <!-- Contenido del paso 2 -->
-            <input type="email" name="email" id="email" placeholder="Email" />
+            <input type="text" name="email" id="email" placeholder="Email" />
             <input
               type="text"
               name="username"

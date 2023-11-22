@@ -5,10 +5,24 @@ const btnPaso3 = document.getElementById('btn-paso3');
 // Para registar
 
 const formRegister = document.querySelector('form');
-const btnRegister = document.querySelector('#registro-btn');
 
-formRegister.addEventListener('submit', (e) => e.preventDefault);
-btnRegister.addEventListener('click', registro);
+formRegister.addEventListener('submit', async (e) => {
+  e.preventDefault(); // Detener el envío del formulario por defecto
+
+  const nombre = document.getElementById('nombre').value;
+  const apellidos = document.getElementById('apellidos').value;
+  const email = document.getElementById('email').value;
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+
+  const validacionExitosa = validarUsuario(nombre, apellidos, email, username, password);
+
+  if (!validacionExitosa) {
+    return; // Detener el envío del formulario si la validación falla
+  }
+
+  await registro(); // Continuar con el proceso de registro si la validación es exitosa
+});
 
 btnPaso1.addEventListener('click', () => mostrarPaso(2));
 btnPaso2Volver.addEventListener('click', () => mostrarPaso(1));
@@ -42,13 +56,35 @@ function mostrarPaso(paso) {
   });
 }
 
+function validarUsuario(nombre, apellidos, email,username,password){
+  if (!nombre.trim() || !apellidos.trim() || !email.trim() || !username.trim() || !password.trim()) {
+    alert('Por favor, complete todos los campos.');
+    return false;
+  }
+
+  if (nombre.length > 255 || apellidos.length > 255 || email.length > 255 || username.length > 255 || password.length > 255) {
+    alert('La longitud máxima de los campos es de 255 caracteres.');
+    return false;
+  }
+
+  // Validar dirección de correo electrónico
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Ingrese una dirección de correo electrónico válida.');
+    return false;
+  }
+  return true;
+}
+
 async function registro() {
   const nombre = document.getElementById('nombre').value;
   const apellidos = document.getElementById('apellidos').value;
   const email = document.getElementById('email').value;
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
-  
+  if (!validarUsuario(nombre, apellidos, email,username,password)) {
+    return; // Si la validación falla, detener el registro del anuncio
+  }
   //Si no se sube una imagen le agrega una por defecto en formato blob para evitar errores
   
   const imagenPorDefecto = await fetch('/assets/img/noPhoto.png');
@@ -80,9 +116,8 @@ async function registro() {
     });
     if (response.ok) {
       const data = await response.text();
-      console.log(data + 'lñksadfñkjas');
       if (data === 'registrado') {
-        window.location.href = '/';
+        window.location.href = '/login';
       }
     } else {
       console.error(response);
