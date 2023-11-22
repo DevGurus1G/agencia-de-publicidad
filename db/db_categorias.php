@@ -22,6 +22,20 @@ function deleteCategoriaById($id,$conn){
   ]);
 }
 
+function insertCategoria($categoria,$conn){
+  $stmt = $conn->prepare(
+    'INSERT INTO categorias (nombre) 
+    VALUES (:nombre)'
+  );
+
+  $stmt->execute([
+    'nombre' => $categoria['nombre'],
+    
+  ]);
+
+  return $conn->lastInsertId();
+}
+
 function updateCategoria($categoria, $conn) {
   $stmt = $conn->prepare(
     'UPDATE  categorias 

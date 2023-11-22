@@ -47,4 +47,5 @@ main{
     max-width: 10em;
     max-width: 10em;
     aspect-ratio: 1;
+    object-fit: cover;
 }
