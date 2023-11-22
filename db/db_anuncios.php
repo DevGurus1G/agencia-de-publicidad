@@ -115,4 +115,16 @@ function getAnunciosbyUserIdFavorito($id, $conn) {
   $stmt->execute(['id' => $id]);
   return $stmt->fetchAll();
 }
+
+function deleteAnuncioById($id,$conn){
+  $stmt = $conn->prepare(
+    'DELETE FROM anuncios 
+        WHERE id = :id'
+  );
+
+  $stmt->execute([
+    'id' => $id,
+  ]);
+}
+
 ?>
