@@ -63,12 +63,41 @@ function getAnunciosById($anuncio, $conn) {
 }
 
 function getAnunciosByCategoria($categoria, $conn) {
-  $stmt = $conn->prepare('SELECT * FROM anuncios
-                          WHERE categoria_id = :categoria_id');
-  $stmt->execute([
-    'categoria_id' => $categoria,
-  ]);
-  return $stmt->fetchAll();
+  $stmt = $conn->prepare('SELECT
+    anuncios.id AS anuncio_id,
+    anuncios.titulo,
+    anuncios.descripcion,
+    anuncios.precio,
+    anuncios.anunciante,
+    anuncios.categoria_id,
+    categorias.nombre AS nombre_categoria,
+    usuarios.username AS nombre_anunciante,
+    imagenes_anuncios.id AS primera_imagen_id,
+    imagenes_anuncios.imagen AS primera_imagen
+FROM
+    anuncios
+JOIN
+    categorias ON anuncios.categoria_id = categorias.id
+JOIN
+    usuarios ON anuncios.anunciante = usuarios.id
+LEFT JOIN (
+    SELECT
+        anuncio_id,
+        MIN(id) AS id,
+        imagen
+    FROM
+        imagenes_anuncios
+    GROUP BY
+        anuncio_id, imagen
+) AS imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+where anuncios.categoria_id = :categoria
+ORDER BY
+    anuncios.id DESC;
+');
+
+  $stmt->execute(['categoria' => $categoria]);
+
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getAnunciosByAnunciante($anuncio, $conn) {

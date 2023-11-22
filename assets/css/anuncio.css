@@ -80,6 +80,7 @@ label[for='favorito'],
 }
 
 .carrusel img {
+  min-width: 100%;
   width: 100%; /* Ancho de cada imagen */
   max-width: 500px; /* Ancho mínimo para cada imagen */
   height: auto; /* Altura automática para mantener la proporción */

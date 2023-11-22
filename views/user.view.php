@@ -18,7 +18,7 @@ require 'views/components/header.php'; ?>
       </svg>
       Configuración</a
     >
-
+    <? if($tipo == "tienda"):?>
     <a class="configProducto" href="#"
       ><svg
         class="icon"
@@ -34,7 +34,7 @@ require 'views/components/header.php'; ?>
         /></svg>
         Productos</a
     >
-
+    <? else:?>
     <a class="configFavorito" href="#"
       ><svg
         class="icon"
@@ -69,6 +69,7 @@ require 'views/components/header.php'; ?>
       Favoritos</a
     >
   </div>
+  <? endif?>
 </main>
 <?php require 'views/components/footer.php';
 ?>
