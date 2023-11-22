@@ -19,6 +19,7 @@ $routes = [
   '/chat' => 'controllers/chat.php',
   '/chat/conversation' => 'controllers/chat_conversation.php',
   '/anunciante' => 'controllers/anunciante.php',
+  '/admin/editar' => 'controllers/admin_acciones.php',
 ];
 
 $routes_login = [

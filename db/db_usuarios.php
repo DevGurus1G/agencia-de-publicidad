@@ -52,6 +52,22 @@ function updateUsuarioNoPassword($usuario, $conn) {
   ]);
 }
 
+function updateUsuarioAdmin($usuario, $conn) {
+  $stmt = $conn->prepare(
+    'UPDATE  usuarios 
+     SET username = :username , nombre = :nombre , apellidos = :apellidos , email = :email
+     WHERE id = :id'
+  );
+
+  $stmt->execute([
+    'id' => $usuario['id'],
+    'username' => $usuario['username'],
+    'email' => $usuario['email'],
+    'nombre' => $usuario['nombre'],
+    'apellidos' => $usuario['apellidos'],
+  ]);
+}
+
 function getUsuarioLogin($email, $conn) {
   $stmt = $conn->prepare('SELECT * FROM usuarios WHERE email = :email');
   $stmt->execute(['email' => $email]);
@@ -74,6 +90,17 @@ function getUsuariosByTipo($tipo, $conn) {
   $stmt = $conn->prepare('SELECT * FROM usuarios WHERE tipo = :tipo');
   $stmt->execute(['tipo' => $tipo]);
   return $stmt->fetchAll();
+}
+
+function deleteUsuariosById($id,$conn){
+  $stmt = $conn->prepare(
+    'DELETE FROM usuarios 
+        WHERE id = :id'
+  );
+
+  $stmt->execute([
+    'id' => $id,
+  ]);
 }
 
 ?>
