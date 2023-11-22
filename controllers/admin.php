@@ -92,7 +92,7 @@ switch ($tabla) {
       $cadena .= '<tr>';
       $cadena .= '<td>' . $celda['nombre'] . '</td>';
       $cadena .=
-        "<td><a href='/admin/borrar?tipo=categoria&id=" .
+        "<td><a href='/admin/editar?tipo=categoria&id=" .
         $celda['id'] .
         "'>Editar</a>" .
         ' ' .
