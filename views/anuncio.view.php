@@ -106,9 +106,7 @@
         <?= $anuncio['descripcion'] ?>
       </p>
     </div>
-    <a href="/?id=<?= $categoria['id'] ?>" class="categoria"><?= $categoria[
-  'nombre'
-] ?></a>
+    <a href="/?id=<?= $categoria_anuncio['id'] ?>" class="categoria"><?= $categoria_anuncio['nombre'] ?></a>
   </div>
 </main>
 <?php require 'views/components/footer.php'; ?>
