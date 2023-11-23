@@ -10,7 +10,7 @@ require 'db/db_usuarios.php';
 
 $titulo = 'Home | Gasteiz Denda';
 $scripts = ['assets/js/nav.js'];
-$estilos = ['assets/css/default.css'];
+$estilos = ['assets/css/default.css','assets/css/home.css'];
 
 if (isset($_GET['id'])) {
   $anuncios = getAnunciosByCategoria($_GET['id'], $conn);
