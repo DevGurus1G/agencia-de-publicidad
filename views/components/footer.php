@@ -2,7 +2,7 @@
 <footer>
 
 <div class="logo-empresa">
-<img src="assets/img/logo.png" alt="">
+<img src="/assets/img/logo.png" alt="">
 </div>
 
 <div class="copyright">

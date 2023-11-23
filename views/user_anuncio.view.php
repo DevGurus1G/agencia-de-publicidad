@@ -14,6 +14,7 @@
     <div class="targe-anuncio-texto">
       <div class="texto-cabecera">
         <h2><?= $anuncio['titulo']; ?></h2>
+        <? if($tipo=="comprador"): ?>
         <a href="#">
           <svg
             class="corazon"
@@ -38,6 +39,9 @@
               mask="url(#IconifyId18bb501bdfbf28b3828)"
             />
           </svg>
+          </a>
+          <? elseif($tipo=="tienda"): ?>
+          <a href="#">
           <svg
             width="36"
             height="36"
@@ -51,6 +55,7 @@
             />
           </svg>
         </a>
+        <? endif; ?>
       </div>
       <div class="texto-descripcion">
         <p><?= $anuncio['descripcion']; ?></p>

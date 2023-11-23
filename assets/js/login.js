@@ -1,8 +1,9 @@
 const loginForm = document.querySelector('form');
-const btnLogin = document.getElementById('login-btn');
 
-loginForm.addEventListener('submit', (e) => e.preventDefault());
-btnLogin.addEventListener('click', login);
+loginForm.addEventListener('submit', async (e) => {
+  e.preventDefault()
+  await login();
+});
 
 async function login() {
   const email = document.getElementById('email').value;

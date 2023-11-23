@@ -25,9 +25,7 @@ function editar($conn) {
         // Encryptar contraseña
 
         $cambio = $_POST['cambioPassword'];
-        print_r($cambio);
         if ($cambio == "siCambiar") {
-            print_r("He entrado para cambiar la contraseña");
             $options = ['cost' => 12];
             $pass = $_POST['password'];
             $salt = password_hash(uniqid(mt_rand(), true), PASSWORD_BCRYPT, $options);

@@ -34,7 +34,7 @@ require 'views/components/header.php'; ?>
         /></svg>
         Productos</a
     >
-    <? else:?>
+    <? elseif($tipo== "comprador"):?>
     <a class="configFavorito" href="/user/anuncio"
       ><svg
         class="icon"
