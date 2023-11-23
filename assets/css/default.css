@@ -34,6 +34,7 @@ header a {
   --text-color: #000;
   --background-color: #fff;
   --input-color: #afafaf;
+  --shadow-color: #00000066;
 }
 body {
   min-height: 100vh;
@@ -47,7 +48,8 @@ body {
     'content'
     'footer';
   grid-template-columns: 1fr;
-  grid-template-rows: 10fr 75fr 15fr;
+  grid-template-rows: 10fr 80fr 10fr;
+  height: 100vh;
 }
 body.dark {
   --border-color: #fff;
@@ -55,6 +57,7 @@ body.dark {
   --text-color: #fff;
   --background-color: #000;
   --input-color: #333;
+  --shadow-color: #ffffff33;
 }
 
 .icon {
@@ -78,14 +81,15 @@ header {
   justify-content: space-around;
   gap: 1em;
   width: 100%;
-  height: fit-content;
   grid-area: 'header';
   background-color: var(--background-color);
   color: var(--text-color);
   border-bottom-left-radius: 2em;
   border-bottom-right-radius: 2em;
   padding: 1em;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  align-items: center;
+  box-shadow: 0 4px 4px 0 var(--shadow-color);
+  position: relative;
 }
 
 .logo-nombre {
@@ -95,6 +99,8 @@ header {
 
 header h1 {
   font-size: 1em;
+  white-space: nowrap;
+  display: none;
 }
 
 h2{
@@ -103,9 +109,7 @@ h2{
 
 header form {
   display: flex;
-  width: fit-content;
-  max-width: 120px;
-  height: fit-content;
+  width: 100%;
   justify-content: space-between;
   align-items: center;
   background-color: var(--background-color);
@@ -119,7 +123,7 @@ header form .icon {
 header form input {
   color: var(--text-color);
   height: min-content;
-  padding: 0.5em 1em;
+  padding: 1em 1em;
   width: 100%;
 }
 header form input:focus {
@@ -189,18 +193,17 @@ svg > * {
 footer {
   display: flex;
   align-items: center;
-  align-self: flex-end;
   justify-content: space-around;
   gap: 1em;
   width: 100%;
-  height: fit-content;
-  grid-area: 'footer';
   background-color: var(--background-color);
   color: var(--text-color);
   border-top-left-radius: 2em;
   border-top-right-radius: 2em;
   padding: 1em;
-  box-shadow: 0 -4px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -4px 4px 0 var(--shadow-color);
+  position: relative;
+  bottom: 0;
 }
 
 footer p {
@@ -215,37 +218,15 @@ body.dark footer .logo-empresa {
   filter: invert(0%);
 }
 
-/* Home */
-
-.anuncios {
-  display: grid;
-  place-items: center;
-  width: 100%;
-  grid-template-columns: 1fr;
-  gap: 1em;
-}
-
-.anuncio-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5em;
-  background-color: var(--background-color);
-  padding: 1em;
-  border-radius: 2em;
-  width: 100%;
-  max-width: 300px;
-  border: 2px solid var(--border-color);
-}
-
-.anuncio-card a {
-  text-decoration: none;
-  color: var(--primary-color);
-}
-
 /* Responsive */
 
 @media screen and (min-width: 500px) {
   header form {
     max-width: 100%;
   }
+
+  header h1 {
+    display: 	block;
+  }
+
 }
