@@ -4,9 +4,11 @@
 .anuncios {
   display: grid;
   place-items: center;
-  width: 100%;
-  grid-template-rows: auto 1fr auto;
-  gap: 1em;
+  min-height: 75vh;
+  grid-template-columns: 1fr;
+  overflow: auto;
+  gap: 2em;
+  padding-block: 0.5em;
 }
 
 .anuncio-card {
@@ -19,6 +21,7 @@
   width: 100%;
   max-width: 300px;
   border: 2px solid var(--border-color);
+  box-shadow: 0px 0px 4px 4px var(--shadow-color);
 }
 
 .anuncio-card a {
