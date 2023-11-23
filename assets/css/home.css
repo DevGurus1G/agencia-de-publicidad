@@ -23,5 +23,15 @@
 
 .anuncio-card a {
   text-decoration: none;
+  color: var(--text-color);
+}
+
+.anuncio-card a span{
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.anuncio-card a span:hover{
+  text-decoration: underline;
   color: var(--primary-color);
 }
