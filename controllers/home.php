@@ -23,8 +23,9 @@ if (isset($_GET['search'])) {
 }
 if (isset($_GET['img'])) {
   $imagen = getImagenById($_GET['img'], $conn);
-  header('Content-Type: image/jpeg');
-  die($imagen);
+  // header('Content-Type: image/png');
+  // print_r($imagen);
+  die(base64_encode($imagen['imagen']));
 }
 
 $imagenes = getAllImagenesAnuncio($conn);

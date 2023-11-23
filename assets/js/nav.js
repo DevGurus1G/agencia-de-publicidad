@@ -76,9 +76,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
 
         if (response.ok) {
-          const blob = await response.blob();
-          const imagenUrl = URL.createObjectURL(blob);
-          cadena += `<img src="${imagenUrl}" alt="Foto del anuncio mostrado" />`;
+          // const blob = await response.blob();
+          // console.log(blob);
+          // const imagenUrl = URL.createObjectURL(blob);
+          // cadena += `<img src="${imagenUrl}" alt="Foto del anuncio mostrado" />`;
+          const imgBase64 = await response.text();
+          cadena += `<img src="data:image/png;base64,${imgBase64}" alt="Prueba"/>`;
         } else {
           console.error(
             'Error en la respuesta del servidor:',
@@ -94,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
       cadena += `<div class="anuncio-card-info">`;
       cadena += `<h2>${anuncio.titulo}</h2>`;
       cadena += `<p>${anuncio.descripcion}</p>`;
-      cadena += `</div>`;
+      cadena += cadena += `</div>`;
 
       cadena += `</div>`;
     }
