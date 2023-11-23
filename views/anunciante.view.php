@@ -17,7 +17,6 @@
     </div>
 
     <div class="anuncios">
-
         <?php if (count($anuncios) > 0): ?>
             <?php foreach ($anuncios as $anuncio): ?>
                 <?php require 'components/anuncio.php'; ?>

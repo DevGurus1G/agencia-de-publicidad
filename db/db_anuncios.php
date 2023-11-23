@@ -157,4 +157,36 @@ function searchAnuncios($buscar, $conn) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+function getAnunciosByIdAnuncianteCompletos($id,$conn) {
+  $stmt = $conn->prepare('SELECT
+  anuncios.id AS anuncio_id,
+  anuncios.titulo,
+  anuncios.descripcion,
+  anuncios.precio,
+  anuncios.anunciante,
+  anuncios.categoria_id,
+  categorias.nombre AS nombre_categoria,
+  usuarios.username AS nombre_anunciante,
+  MIN(imagenes_anuncios.id) AS primera_imagen_id,
+  MIN(imagenes_anuncios.imagen) AS primera_imagen
+FROM
+  anuncios
+JOIN
+  categorias ON anuncios.categoria_id = categorias.id
+JOIN
+  usuarios ON anuncios.anunciante = usuarios.id
+LEFT JOIN imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+WHERE
+  anuncios.anunciante = :idAnunciante
+GROUP BY
+  anuncios.id, anuncios.titulo, anuncios.descripcion, anuncios.precio, anuncios.anunciante, anuncios.categoria_id, categorias.nombre, usuarios.username
+ORDER BY
+  anuncios.id DESC;
+');
+
+  $stmt->execute(['idAnunciante' => $id]);
+
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 ?>

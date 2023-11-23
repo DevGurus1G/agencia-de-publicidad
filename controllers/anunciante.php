@@ -16,13 +16,11 @@ header("Location: /");
 }
 
 $anunciante = getUsernameById($_GET['id'],$conn);
-
-$anuncios = getAnunciosByAnunciante($_GET['id'],$conn);
-$imagenes = getAllImagenesAnuncio($conn);
+$anuncios = getAnunciosByIdAnuncianteCompletos($_GET['id'],$conn);
 $categorias = getAllCategorias($conn);
-$anunciantes= getAllUsernameAndId($conn);
 
-$estilos = ['../assets/css/default.css', '../assets/css/anunciante.css'];
+
+$estilos = ['../assets/css/default.css', '../assets/css/anunciante.css',];
 $titulo = 'Anunciante | Gasteiz Denda';
 $scripts = ['../assets/js/nav.js'];
 
