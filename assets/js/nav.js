@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
   async function search() {
     try {
       const response = await fetch(
-        `/?search=${searchFormInput.value.toLowerCase().trim()}`,
+        `/?search=${searchFormInput.value.toLowerCase().trim()}&desde_cliente`,
       );
       if (response.ok) {
         const data = await response.json();
@@ -97,10 +97,10 @@ document.addEventListener('DOMContentLoaded', function () {
       cadena += `<div class="anuncio-card-info">`;
       cadena += `<h2>${anuncio.titulo}</h2>`;
       cadena += `<p>${anuncio.descripcion}</p>`;
-      cadena += cadena += `</div>`;
-      cadena += `</div>``</div>`;
+      cadena += `</div>`;
+      cadena += `</div>`;
     }
 
-    document.body.innerHTML += cadena;
+    document.querySelector('main').innerHTML = cadena;
   }
 });

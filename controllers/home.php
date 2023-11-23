@@ -17,9 +17,12 @@ if (isset($_GET['id'])) {
 } else {
   $anuncios = getAllAnuncios($conn);
 }
-if (isset($_GET['search'])) {
+if (isset($_GET['search']) && isset($_GET['desde_cliente'])) {
   $anunciosBuscados = searchAnuncios($_GET['search'], $conn);
   die(json_encode($anunciosBuscados));
+}elseif (isset($_GET['search'])) {
+  if ($_GET['search'] !== '') {
+    $anuncios = searchAnunciosImagen($_GET['search'], $conn);  }
 }
 if (isset($_GET['img'])) {
   $imagen = getImagenById($_GET['img'], $conn);
