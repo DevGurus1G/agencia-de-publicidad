@@ -63,7 +63,7 @@ require 'views/components/header.php'; ?>
           />
         </mask>
         <g mask="url(#mask0_8_89)">
-          <path d="M-1 -4H35V32H-1V-4Z" fill="#13C1AC" />
+          <path d="M-1 -4H35V32H-1V-4Z"/>
         </g>
       </svg>
       Favoritos</a

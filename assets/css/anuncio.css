@@ -54,6 +54,10 @@ label[for='favorito'] svg {
   height: 2em;
 }
 
+label[for='favorito'] svg > path {
+  fill: #666666 ;
+}
+
 #favorito:checked + label[for='favorito'] svg > path {
   fill: #e11d48;
 }

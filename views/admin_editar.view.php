@@ -29,7 +29,9 @@
 
     echo $hiddenId;
 
-    echo "<input type='submit' value='Editar'>"
+    echo "<input type='submit' value='Editar'>";
+
+    echo "<a href='/admin'>Atras</a>";
 
     ?>
 

@@ -43,6 +43,7 @@ if (isset($_GET['tipo'])) {
         $categorias = getAllCategorias($conn);           
                     
         $campos= [
+            'icono' => 'file',
             'nombre' => 'text',  
         ];
     
@@ -84,9 +85,9 @@ if (isset($_POST['insertar_usuario'])) {
 
 if (isset($_POST['insertar_categoria'])) {
 
-
+    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
     $categoria = ['nombre' => $_POST['nombre'],
-    
+        'imagen' => $imagen,
     ];
 
     insertCategoria($categoria,$conn);

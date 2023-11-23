@@ -24,13 +24,13 @@ function deleteCategoriaById($id,$conn){
 
 function insertCategoria($categoria,$conn){
   $stmt = $conn->prepare(
-    'INSERT INTO categorias (nombre) 
-    VALUES (:nombre)'
+    'INSERT INTO categorias (nombre,imagen) 
+    VALUES (:nombre,:imagen)'
   );
 
   $stmt->execute([
     'nombre' => $categoria['nombre'],
-    
+    'imagen' => $categoria['imagen'],
   ]);
 
   return $conn->lastInsertId();

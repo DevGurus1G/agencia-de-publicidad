@@ -10,6 +10,11 @@
 
     foreach ($campos as $campo => $tipo) {
   
+        if ($campo == 'icono') {
+            echo "<input type=" . $tipo . " name='imagen' placeholder=" . $campo . " accept='image/svg+xml'>";
+            continue;
+        }
+
         echo "<input type=" . $tipo . " name=" . $campo . " placeholder=" . $campo . ">";
 
         $var = $var +1;
@@ -36,7 +41,9 @@
     
     echo $hidden;
 
-    echo "<input type='submit' value='Insertar'>"
+    echo "<input type='submit' value='Insertar'>";
+
+    echo "<a href='/admin'>Atras</a>";
 
     ?>
 
