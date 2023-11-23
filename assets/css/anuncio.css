@@ -75,19 +75,18 @@ label[for='favorito'],
   border-radius: 2em;
 }
 .imagenes-anuncio {
-  overflow: hidden; /* Oculta las imágenes que exceden el ancho del carrusel */
+  overflow: hidden;
 }
 
 .carrusel {
-  display: flex; /* Para alinear las imágenes horizontalmente */
-  transition: transform 0.5s ease; /* Añade transición para un desplazamiento suave */
+  display: flex; 
+  transition: transform 0.5s ease;
 }
 
 .carrusel img {
   min-width: 100%;
-  width: 100%; /* Ancho de cada imagen */
-  max-width: 500px; /* Ancho mínimo para cada imagen */
-  object-fit: cover; /* Altura automática para mantener la proporción */
+  width: 100%;
+  max-width: 500px;
 }
 
 .botones-carrusel {

@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 //Si el que intenta acceder no es un usuario de tipo tienda se redirecciona a la pagina principal
-if($_SESSION['usuario']['tipo'] != "tienda") {
+if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "tienda") {
   header("Location: /");
   exit(); 
 }

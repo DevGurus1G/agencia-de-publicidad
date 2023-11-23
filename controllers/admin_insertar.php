@@ -1,19 +1,19 @@
 <?php 
 
-require 'db/db_connection.php';
-require 'vendor/autoload.php';
 require 'db/db_categorias.php';
+require 'utils/db_common.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable('./');
-$dotenv->load();
-// Cargar todos los anuncios
-$conn = connect(
-  $_ENV['HOST'],
-  $_ENV['DB_NOMBRE'],
-  $_ENV['USER'],
-  $_ENV['USER_PASSWORD']
-);
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+  }
+  
+  //Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
+  if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
+    header("Location: /");
+    exit(); 
+  }
+  
 if (isset($_GET['tipo'])) {
 
     $tipo = $_GET['tipo'];

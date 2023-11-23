@@ -11,6 +11,10 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
+if(!isset($_SESSION['usuario'])){
+  header("Location: /");
+}
+
 $tipoUsuario = $_SESSION['usuario']['tipo'];
 
 if ($tipoUsuario == 'tienda') {

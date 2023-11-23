@@ -98,8 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
       cadena += `<h2>${anuncio.titulo}</h2>`;
       cadena += `<p>${anuncio.descripcion}</p>`;
       cadena += cadena += `</div>`;
-
-      cadena += `</div>`;
+      cadena += `</div>``</div>`;
     }
 
     document.body.innerHTML += cadena;

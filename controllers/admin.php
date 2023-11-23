@@ -11,8 +11,8 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-//Si el que intenta acceder no es un usuario de tipo tienda se redirecciona a la pagina principal
-if($_SESSION['usuario']['tipo'] != "admin") {
+//Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
+if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
   header("Location: /");
   exit(); 
 }

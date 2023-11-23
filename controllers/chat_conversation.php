@@ -1,19 +1,19 @@
 <?php
-// session_start();
 
 require 'db/db_chat.php';
-require 'db/db_connection.php';
-require 'vendor/autoload.php';
+require 'utils/db_common.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable('./');
-$dotenv->load();
 
-$conn = connect(
-  $_ENV['HOST'],
-  $_ENV['DB_NOMBRE'],
-  $_ENV['USER'],
-  $_ENV['USER_PASSWORD']
-);
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+//Si no existe un usuario logueado se redirecciona a home
+if(!isset($_SESSION['usuario'])){
+  header("Location: /");
+  exit();
+}
+
 
 if (isset($_GET['getNewMessages'])) {
   obtenerNuevosMensajes($conn);
