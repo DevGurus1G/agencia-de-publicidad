@@ -17,6 +17,17 @@ if (isset($_GET['id'])) {
 } else {
   $anuncios = getAllAnuncios($conn);
 }
+if (isset($_GET['search'])) {
+  $anunciosBuscados = searchAnuncios($_GET['search'], $conn);
+  die(json_encode($anunciosBuscados));
+}
+if (isset($_GET['img'])) {
+  $imagen = getImagenById($_GET['img'], $conn);
+  // header('Content-Type: image/png');
+  // print_r($imagen);
+  die(base64_encode($imagen['imagen']));
+}
+
 $imagenes = getAllImagenesAnuncio($conn);
 $categorias = getAllCategorias($conn);
 require 'utils/session.php';
