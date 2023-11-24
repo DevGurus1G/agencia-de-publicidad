@@ -23,14 +23,19 @@ RUN git clone -b develop https://github.com/DevGurus1G/agencia-de-publicidad.git
 RUN cp -R /tmp/agencia-de-publicidad/. /var/www/html/ && \
     rm -rf /tmp/agencia-de-publicidad
 
+#Dar permisos git para el pull
+WORKDIR /var/www/html
+RUN git config --global --add safe.directory /var/www/html
+RUN git pull
+
 # Crear el directorio para el script y copiar actualizarGit.sh
 RUN mkdir -p /etc/script
-RUN echo "#!/bin/bash" >> /etc/script/actualizarGit.sh && \
-    echo "cd /var/www/html" >> /etc/script/actualizarGit.sh && \
-    echo "git pull" >> /etc/script/actualizarGit.sh
-RUN chmod ugo+x /etc/script/actualizarGit.sh
+RUN echo '#!/bin/bash' > /etc/script/git_pull.sh && \
+    echo 'cd /var/www/html' >> /etc/script/git_pull.sh && \
+    echo '/usr/bin/git pull > /var/log/git_pull.log 2>&1' >> /etc/script/git_pull.sh && \
+    chmod +x /etc/script/git_pull.sh
 
 # Agregar una tarea cron que se ejecute cada minuto
-RUN echo "* * * * * /bin/bash /etc/script/actualizarGit.sh > /var/log/logActualizar.txt" | crontab -
+RUN echo "* * * * * /bin/bash /etc/script/git_pull.sh" | crontab -
 
-CMD ["apache2-foreground"]
+CMD service cron start && apache2-foreground
