@@ -9,8 +9,8 @@ require 'utils/db_common.php';
 require 'db/db_usuarios.php';
 
 $titulo = 'Home | Gasteiz Denda';
-$scripts = ['assets/js/nav.js'];
-$estilos = ['assets/css/default.css','assets/css/home.css'];
+$scripts = ['assets/js/nav.js', 'assets/js/home.js'];
+$estilos = ['assets/css/default.css', 'assets/css/home.css'];
 
 if (isset($_GET['id'])) {
   $anuncios = getAnunciosByCategoria($_GET['id'], $conn);
@@ -20,15 +20,19 @@ if (isset($_GET['id'])) {
 if (isset($_GET['search']) && isset($_GET['desde_cliente'])) {
   $anunciosBuscados = searchAnuncios($_GET['search'], $conn);
   die(json_encode($anunciosBuscados));
-}elseif (isset($_GET['search'])) {
+} elseif (isset($_GET['search'])) {
   if ($_GET['search'] !== '') {
-    $anuncios = searchAnunciosImagen($_GET['search'], $conn);  }
+    $anuncios = searchAnunciosImagen($_GET['search'], $conn);
+  }
 }
 if (isset($_GET['img'])) {
   $imagen = getImagenById($_GET['img'], $conn);
-  // header('Content-Type: image/png');
-  // print_r($imagen);
   die(base64_encode($imagen['imagen']));
+}
+
+if (isset($_GET['cargar-mas'])) {
+  $anunciosRecogidos = cargarMasAnuncios($_GET['cargar-mas'], $conn);
+  die(json_encode($anunciosRecogidos));
 }
 
 $imagenes = getAllImagenesAnuncio($conn);
