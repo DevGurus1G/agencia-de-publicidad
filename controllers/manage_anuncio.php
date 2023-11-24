@@ -48,6 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
   $categorias = getAllCategorias($conn);
 
+  if (isset($_GET['editar'])) {
+
+    $editar = $_GET['editar'];
+    $anuncio = getAnunciosById($id,$conn);
+
+  }
+
   require 'views/manage_anuncio.view.php';
 }
 

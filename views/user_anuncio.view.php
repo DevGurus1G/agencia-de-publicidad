@@ -41,7 +41,7 @@
           </svg>
           </a>
           <? elseif($tipo=="tienda"): ?>
-          <a href="#">
+            <?php echo "<a href=/anuncio/manage?editar=si&id=" . $anuncio['id'] . ">" ?>
           <svg
             width="36"
             height="36"
@@ -54,6 +54,10 @@
               fill="#13C1AC"
             />
           </svg>
+        </a>
+        <?php echo "<a href=/user/anuncio?borrar=si&id=" . $anuncio['id'] . ">" ?>
+        <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 0.5V2H0V5H1.5V24.5C1.5 25.2956 1.81607 26.0587 2.37868 26.6213C2.94129 27.1839 3.70435 27.5 4.5 27.5H19.5C20.2956 27.5 21.0587 27.1839 21.6213 26.6213C22.1839 26.0587 22.5 25.2956 22.5 24.5V5H24V2H16.5V0.5H7.5ZM7.5 8H10.5V21.5H7.5V8ZM13.5 8H16.5V21.5H13.5V8Z" fill="#DC3545"/></svg>
+
         </a>
         <? endif; ?>
       </div>
