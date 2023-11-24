@@ -1,6 +1,11 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
+  if (isset($_SESSION['usuario'])) {
+    $usuario_login = $_SESSION['usuario'];
+  } else {
+    $usuario_login = null;
+  }
 }
 include 'db/db_anuncios.php';
 require 'db/db_imagenes_anuncios.php';
