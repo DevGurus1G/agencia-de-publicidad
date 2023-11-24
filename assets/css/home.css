@@ -102,7 +102,6 @@
   display: none;
 }
 
-
 @keyframes spin {
   0% {
     transform: rotate(0deg);
@@ -110,4 +109,54 @@
   100% {
     transform: rotate(360deg);
   }
+}
+
+/* Para el cuadro de dialogo de la cookie */
+.container-dialogo {
+  display: none;
+  position: fixed;
+  padding: 1em;
+  width: 100%;
+  max-width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialogo {
+  background-color: var(--background-color);
+  padding: 3em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 12px 4px var(--shadow-color);
+}
+
+.dialogo .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-2em);
+  padding: 1em;
+  cursor: pointer;
+}
+
+.dialogo button:not(.icon) {
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  padding: 1em 2em;
+  color: white;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.dialogo button:not(.icon):hover {
+  background-color: #004fa3;
+}
+
+.active {
+  display: block;
 }

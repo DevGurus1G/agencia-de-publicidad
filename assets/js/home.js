@@ -1,7 +1,6 @@
 const btnCargarMas = document.getElementById('cargar-mas');
 const loader = document.getElementById('loader');
 let anuncio;
-console.log(btnCargarMas);
 
 btnCargarMas.addEventListener('click', async () => {
   anuncio = document.querySelector('.anuncios .anuncio-card:last-of-type');
@@ -82,3 +81,31 @@ function hideLoader() {
   loader.style.display = 'none';
   btnCargarMas.disabled = false;
 }
+
+// Para el guardado de si nos aceptan las cookies
+
+let aceptado = localStorage.getItem('cookieAceptado');
+let cDialogo = document.querySelector('.container-dialogo');
+
+if (aceptado === null) {
+  cDialogo.classList.toggle('active');
+}
+
+// Listeners
+let btnAceptarCookie = document.querySelector('.dialogo .aceptar');
+let btnDenegarCookie = document.querySelector('.dialogo .denegar');
+let btnCerrar = document.querySelector('.dialogo .icon');
+
+btnAceptarCookie.addEventListener('click', () => {
+  localStorage.setItem('cookieAceptado', true);
+  cDialogo.classList.remove('active');
+});
+
+btnDenegarCookie.addEventListener('click', () => {
+  localStorage.setItem('cookieAceptado', false);
+  cDialogo.classList.remove('active');
+});
+
+btnCerrar.addEventListener('click', () => {
+  cDialogo.classList.remove('active');
+});
