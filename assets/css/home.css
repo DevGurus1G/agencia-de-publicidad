@@ -2,8 +2,9 @@
 
 .anuncios {
   display: grid;
+  width: 100%;
   place-items: center;
-  min-height: 75vh;
+  height: 100%;
   grid-template-columns: 1fr;
   overflow: auto;
   gap: 2em;
