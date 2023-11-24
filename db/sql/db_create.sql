@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
     email VARCHAR(255) UNIQUE NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     apellidos VARCHAR(255) NOT NULL,
+    creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     tipo VARCHAR(255) NOT NULL CHECK (tipo IN ('tienda', 'comprador', 'admin')),
     imagen LONGBLOB
 );
@@ -23,6 +24,7 @@ CREATE TABLE IF NOT EXISTS anuncios (
     precio DECIMAL(10, 2) NOT NULL,
     anunciante INT NOT NULL,
     categoria_id INT NOT NULL,
+    creado TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (anunciante) REFERENCES usuarios (id) ON DELETE CASCADE,
     FOREIGN KEY (categoria_id) REFERENCES categorias (id) ON DELETE CASCADE
 );
