@@ -5,11 +5,8 @@ require_once 'db/db_categorias.php';
 require_once 'db/db_anuncios.php';
 $categorias = getAllCategorias($conn);
 require_once 'db/db_usuarios.php';
+//Para todo lo relacionado a la sesion del usuario
 require_once 'utils/session.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
 
 //Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
 if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {

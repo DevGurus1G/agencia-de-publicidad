@@ -3,10 +3,8 @@
 require 'db/db_chat.php';
 require 'db/db_usuarios.php';
 require 'utils/db_common.php';
-
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
 
 //Si no existe un usuario logueado se redirecciona a home
 if (!isset($_SESSION['usuario'])) {

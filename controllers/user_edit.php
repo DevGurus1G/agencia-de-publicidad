@@ -5,9 +5,8 @@ require 'utils/db_common.php';
 require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-  }
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
   
   if(!isset($_SESSION['usuario'])){
     header("Location: /");
@@ -64,7 +63,7 @@ function editar($conn) {
             $_SESSION['usuario'] = getUsuarioLogin($usuario['email'],$conn);
             die('editado');
         }
- 
+
     }else{
         die('Contraseña Incorrecta');
     }

@@ -1,17 +1,11 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-  if (isset($_SESSION['usuario'])) {
-    $usuario_login = $_SESSION['usuario'];
-  } else {
-    $usuario_login = null;
-  }
-}
 include 'db/db_anuncios.php';
 require 'db/db_imagenes_anuncios.php';
 require 'db/db_categorias.php';
 require 'utils/db_common.php';
 require 'db/db_usuarios.php';
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
 
 $titulo = 'Home | Gasteiz Denda';
 $scripts = ['assets/js/nav.js', 'assets/js/home.js'];
@@ -46,6 +40,6 @@ if (isset($_SESSION['usuario'])) {
 }
 $imagenes = getAllImagenesAnuncio($conn);
 $categorias = getAllCategorias($conn);
-require 'utils/session.php';
+
 include 'views/home.view.php';
 ?>
