@@ -48,6 +48,18 @@ require 'utils/session.php';
           />
         </svg>
       </form>
+      <div class="img-perfil">
+        <? if ($usuario_login != null): ?>
+          <img src="data:image/jpeg;base64,<?= base64_encode(
+            $usuario_login['imagen']
+          ) ?>" alt="Foto perfil" />
+          <div class="tooltip">
+            <?= $usuario_login['username'] ?>,<br/> tipo:<?= $usuario_login[
+  'tipo'
+] ?>
+          </div>
+        <? endif; ?>
+      </div>
       <div class="navs">
         <nav>
           <!-- Para el menu  -->
