@@ -2,16 +2,39 @@
 
 <main>
 
-    <form action="/admin/insertar" enctype="multipart/form-data" method="POST">
+    <form class="formAdmin" action="/admin/insertar" enctype="multipart/form-data" method="POST">
 
     <?php 
+
+    $base64img = base64_encode('');
 
     $var = 0;
 
     foreach ($campos as $campo => $tipo) {
   
         if ($campo == 'icono') {
-            echo "<input type=" . $tipo . " name='imagen' placeholder=" . $campo . " accept='image/svg+xml'>";
+
+            echo "<div class='imagen-input' id='imagen-input'>
+            <div class='imagen-grupo'>
+                <object data='data:image/svg+xml;base64," . $base64img . "' type='image/svg+xml' id='avatar'></object>
+                <input type='file' name='imagen' id='imagen' placeholder='icono' accept='image/svg+xml'>
+                <label for='imagen'>Subir</label>
+            </div>
+          </div>";
+
+            continue;
+        }
+
+        if ($campo == 'imagen') {
+
+            echo "<div class='imagen-input' id='imagen-input'>
+                    <div class='imagen-grupo'>
+                        <img src='data:image/png;base64," . $base64img . " alt='' id='avatar'>
+                        <input type='file' name='imagen' id='imagen'/>
+                        <label for='imagen'>Subir</label>
+                    </div>
+                  </div>";
+
             continue;
         }
 
