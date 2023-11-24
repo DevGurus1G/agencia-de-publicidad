@@ -1,7 +1,7 @@
 <?php
 require 'db/db_connection.php';
 require 'vendor/autoload.php'; // Asegúrate de ajustar la ruta según tu estructura de directorios
-$dotenv = Dotenv\Dotenv::createImmutable('./');
+$dotenv = Dotenv\Dotenv::createImmutable('/var/www/html');
 $dotenv->load();
 
 $conn = connect(
