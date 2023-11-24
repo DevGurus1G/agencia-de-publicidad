@@ -1,7 +1,10 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
+require 'db/db_anuncios.php';
+require 'db/db_categorias.php';
+require 'db/db_imagenes_anuncios.php';
+require 'utils/db_common.php';
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
 
 //Si el que intenta acceder no es un usuario de tipo tienda se redirecciona a la pagina principal
 if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "tienda") {
@@ -9,10 +12,6 @@ if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "tienda") {
   exit(); 
 }
 
-require 'db/db_anuncios.php';
-require 'db/db_categorias.php';
-require 'db/db_imagenes_anuncios.php';
-require 'utils/db_common.php';
 //Para que el filtro de categorias del header funcione
 $categorias = getAllCategorias($conn);
 

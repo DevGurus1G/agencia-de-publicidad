@@ -2,11 +2,8 @@
 
 require 'db/db_categorias.php';
 require 'utils/db_common.php';
-
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-  }
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
   
   //Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
   if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {

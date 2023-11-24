@@ -1,20 +1,9 @@
 <?php 
-require_once 'utils/db_common.php';
+require 'utils/db_common.php';
 require_once 'db/db_categorias.php';
-require_once 'vendor/autoload.php';
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
 
-$conn = connect(
-    $_ENV['HOST'],
-    $_ENV['DB_NOMBRE'],
-    $_ENV['USER'],
-    $_ENV['USER_PASSWORD']
-  );
-  
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-  }
-  
   //Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
   if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
     header("Location: /");

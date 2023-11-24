@@ -6,6 +6,8 @@ require 'utils/db_common.php';
 require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);
 require 'views/components/header.php';
+//Para todo lo relacionado a la sesion del usuario
+require_once 'utils/session.php';
 ?>
 
 <main>

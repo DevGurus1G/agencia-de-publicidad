@@ -1,14 +1,11 @@
 <?php
-
-if (session_status() === PHP_SESSION_NONE) {
-  session_start();
-}
-
 require 'db/db_anuncios.php';
 require 'db/db_favoritos.php';
 require 'db/db_imagenes_anuncios.php';
 require 'db/db_usuarios.php';
 require 'utils/db_common.php';
+//Para todo lo relacionado a la sesion del usuario
+require 'utils/session.php';
 
 //Para que el filtro de categorias del header funcione
 require 'db/db_categorias.php';
@@ -39,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['usuario'])) {
     : '' . ' | Gateiz Denda';
   $estilos = ['assets/css/default.css', 'assets/css/anuncio.css'];
   $scripts = ['assets/js/nav.js', 'assets/js/anuncio.js'];
-  require 'utils/session.php';
   require 'views/anuncio.view.php';
   }else{
     header("Location: /");
