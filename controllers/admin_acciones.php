@@ -70,7 +70,7 @@ if (isset($_GET['accion'])) {
      
                 $titulo = 'Editar Usuario | Gasteiz Denda';
                 $scripts = ['../assets/js/nav.js'];
-                $estilos = ['../assets/css/default.css'];
+                $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
     
                 $hidden = "<input type='hidden' name='editar_usuario'>";
                 $hiddenId = "<input type='hidden' name='id' value=" .  $id .">"; 
@@ -89,10 +89,12 @@ if (isset($_GET['accion'])) {
                 $c = getCategoriaNameById($id,$conn);
 
                 $datos = [$c['nombre']];
+
+                $imagen = $c['imagen'];
     
                 $titulo = 'Editar Categoría | Gasteiz Denda';
                 $scripts = ['../assets/js/nav.js'];
-                $estilos = ['../assets/css/default.css'];
+                $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
     
                 $hidden = "<input type='hidden' name='editar_categoria'>";
                 $hiddenId = "<input type='hidden' name='id' value=" .  $id .">"; 

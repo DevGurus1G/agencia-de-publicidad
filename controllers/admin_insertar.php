@@ -32,7 +32,7 @@ if (isset($_GET['tipo'])) {
     
         $titulo = 'Insertar Usuario | Gasteiz Denda';
         $scripts = ['../assets/js/nav.js'];
-        $estilos = ['../assets/css/default.css'];
+        $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
     
         $hidden = "<input type='hidden' name='insertar_usuario'>";
 
@@ -49,7 +49,7 @@ if (isset($_GET['tipo'])) {
     
         $titulo = 'Insertar Categoría | Gasteiz Denda';
         $scripts = ['../assets/js/nav.js'];
-        $estilos = ['../assets/css/default.css'];
+        $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
     
         $hidden = "<input type='hidden' name='insertar_categoria'>";
 

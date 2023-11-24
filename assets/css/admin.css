@@ -1,14 +1,15 @@
 /* Admin */
 
-main{
+main {
     display: flex;
     height: fit-content;
     align-items: center;
+    padding-block: 1em;
     flex-direction: column;
-    gap: 	2em;
-  }
-  
-  .busqueda{
+    gap: 2em;
+}
+
+.busqueda {
     display: flex;
     justify-content: center;
     height: fit-content;
@@ -18,37 +19,38 @@ main{
     padding: 0.5em;
     border-radius: 0.5em;
     box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
-  }
-  
-  .busqueda form{
+}
+
+.busqueda form {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 1em;
-  }
-  
-  .busqueda input{
+}
+
+.busqueda input {
     outline: none;
-  }
-  
-  .filtro form{
+}
+
+.filtro form {
     display: flex;
     gap: 2em;
     flex-wrap: wrap;
     justify-content: center;
-  }
-  
-  .filtro form input[type='button']{
+}
+
+.filtro form input[type='button'] {
     padding: 1em;
     background-color: var(--background-color);
     border-radius: 0.5em;
     border: 2px solid var(--border-color);
-  }
-  .filtro form input[type='button']:hover{
-    background-color: var(--input-color);
-  }
+}
 
-  .insertar {
+.filtro form input[type='button']:hover {
+    background-color: var(--input-color);
+}
+
+.insertar {
     display: flex;
     width: fit-content;
     padding: 0.5em;
@@ -56,81 +58,92 @@ main{
     background-color: var(--background-color);
     color: var(--text-color);
     text-decoration: none;
-  }
+}
 
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1em;
-  border: 2px solid var(--border-color);
-  border-radius: 0.5em;
-  overflow: hidden;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1em;
+    border: 2px solid var(--border-color);
+    border-radius: 0.5em;
+    overflow: hidden;
 }
 
 
 
 th, td {
-  
-  padding: 1em;
-  text-align: left;
+    padding: 1em;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 200px;
 }
 
 th {
-  background-color: var(--background-color);
-  color: var(--text-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-td a{
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--text-color);
-  padding: 0.5em;
+td a {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 0.5em;
 }
 
 tr:nth-child(even) {
-  background-color: grey;
+    background-color: grey;
 }
 
-tr:nth-child(odd){
-  background-color: lightgrey;
+tr:nth-child(odd) {
+    background-color: lightgrey;
 }
 
-tr:first-child th:first-child{
-  border-top-left-radius: 0.5em;
+tr:first-child th:first-child {
+    border-top-left-radius: 0.5em;
 }
 
-tr:first-child th:last-child{
-  border-top-right-radius: 0.5em;
+tr:first-child th:last-child {
+    border-top-right-radius: 0.5em;
 }
 
-tr:last-child td:first-child{
-  border-bottom-left-radius: 0.5em;
+tr:last-child td:first-child {
+    border-bottom-left-radius: 0.5em;
 }
 
-tr:last-child td:last-child{
-  border-bottom-right-radius: 0.5em;
+tr:last-child td:last-child {
+    border-bottom-right-radius: 0.5em;
 }
 
 /* Add this style for responsive tables on small screens */
-@media only screen and (max-width: 600px) {
-  table {
-      border: 0;
-  }
+@media only screen and (max-width: 650px) {
+    table {
+        border: 0;
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
 
-  table thead {
-      display: none;
-  }
+    table thead {
+        display: none;
+    }
 
-  table tr {
-      margin-bottom: 1em;
-      display: block;
-      border: 1px solid var(--border-color);
-  }
+    table tr {
+        display: block;
+        border: 1px solid var(--border-color);
+        border-radius: 0.5em;
+    }
 
-  table td {
-      display: block;
-      text-align: right;
-      font-size: 14px;
-      border: none;
-  }
+    table td {
+        display: block;
+        text-align: left;
+        font-size: 14px;
+        border: none;
+        padding: 0.5em;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
 }
