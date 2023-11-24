@@ -38,16 +38,17 @@ function insertCategoria($categoria,$conn){
 
 function updateCategoria($categoria, $conn) {
   $stmt = $conn->prepare(
-    'UPDATE  categorias 
-     SET nombre = :nombre
-     WHERE id = :id'
+      'UPDATE  categorias 
+       SET nombre = :nombre, imagen = :imagen
+       WHERE id = :id'
   );
 
   $stmt->execute([
-    'id' => $categoria['id'],
-    'nombre' => $categoria['nombre'],
-    
+      'id' => $categoria['id'],
+      'imagen' => $categoria['imagen'],
+      'nombre' => $categoria['nombre'], 
   ]);
 }
+
 
 ?>
