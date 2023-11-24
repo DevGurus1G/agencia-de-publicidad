@@ -25,9 +25,12 @@
         </svg>
       </a>
       <div class="info-receptor">
-        <img src="" alt="">
         <!-- Poner el nombre -->
+        <img src="data:image/png;base64,
+        <?= base64_encode($para_usuario['imagen']) ?>" alt="">
+        <p><?= $para_usuario['username'] ?></p>
       </div>
+
     </header>
     <main>
       <ul class="historial-conversacion">
@@ -46,20 +49,7 @@
         <div class="input-container">
           <input type="text" placeholder="Escribir mensaje" name="mensaje" id="mensaje">
           <button type="submit">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon"
-              width="128"
-              height="128"
-              viewBox="0 0 24 24"
-            >
-              <path
-                fill="#059669"
-                fill-rule="evenodd"
-                d="M11 2a9 9 0 1 0 5.618 16.032l3.675 3.675a1 1 0 0 0 1.414-1.414l-3.675-3.675A9 9 0 0 0 11 2Zm-6 9a6 6 0 1 1 12 0a6 6 0 0 1-12 0Z"
-                clip-rule="evenodd"
-              />
-            </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="128" height="128" viewBox="0 0 24 24"><path fill="currentColor" d="M3 20v-6l8-2l-8-2V4l19 8l-19 8Z"/></svg>
           </button>
         </div>
       </form>
