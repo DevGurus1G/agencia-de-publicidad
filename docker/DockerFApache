@@ -31,11 +31,12 @@ RUN git pull
 # Crear el directorio para el script y copiar actualizarGit.sh
 RUN mkdir -p /etc/script
 RUN echo '#!/bin/bash' > /etc/script/git_pull.sh && \
-    echo 'cd /var/www/html' >> /etc/script/git_pull.sh && \
-    echo '/usr/bin/git pull > /var/log/git_pull.log 2>&1' >> /etc/script/git_pull.sh && \
+    echo 'date "+\# %Y-%m-%d %H:%M:%S" >> /etc/script/git_pull.sh' >> /etc/script/git_pull.sh && \
+    echo 'echo "cd /var/www/html" >> /etc/script/git_pull.sh' >> /etc/script/git_pull.sh && \
+    echo 'echo "/usr/bin/git pull >> /var/log/git_pull.log 2>&1" >> /etc/script/git_pull.sh' >> /etc/script/git_pull.sh && \
     chmod +x /etc/script/git_pull.sh
 
 # Agregar una tarea cron que se ejecute cada minuto
-RUN echo "* * * * * /bin/bash /etc/script/git_pull.sh" | crontab -
+RUN echo "*/5 * * * * /bin/bash /etc/script/git_pull.sh" | crontab -
 
 CMD service cron start && apache2-foreground
