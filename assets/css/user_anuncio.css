@@ -46,3 +46,7 @@
 .texto-cabecera .corazon > path {
   fill: #e11d48;
 }
+
+main{
+  gap: 1em;
+}

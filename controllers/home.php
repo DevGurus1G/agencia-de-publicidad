@@ -33,11 +33,6 @@ if (isset($_GET['cargar-mas'])) {
   $anunciosRecogidos = cargarMasAnuncios($_GET['cargar-mas'], $conn);
   die(json_encode($anunciosRecogidos));
 }
-if (isset($_SESSION['usuario'])) {
-  $usuario_login = $_SESSION['usuario'];
-} else {
-  $usuario_login = null;
-}
 $imagenes = getAllImagenesAnuncio($conn);
 $categorias = getAllCategorias($conn);
 

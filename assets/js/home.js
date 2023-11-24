@@ -69,7 +69,7 @@ async function mostrarAnunciosBuscados(anuncios) {
 
   //   document.querySelector('main').innerHTML += cadena;
   document
-    .querySelector('main')
+    .querySelector('.anuncios')
     .appendChild(document.createRange().createContextualFragment(cadena));
 }
 

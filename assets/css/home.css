@@ -84,6 +84,8 @@
 
 #cargar-mas {
   position: relative;
+  display: flex;
+  width: fit-content;
 }
 
 .loader {
@@ -99,6 +101,7 @@
   animation: spin 1s linear infinite;
   display: none;
 }
+
 
 @keyframes spin {
   0% {
