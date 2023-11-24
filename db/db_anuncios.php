@@ -167,6 +167,7 @@ function getAnunciosByIdAnuncianteCompletos($id, $conn) {
   anuncios.precio,
   anuncios.anunciante,
   anuncios.categoria_id,
+  anuncios.creado,
   categorias.nombre AS nombre_categoria,
   usuarios.username AS nombre_anunciante,
   MIN(imagenes_anuncios.id) AS primera_imagen_id,

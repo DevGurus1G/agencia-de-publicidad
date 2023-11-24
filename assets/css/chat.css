@@ -22,7 +22,7 @@ body {
   background-color: var(--border-color);
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 15fr 75fr 10fr;
+  grid-template-rows: 10fr 90fr;
   grid-template-areas:
     'header'
     'main';
@@ -80,9 +80,11 @@ header {
   align-items: center;
   padding: 1em;
   grid-area: header;
+  height: 10vh;
 }
 main {
   grid-area: main;
+  height: 90vh;
 }
 
 .historial-conversacion {
@@ -92,7 +94,7 @@ main {
   height: 100%; /* Set a fixed height for the container */
   list-style: none;
   padding: 0.5em;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow: auto; /* Enable vertical scrolling */
 }
 
 .historial-conversacion li:last-child {
@@ -137,8 +139,30 @@ main {
 }
 
 .chat-form input {
-  padding: 1em 0;
+  padding: 1.5em;
   background-color: transparent;
   border: none;
   outline: none;
+  width: 100%;
+}
+
+.chat-form button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.info-receptor {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  font-weight: bold;
+  padding: 0.5em;
+}
+
+.info-receptor img {
+  max-height: 3em;
+  height: auto;
+  width: auto;
+  border-radius: 50%;
 }

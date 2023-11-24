@@ -1,19 +1,18 @@
 <?php
 
 require 'db/db_chat.php';
+require 'db/db_usuarios.php';
 require 'utils/db_common.php';
-
 
 if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
 //Si no existe un usuario logueado se redirecciona a home
-if(!isset($_SESSION['usuario'])){
-  header("Location: /");
+if (!isset($_SESSION['usuario'])) {
+  header('Location: /');
   exit();
 }
-
 
 if (isset($_GET['getNewMessages'])) {
   obtenerNuevosMensajes($conn);
@@ -37,10 +36,12 @@ function mostrarChat($conn) {
   );
 
   $usuario = $_SESSION['usuario']['id'];
-  $estilos = ['../assets/css/chat.css'];
-  $titulo = 'Chat | Gazteiz Denda';
+  $para_usuario = getUsernameById($_GET['para_usuario_id'], $conn);
 
-  require_once 'views/chat_conversation.view.php';
+  $estilos = ['../assets/css/chat.css'];
+  $titulo = 'Chat con ' . $para_usuario['username'] . ' | Gazteiz Denda';
+
+  require 'views/chat_conversation.view.php';
 }
 
 function obtenerNuevosMensajes($conn) {
