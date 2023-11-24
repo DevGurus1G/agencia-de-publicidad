@@ -3,13 +3,18 @@
 
 <main>
 
-    <form action="/admin/editar" method="GET">
+    <form action="/admin/editar" enctype="multipart/form-data" method="POST">
 
     <?php 
     
     $var = 0;
 
     foreach ($campos as $campo => $tipo) {
+
+        if ($campo == 'icono') {
+            echo "<input type=" . $tipo . " name='imagen' placeholder=" . $campo . " accept='image/svg+xml'>";
+            continue;
+        }
   
         echo "<input type=" . $tipo . " name=" . $campo . " value = " . $datos[$var] .  " placeholder=" . $campo . ">";
 
