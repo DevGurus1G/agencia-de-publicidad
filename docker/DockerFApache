@@ -1,22 +1,7 @@
 FROM php:apache-bullseye
 
 # Instalar paquetes necesarios
-RUN apt update && apt install -y unzip git anacron
-# RUN apt install php-sockets
-
-# Clonar tu repositorio Git
-RUN cd /var/www/html
-RUN git clone -b develop https://github.com/DevGurus1G/agencia-de-publicidad.git
-#RUN cp -ra /var/www/html/agencia-de-publicidad/* /var/www/html
-#RUN rm -rf /var/www/html/agencia-de-publicidad
-
-# Crear el directorio para el script y copiar actualizarGit.sh
-RUN mkdir /etc/script
-RUN echo "#!/bin/bash" >> /etc/script/actualizarGit.sh && echo "cd /var/www/html" >> /etc/script/actualizarGit.sh &&  echo "git pull" >> /etc/script/actualizarGit.sh
-RUN chmod ugo+x /etc/script/actualizarGit.sh
-
-# Agregar una tarea cron
-RUN echo "1   15    cron.daily     /bin/sh /etc/script/actualizarGit.sh > /var/log/logActualizar.txt" >> /etc/anacrontab
+RUN apt-get update && apt-get install -y unzip git cron
 
 # Instalar Composer
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -27,6 +12,25 @@ RUN php -r "unlink('composer-setup.php');"
 RUN docker-php-ext-install pdo pdo_mysql sockets
 RUN composer require vlucas/phpdotenv
 
+# Habilitar módulos de Apache
 RUN a2enmod rewrite
-RUN service apache2 restart
+
+# Clonar el repositorio en un directorio temporal
+WORKDIR /tmp
+RUN git clone -b develop https://github.com/DevGurus1G/agencia-de-publicidad.git
+
+# Copiar archivos a /var/www/html y limpiar
+RUN cp -R /tmp/agencia-de-publicidad/. /var/www/html/ && \
+    rm -rf /tmp/agencia-de-publicidad
+
+# Crear el directorio para el script y copiar actualizarGit.sh
+RUN mkdir -p /etc/script
+RUN echo "#!/bin/bash" >> /etc/script/actualizarGit.sh && \
+    echo "cd /var/www/html" >> /etc/script/actualizarGit.sh && \
+    echo "git pull" >> /etc/script/actualizarGit.sh
+RUN chmod ugo+x /etc/script/actualizarGit.sh
+
+# Agregar una tarea cron que se ejecute cada minuto
+RUN echo "* * * * * /bin/bash /etc/script/actualizarGit.sh > /var/log/logActualizar.txt" | crontab -
+
 CMD ["apache2-foreground"]

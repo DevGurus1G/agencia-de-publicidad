@@ -26,9 +26,7 @@ services:
       - mysql
     networks:
       - default
-    volumes:
-      - './:/var/www/html'
-      - ./copiar/:/etc/apache2/sites-enabled
+
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -42,5 +40,3 @@ services:
       - default
     links:
       - mysql:mysql
-# volumes:
-#   mysql-data:
