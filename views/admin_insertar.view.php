@@ -2,7 +2,7 @@
 
 <main>
 
-    <form class="formAdmin" action="/admin/insertar" enctype="multipart/form-data" method="POST">
+    <form id="formAdmin" class="formAdmin" action="/admin/insertar" enctype="multipart/form-data" method="POST">
 
     <?php 
 
@@ -38,7 +38,7 @@
             continue;
         }
 
-        echo "<input type=" . $tipo . " name=" . $campo . " placeholder=" . $campo . ">";
+        echo "<input type=" . $tipo . " name=" . $campo . " id=" . $campo . " placeholder=" . $campo . ">";
 
         $var = $var +1;
 
@@ -64,7 +64,7 @@
     
     echo $hidden;
 
-    echo "<input type='submit' value='Insertar'>";
+    echo "<input id='enviar' type='submit' value='Insertar'>";
 
     echo "<a href='/admin'>Atras</a>";
 

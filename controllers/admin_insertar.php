@@ -10,7 +10,7 @@ require 'utils/session.php';
     header("Location: /");
     exit(); 
   }
-  
+
 if (isset($_GET['tipo'])) {
 
     $tipo = $_GET['tipo'];
@@ -45,7 +45,7 @@ if (isset($_GET['tipo'])) {
         ];
     
         $titulo = 'Insertar Categoría | Gasteiz Denda';
-        $scripts = ['../assets/js/nav.js'];
+        $scripts = ['../assets/js/nav.js','../assets/js/admin_insertar_categoria.js'];
         $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
     
         $hidden = "<input type='hidden' name='insertar_categoria'>";
@@ -80,16 +80,15 @@ if (isset($_POST['insertar_usuario'])) {
 
 }
 
-if (isset($_POST['insertar_categoria'])) {
+if (isset($_POST['categoria'])) {
 
-    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-    $categoria = ['nombre' => $_POST['nombre'],
-        'imagen' => $imagen,
-    ];
+    $categoria = ['nombre' => $_POST['nombre']];
+
+    $categoria['imagen'] = file_get_contents($_FILES['imagen']['tmp_name']);;
 
     insertCategoria($categoria,$conn);
 
-    header('Location:/admin');
+    die('CategoriaInsertada');
 
 }
 
