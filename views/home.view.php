@@ -7,5 +7,10 @@
     <?php else: ?>
         <p>No hay anuncios</p>
     <?php endif; ?>
+    <button id="cargar-mas" type="button">
+        Cargar más
+        <span id="loader" class="loader"></span>
+    </button>
+
 </main>
 <?php require 'components/footer.php'; ?>
