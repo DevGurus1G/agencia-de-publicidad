@@ -152,8 +152,9 @@ header .img-perfil {
 }
 header .img-perfil img {
   height: 3em;
-  width: auto;
+  width: 3em;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .img-perfil {
