@@ -1,8 +1,15 @@
 <?php 
-require 'utils/db_common.php';
+require_once 'utils/db_common.php';
 require_once 'db/db_categorias.php';
+require_once 'vendor/autoload.php';
 
-
+$conn = connect(
+    $_ENV['HOST'],
+    $_ENV['DB_NOMBRE'],
+    $_ENV['USER'],
+    $_ENV['USER_PASSWORD']
+  );
+  
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -75,6 +82,7 @@ if (isset($_GET['accion'])) {
             case 'categoria':
                 
                 $campos= [
+                    'icono' => 'file',
                     'nombre' => 'text',  
                 ];
 
@@ -101,14 +109,14 @@ if (isset($_GET['accion'])) {
 
 
 
-if (isset($_GET['editar_usuario'])) {
+if (isset($_POST['editar_usuario'])) {
     require 'db/db_usuarios.php';
 
-    $usuario = ['id' => $_GET['id'],
-    'username' => $_GET['username'],
-    'email' => $_GET['email'],
-    'nombre' => $_GET['nombre'],
-    'apellidos' => $_GET['apellidos'],
+    $usuario = ['id' => $_POST['id'],
+    'username' => $_POST['username'],
+    'email' => $_POST['email'],
+    'nombre' => $_POST['nombre'],
+    'apellidos' => $_POST['apellidos'],
     ];
 
     updateUsuarioAdmin($usuario,$conn);
@@ -117,11 +125,12 @@ if (isset($_GET['editar_usuario'])) {
 
 }
 
-if (isset($_GET['editar_categoria'])) {
+if (isset($_POST['editar_categoria'])) {
 
-
-    $categoria = ['id' => $_GET['id'],
-    'nombre' => $_GET['nombre'],
+    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
+    $categoria = ['id' => $_POST['id'],
+    'imagen' => $imagen,
+    'nombre' => $_POST['nombre'],
     
     ];
 
