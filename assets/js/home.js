@@ -20,7 +20,7 @@ async function cargarMasAnuncios(fechaCreado) {
     if (response.ok) {
       const data = await response.json();
       console.log(data);
-      mostrarAnunciosBuscados(data);
+      mostrarAnunciosCargados(data);
       anuncio = document.querySelector('.anuncios .anuncios-card:last-of-type');
     }
   } catch (error) {
@@ -30,7 +30,7 @@ async function cargarMasAnuncios(fechaCreado) {
   }
 }
 
-async function mostrarAnunciosBuscados(anuncios) {
+async function mostrarAnunciosCargados(anuncios) {
   let cadena = '';
 
   for (const anuncio of anuncios) {
