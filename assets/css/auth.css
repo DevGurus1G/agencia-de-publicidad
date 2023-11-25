@@ -129,10 +129,6 @@ button:hover {
 /* Indicadores posicion */
 
 .indicadores-paso {
-  position: absolute;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -216,7 +212,7 @@ label[for='imagen']:hover {
 }
 
 /* Estilo para mensaje error login */
-.resultado{
+.resultado {
   color: red;
 }
 

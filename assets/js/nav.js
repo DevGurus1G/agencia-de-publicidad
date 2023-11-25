@@ -60,6 +60,7 @@ async function search() {
       const data = await response.json();
       console.log('Respuesta:', data);
       mostrarAnunciosBuscados(data);
+      console.log('BUENAS');
     } else {
       console.error(
         'Error en la respuesta del servidor:',
@@ -73,6 +74,13 @@ async function search() {
 }
 
 async function mostrarAnunciosBuscados(anuncios) {
+  console.log('EN MOSTRAR');
+  const anunciosContenedor = document.querySelector('.anuncios');
+  console.log(anunciosContenedor);
+
+  // Limpiar el contenido anterior
+  anunciosContenedor.innerHTML = '';
+
   let cadena = '';
 
   for (const anuncio of anuncios) {
@@ -83,10 +91,6 @@ async function mostrarAnunciosBuscados(anuncios) {
       const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
 
       if (response.ok) {
-        // const blob = await response.blob();
-        // console.log(blob);
-        // const imagenUrl = URL.createObjectURL(blob);
-        // cadena += `<img src="${imagenUrl}" alt="Foto del anuncio mostrado" />`;
         const imgBase64 = await response.text();
         cadena += `<img src="data:image/png;base64,${imgBase64}" alt="Prueba"/>`;
       } else {
@@ -104,9 +108,11 @@ async function mostrarAnunciosBuscados(anuncios) {
     cadena += `<div class="anuncio-card-info">`;
     cadena += `<h2>${anuncio.titulo}</h2>`;
     cadena += `<p>${anuncio.descripcion}</p>`;
+    cadena += `<a href="/anunciante?id=${anuncio.anunciante}"><span>Publicado por ${anuncio.nombre_anunciante}</span></a>`;
     cadena += `</div>`;
     cadena += `</div>`;
   }
 
-  document.querySelector('main').innerHTML = cadena;
+  // Establecer el nuevo contenido
+  anunciosContenedor.innerHTML = cadena;
 }
