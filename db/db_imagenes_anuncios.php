@@ -31,4 +31,13 @@ function getImagenById($id, $conn) {
   $stmt->execute(['id' => $id]);
   return $stmt->fetch();
 }
+function updateImagenAnuncio($imagenId, $imagen, $conn) {
+  $stmt = $conn->prepare(
+    'UPDATE imagenes_anuncios SET imagen = :imagen WHERE id = :id'
+  );
+  $stmt->execute([
+    'imagen' => $imagen,
+    'id' => $imagenId,
+  ]);
+}
 ?>

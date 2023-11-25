@@ -1,19 +1,13 @@
 <?php require 'views/components/header.php'; ?>
 <main>
-  <?php foreach($anuncios as $anuncio): ?>
+  <?php foreach ($anuncios as $anuncio): ?>
   <div class="tarjeta-anuncio">
-    <?php
-      $imagenEncontrada = false;
-      foreach ($imagenes as $imagen) {
-        if ($imagen['anuncio_id'] == $anuncio['id'] && !$imagenEncontrada) {
-          echo '<img src="data:image/jpeg;base64,' . base64_encode($imagen['imagen']) .'" alt="Foto del anuncio mostrado" />';
-          $imagenEncontrada = true;
-        }
-      }
-      ?>
+  <img src="data:image/jpeg;base64,<?= base64_encode(
+    $anuncio['primera_imagen']
+  ) ?>" alt="Foto del anuncio mostrado" />
     <div class="targe-anuncio-texto">
       <div class="texto-cabecera">
-        <h2><?= $anuncio['titulo']; ?></h2>
+        <h2><?= $anuncio['titulo'] ?></h2>
         <? if($tipo=="comprador"): ?>
         <a href="#">
           <svg
@@ -41,7 +35,7 @@
           </svg>
           </a>
           <? elseif($tipo=="tienda"): ?>
-          <a href="#">
+          <a href="/anuncio/manage?editar=<?= $anuncio['anuncio_id'] ?>">
           <svg
             width="36"
             height="36"
@@ -58,10 +52,10 @@
         <? endif; ?>
       </div>
       <div class="texto-descripcion">
-        <p><?= $anuncio['descripcion']; ?></p>
+        <p><?= $anuncio['descripcion'] ?></p>
       </div>
     </div>
   </div>
   <?php endforeach; ?>
 </main>
-<?php require 'views/components/footer.php';?>
+<?php require 'views/components/footer.php'; ?>

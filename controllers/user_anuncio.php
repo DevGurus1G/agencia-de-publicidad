@@ -10,8 +10,8 @@ $categorias = getAllCategorias($conn);
 //Para todo lo relacionado a la sesion del usuario
 require 'utils/session.php';
 
-if(!isset($_SESSION['usuario'])){
-  header("Location: /");
+if (!isset($_SESSION['usuario'])) {
+  header('Location: /');
 }
 
 $tipoUsuario = $_SESSION['usuario']['tipo'];
@@ -21,7 +21,6 @@ if ($tipoUsuario == 'tienda') {
 } else {
   $anuncios = getAnunciosbyUserIdFavorito($_SESSION['usuario']['id'], $conn);
 }
-$imagenes = getAllImagenesAnuncio($conn);
 
 $estilos = ['../assets/css/default.css', '../assets/css/user_anuncio.css'];
 $titulo = 'Gestionar anuncios | Gasteiz Denda';

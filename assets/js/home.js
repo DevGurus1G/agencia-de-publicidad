@@ -62,6 +62,7 @@ async function mostrarAnunciosBuscados(anuncios) {
     cadena += `<div class="anuncio-card-info">`;
     cadena += `<h2>${anuncio.titulo}</h2>`;
     cadena += `<p>${anuncio.descripcion}</p>`;
+    cadena += `<a href="/anunciante?id=${anuncio.anunciante}"><span>Publicado por ${anuncio.nombre_anunciante}</span></a>`;
     cadena += `</div>`;
     cadena += `</div>`;
   }

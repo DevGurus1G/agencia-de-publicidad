@@ -1,4 +1,6 @@
-<div class="anuncio-card" data-fecha-creado="<?= $anuncio['creado'] ?>">
+<div class="anuncio-card" data-fecha-creado="<?= $anuncio[
+  'creado'
+] ?>" data-id="<?= $anuncio['primera_imagen_id'] ?>">
     <a href="/anuncio?id=<?= $anuncio[
       'anuncio_id'
     ] ?>" class="enlace-anuncio-card">
