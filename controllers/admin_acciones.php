@@ -20,24 +20,7 @@ if (isset($_GET['accion'])) {
     $id = $_GET['id'];
 
 
-    if ($accion == 'borrar') {
-
-        switch ($tipo) {
-            case 'user':
-                deleteUsuariosById($id,$conn);
-                break;
-        
-            case 'anuncio':
-                deleteAnuncioById($id,$conn);
-                break;
-        
-            case 'categoria':
-                deleteCategoriaById($id,$conn);        
-                break;
-                
-        }
-        
-    }elseif($accion == 'editar'){
+    if($accion == 'editar'){
     
     $categorias = getAllCategorias($conn);
     

@@ -14,6 +14,34 @@ if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
   exit(); 
 }
 
+//BORRAR DESDE ADMIN PHP
+function realizarAccion($conn){
+  switch($_GET['accion']){
+    case "borrar":
+      borrarAdmin($_GET['tipo'],$_GET['id'],$conn);
+      break;
+  }
+}
+
+function borrarAdmin($tipo,$id,$conn){
+  switch($tipo){
+    case "anuncio":
+      deleteAnuncioById($id,$conn);
+      header("Location: /admin");
+      break;
+    case "user":
+      deleteUsuariosById($id,$conn);
+      header("Location: /admin");
+      break;
+  }
+}
+
+//Controla si en la pagina se esta realizando cualquier accion
+if (isset($_GET['accion'])) {
+  realizarAccion($conn);
+}
+
+//CODIGO DE GENERAR LAS TABLAS PARA ADMINISTRADOR
 $tabla = isset($_POST['tabla']) ? $_POST['tabla'] : '';
 
 if (!empty($tabla)) {
@@ -140,15 +168,6 @@ switch ($tabla) {
     $cadena = 'Ninguna tabla seleccionada.';
 
     break;
-}
-
-function realizarAccion(){
-
-  require 'admin_acciones.php';
-}
-
-if (isset($_GET['accion'])) {
-  realizarAccion();
 }
 
 ?>
