@@ -57,6 +57,8 @@ if (isset($_GET['tipo'])) {
 
 if (isset($_POST['insertar_usuario'])) {
     require 'db/db_usuarios.php';
+    $rutaImagen = 'assets/img/default_avatar.webp';
+    $imagen = file_get_contents($rutaImagen);
     $options = ['cost' => 12];
     $salt = password_hash(uniqid(mt_rand(), true), PASSWORD_BCRYPT, $options);
     $pass = $_POST['password'];
@@ -69,9 +71,10 @@ if (isset($_POST['insertar_usuario'])) {
         'nombre' => $_POST['nombre'],
         'apellidos' => $_POST['apellidos'],
         'tipo' => $_POST['tipo'],
+        'imagen' => $imagen,
       ];
 
-    insertUsuarioAdmin($usuario,$conn);
+    insertUsuario($usuario,$conn);
 
     header('Location:/admin');
 
