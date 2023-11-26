@@ -9,7 +9,7 @@
       <div class="texto-cabecera">
         <h2><?= $anuncio['titulo'] ?></h2>
         <? if($tipo=="comprador"): ?>
-        <a href="#">
+          <a href="/user/anuncio?id=<?= $anuncio['anuncio_id'] ?>">
           <svg
             class="corazon"
             xmlns="http://www.w3.org/2000/svg"

@@ -14,6 +14,17 @@ if (!isset($_SESSION['usuario'])) {
   header('Location: /');
 }
 
+if (isset($_GET['id'])) {
+
+  $usuario = $_SESSION['usuario']['id'];
+  $anuncio = $_GET['id'];
+ 
+  borrarFavorito($usuario, $anuncio, $conn);
+
+  header('Location: /user/anuncio');
+
+}
+
 $tipoUsuario = $_SESSION['usuario']['tipo'];
 
 if ($tipoUsuario == 'tienda') {
