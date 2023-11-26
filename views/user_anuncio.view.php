@@ -5,7 +5,7 @@
   <img src="data:image/jpeg;base64,<?= base64_encode(
     $anuncio['primera_imagen']
   ) ?>" alt="Foto del anuncio mostrado" />
-    <div class="targe-anuncio-texto">
+    <div class="targeta-anuncio-texto">
       <div class="texto-cabecera">
         <h2><?= $anuncio['titulo'] ?></h2>
         <? if($tipo=="comprador"): ?>

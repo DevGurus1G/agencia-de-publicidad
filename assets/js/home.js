@@ -34,19 +34,16 @@ async function mostrarAnunciosCargados(anuncios) {
   let cadena = '';
 
   for (const anuncio of anuncios) {
-    cadena += `<div class='anuncio-card' data-fecha-creado='${anuncio.creado}' >`;
+    cadena += `<div class='anuncio-card' data-fecha-creado='${anuncio.creado}' data-id='${anuncio.primera_imagen_id}'>`;
+    cadena += `<a href="/anuncio?id=${anuncio.anuncio_id}" class="enlace-anuncio-card">`;
 
     // Imagen
     try {
       const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
 
       if (response.ok) {
-        // const blob = await response.blob();
-        // console.log(blob);
-        // const imagenUrl = URL.createObjectURL(blob);
-        // cadena += `<img src="${imagenUrl}" alt="Foto del anuncio mostrado" />`;
         const imgBase64 = await response.text();
-        cadena += `<img src="data:image/png;base64,${imgBase64}" alt="Prueba"/>`;
+        cadena += `<img src="data:image/jpeg;base64,${imgBase64}" alt="Foto del anuncio mostrado" />`;
       } else {
         console.error(
           'Error en la respuesta del servidor:',
@@ -64,10 +61,11 @@ async function mostrarAnunciosCargados(anuncios) {
     cadena += `<p>${anuncio.descripcion}</p>`;
     cadena += `<a href="/anunciante?id=${anuncio.anunciante}"><span>Publicado por ${anuncio.nombre_anunciante}</span></a>`;
     cadena += `</div>`;
+
+    cadena += `</a>`;
     cadena += `</div>`;
   }
 
-  //   document.querySelector('main').innerHTML += cadena;
   document
     .querySelector('.anuncios')
     .appendChild(document.createRange().createContextualFragment(cadena));
