@@ -33,6 +33,10 @@ function borrarAdmin($tipo,$id,$conn){
       deleteUsuariosById($id,$conn);
       header("Location: /admin");
       break;
+    case "categoria":
+      deleteCategoriaById($id,$conn);
+      header("Location: /admin");
+      break;
   }
 }
 
