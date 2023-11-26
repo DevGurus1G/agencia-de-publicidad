@@ -20,7 +20,6 @@ if (isset($_GET['tipo'])) {
         $categorias = getAllCategorias($conn);           
                     
         $campos= [
-            'imagen' => 'file',
             'nombre' => 'text',
             'apellidos' => 'text',
             'username' => 'text',
@@ -58,7 +57,6 @@ if (isset($_GET['tipo'])) {
 
 if (isset($_POST['insertar_usuario'])) {
     require 'db/db_usuarios.php';
-    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
     $options = ['cost' => 12];
     $salt = password_hash(uniqid(mt_rand(), true), PASSWORD_BCRYPT, $options);
     $pass = $_POST['password'];
@@ -71,10 +69,9 @@ if (isset($_POST['insertar_usuario'])) {
         'nombre' => $_POST['nombre'],
         'apellidos' => $_POST['apellidos'],
         'tipo' => $_POST['tipo'],
-        'imagen' => $imagen,
       ];
 
-    insertUsuario($usuario,$conn);
+    insertUsuarioAdmin($usuario,$conn);
 
     header('Location:/admin');
 

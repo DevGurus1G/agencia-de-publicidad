@@ -16,6 +16,22 @@ function insertUsuario($usuario, $conn) {
   ]);
 }
 
+function insertUsuarioAdmin($usuario, $conn) {
+  $stmt = $conn->prepare(
+    'INSERT INTO usuarios (username, hashed_pass, salt, email, nombre, apellidos, tipo) 
+    VALUES (:username, :hashed_pass, :salt, :email, :nombre, :apellidos, :tipo)'
+  );
+  $stmt->execute([
+    'username' => $usuario['username'],
+    'hashed_pass' => $usuario['hashed_pass'],
+    'salt' => $usuario['salt'],
+    'email' => $usuario['email'],
+    'nombre' => $usuario['nombre'],
+    'apellidos' => $usuario['apellidos'],
+    'tipo' => $usuario['tipo'],
+  ]);
+}
+
 function updateUsuarioPassword($usuario, $conn) {
   $stmt = $conn->prepare(
     'UPDATE  usuarios 

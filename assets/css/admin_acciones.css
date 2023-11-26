@@ -91,3 +91,26 @@ main{
     background-color: #e11d48;
  }
 
+ .tipo {
+  display: flex;
+  gap: 2em;
+ }
+
+ .tipo input[type='radio']{
+  display: none;
+ }
+
+ .tipo label:hover{
+  background-color: var(--input-color);
+}
+
+.tipo input[type='radio']:checked + label {
+  background-color: var(--input-color); 
+}
+
+.tipo label{
+  padding: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}

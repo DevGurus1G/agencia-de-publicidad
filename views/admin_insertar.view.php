@@ -25,36 +25,24 @@
             continue;
         }
 
-        if ($campo == 'imagen') {
-
-            echo "<div class='imagen-input' id='imagen-input'>
-                    <div class='imagen-grupo'>
-                        <img src='data:image/png;base64," . $base64img . " alt='' id='avatar'>
-                        <input type='file' name='imagen' id='imagen'/>
-                        <label for='imagen'>Subir</label>
-                    </div>
-                  </div>";
-
-            continue;
-        }
-
         echo "<input type=" . $tipo . " name=" . $campo . " id=" . $campo . " placeholder=" . $campo . ">";
 
         $var = $var +1;
 
-        if($var == 5){
+        if($var == 4){
 
-            echo "
-            <label for='admin'>Admin</label>
+            echo "<div class='tipo'>
+            
             <input type='radio' name='tipo' id='admin' value='admin' />
+            <label for='admin'>Admin</label>
           
-          
-            <label for='comprador'>Comprador</label>
             <input type='radio' name='tipo' id='comprador' value='comprador' />
-          
-          
+            <label for='comprador'>Comprador</label>
+
+            <input type='radio' name='tipo' id='tienda' value='tienda' />
             <label for='tienda'>Tienda</label>
-            <input type='radio' name='tipo' id='tienda' value='tienda' />";
+
+            </div>";
 
             echo "<input type='password' name='password' placeholder='password'>";
     

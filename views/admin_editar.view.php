@@ -7,13 +7,15 @@
 
     <?php 
 
-    $base64img = base64_encode($categoria['imagen']);
+    
     
     $var = 0;
 
     foreach ($campos as $campo => $tipo) {
 
         if ($campo == 'icono') {
+
+            $base64img = base64_encode($categoria['imagen']);
 
             echo "<div class='imagen-input' id='imagen-input'>
                     <div class='imagen-grupo'>
