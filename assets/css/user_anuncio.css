@@ -2,13 +2,15 @@
 
 .tarjeta-anuncio {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 2em;
   gap: 1em;
   background-color: var(--background-color);
   height: fit-content;
   max-width: 550px;
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+  max-width: 500px;
+  width: 100%;
 }
 
 .tarjeta-anuncio img {
@@ -16,6 +18,8 @@
   border-bottom-left-radius: 2em;
   overflow: auto;
   object-fit: cover;
+  max-width: 200px;
+  width: 100%;
 }
 
 .tarjeta-anuncio-texto {
@@ -47,6 +51,6 @@
   fill: #e11d48;
 }
 
-main{
+main {
   gap: 1em;
 }

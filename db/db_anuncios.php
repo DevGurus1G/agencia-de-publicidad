@@ -65,30 +65,35 @@ function getAnunciosByCategoria($categoria, $conn) {
     anuncios.precio,
     anuncios.anunciante,
     anuncios.categoria_id,
+    anuncios.creado,
     categorias.nombre AS nombre_categoria,
     usuarios.username AS nombre_anunciante,
     imagenes_anuncios.id AS primera_imagen_id,
     imagenes_anuncios.imagen AS primera_imagen
-FROM
+  FROM
     anuncios
-JOIN
+  JOIN
     categorias ON anuncios.categoria_id = categorias.id
-JOIN
+  JOIN
     usuarios ON anuncios.anunciante = usuarios.id
-LEFT JOIN (
+  LEFT JOIN (
     SELECT
-        anuncio_id,
-        MIN(id) AS id,
-        imagen
+      anuncio_id,
+      MIN(id) AS id,
+      imagen
     FROM
-        imagenes_anuncios
+      imagenes_anuncios
     GROUP BY
-        anuncio_id, imagen
-) AS imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
-where anuncios.categoria_id = :categoria
-ORDER BY
-    anuncios.id DESC;
-');
+      anuncio_id, imagen
+  ) AS imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+  WHERE
+    anuncios.categoria_id = :categoria
+    AND imagenes_anuncios.id = (
+      SELECT MIN(id) FROM imagenes_anuncios WHERE anuncio_id = anuncios.id
+    )
+  ORDER BY
+    anuncio_id DESC
+  ');
 
   $stmt->execute(['categoria' => $categoria]);
 

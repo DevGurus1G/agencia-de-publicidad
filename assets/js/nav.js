@@ -81,18 +81,25 @@ async function mostrarAnunciosBuscados(anuncios) {
   // Limpiar el contenido anterior
   anunciosContenedor.innerHTML = '';
 
-  let cadena = '';
-
   for (const anuncio of anuncios) {
-    cadena += `<div class='anuncio-card'>`;
+    const divAnuncio = document.createElement('div');
+    divAnuncio.classList.add('anuncio-card');
+    divAnuncio.setAttribute('data-fecha-creado', anuncio.creado);
+    divAnuncio.setAttribute('data-id', anuncio.primera_imagen_id);
+
+    const enlaceAnuncio = document.createElement('a');
+    enlaceAnuncio.href = `/anuncio?id=${anuncio.anuncio_id}`;
+    enlaceAnuncio.classList.add('enlace-anuncio-card');
 
     // Imagen
     try {
       const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
-
       if (response.ok) {
         const imgBase64 = await response.text();
-        cadena += `<img src="data:image/png;base64,${imgBase64}" alt="Prueba"/>`;
+        const imgElement = document.createElement('img');
+        imgElement.src = `data:image/png;base64,${imgBase64}`;
+        imgElement.alt = 'Foto del anuncio mostrado';
+        enlaceAnuncio.appendChild(imgElement);
       } else {
         console.error(
           'Error en la respuesta del servidor:',
@@ -105,14 +112,16 @@ async function mostrarAnunciosBuscados(anuncios) {
     }
 
     // Contenido del anuncio
-    cadena += `<div class="anuncio-card-info">`;
-    cadena += `<h2>${anuncio.titulo}</h2>`;
-    cadena += `<p>${anuncio.descripcion}</p>`;
-    cadena += `<a href="/anunciante?id=${anuncio.anunciante}"><span>Publicado por ${anuncio.nombre_anunciante}</span></a>`;
-    cadena += `</div>`;
-    cadena += `</div>`;
-  }
+    const divInfo = document.createElement('div');
+    divInfo.classList.add('anuncio-card-info');
+    divInfo.innerHTML = `
+      <h2>${anuncio.titulo}</h2>
+      <p>${anuncio.descripcion}</p>
+      <a href="/anunciante?id=${anuncio.anunciante}"><span>Publicado por ${anuncio.nombre_anunciante}</span></a>
+    `;
 
-  // Establecer el nuevo contenido
-  anunciosContenedor.innerHTML = cadena;
+    enlaceAnuncio.appendChild(divInfo);
+    divAnuncio.appendChild(enlaceAnuncio);
+    anunciosContenedor.appendChild(divAnuncio);
+  }
 }
