@@ -6,7 +6,7 @@
   border-radius: 2em;
   gap: 1em;
   background-color: var(--background-color);
-  height: fit-content;
+  height: 200px;
   max-width: 550px;
   box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
   max-width: 500px;
@@ -26,6 +26,8 @@
   display: flex;
   flex-direction: column;
   justify-content: start;
+  width: 100%;
+  overflow: auto;
 }
 
 .texto-cabecera {
@@ -38,6 +40,15 @@
 .texto-descripcion {
   padding: 1em;
 }
+
+.texto-descripcion p{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  min-width: 100%;
+}
+
 .texto-cabecera a {
   text-decoration: none;
 }

@@ -5,8 +5,8 @@
   flex-direction: column;
   width: 100%;
   border-radius: 2em;
-  background-color: var(--background-color);
   height: fit-content;
+  gap: 1em;
 }
 
 .configMenu a {
@@ -16,24 +16,21 @@
   padding: 2em;
   text-decoration: none;
   color: var(--text-color);
+  background-color: var(--background-color);
 }
 
-.configMenu a:hover {
-  background-color: var(--input-color);
-  cursor: pointer;
+
+.configPerfil,
+.configFavorito,
+.configProducto{
+  border-radius: 2em;
+  background-color: var(--background-color);
 }
 
-.configPerfil {
-  border-bottom: 2px solid var(--border-color);
-}
-
-.configPerfil:hover {
-  border-top-right-radius: 2em;
-  border-top-left-radius: 2em;
-}
-
+.configPerfil:hover,
 .configFavorito:hover,
 .configProducto:hover {
-  border-bottom-right-radius: 2em;
-  border-bottom-left-radius: 2em;
+  border-radius: 2em;
+  background-color: var(--input-color);
+  cursor: pointer;
 }

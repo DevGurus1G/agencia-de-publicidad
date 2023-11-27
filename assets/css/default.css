@@ -261,6 +261,15 @@ footer p {
   font-size: 0.75em;
 }
 
+footer a{
+  width: fit-content;
+}
+
+footer img {
+  width: 3em;
+  height: 3em;
+}
+
 body footer .logo-empresa {
   filter: invert(100%);
 }

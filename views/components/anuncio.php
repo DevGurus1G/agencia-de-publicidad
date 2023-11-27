@@ -10,6 +10,7 @@
         <div class="anuncio-card-info">
             <h2><?= $anuncio['titulo'] ?></h2>
             <p><?= $anuncio['descripcion'] ?></p>
+            <p><b><?= $anuncio['precio'] ?>€</b></p>
             <a href="/anunciante?id=<?= $anuncio[
               'anunciante'
             ] ?>"><span>Publicado por <?= $anuncio[

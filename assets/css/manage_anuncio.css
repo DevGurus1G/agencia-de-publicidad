@@ -133,3 +133,7 @@
   cursor: pointer;
   border: 2px solid var(--border-color);
 }
+
+#registroAnuncio-btn:hover{
+  background-color: var(--input-color);
+}

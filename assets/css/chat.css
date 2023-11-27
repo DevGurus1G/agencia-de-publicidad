@@ -36,16 +36,27 @@ body.dark {
   --input-color: #333;
 }
 
+main{
+  gap: 1em;
+}
+
 a {
   color: var(--text-color);
   text-decoration: none;
+  width: 100%;
 }
+
 .chat-card {
   padding: 1em;
   display: flex;
   align-items: center;
   justify-content: space-around;
   background-color: var(--background-color);
+  border-radius: 0.5em;
+}
+
+.chat-card:hover{
+  background-color: var(--input-color);
 }
 
 .chat-card img {
@@ -162,7 +173,8 @@ main {
 
 .info-receptor img {
   max-height: 3em;
-  height: auto;
-  width: auto;
+  height: 3em;
+  width: 3em;
   border-radius: 50%;
+  object-fit: cover;
 }
