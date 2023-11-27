@@ -58,6 +58,9 @@ modo.addEventListener('click', function () {
  */
 function cookieAceptado() {
   let aceptado = localStorage.getItem('cookieAceptado');
+  if (aceptado == null){
+    aceptado = false;
+  }
   return aceptado;
 }
 
