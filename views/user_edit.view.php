@@ -1,7 +1,5 @@
 <?php include 'views/components/header.php'; ?>
 
-<?php $usuario = $_SESSION['usuario']?>
-
 <main>
   <div class="userEditMenu">
     <div class="imagen-input" id="imagen-input">

@@ -12,6 +12,8 @@ require 'utils/session.php';
     header("Location: /");
   }
 
+$usuario = $_SESSION['usuario'];
+
 function editar($conn) {
 
     if(session_status() == PHP_SESSION_NONE){
