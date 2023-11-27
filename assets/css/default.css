@@ -189,7 +189,6 @@ header .img-perfil img {
 .menu-filter {
   cursor: pointer;
   position: relative;
-  z-index: 1000;
 }
 
 /* Navegador del Header (Luego se hara con un boton) */
@@ -197,6 +196,7 @@ header .img-perfil img {
 nav ul {
   display: none;
   list-style: none;
+  z-index: 1000;
 }
 
 .show {
