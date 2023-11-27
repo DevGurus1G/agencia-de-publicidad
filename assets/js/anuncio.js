@@ -1,16 +1,36 @@
+/**
+ * Elemento que contiene el carrusel de imágenes
+ * @type {HTMLElement}
+ */
 let carrusel = document.querySelector('.carrusel');
+
+/**
+ * Índice de la imagen actual en el carrusel
+ * @type {number}
+ */
 let imagenActual = 0;
+
+/**
+ * Total de imágenes en el carrusel
+ * @type {number}
+ */
 let totalDeImagenes = 3;
 
+/**
+ * Botón para marcar/desmarcar como favorito
+ * @type {HTMLElement}
+ */
 let favorito = document.querySelector('#favorito');
 
-document
-  .getElementById('anterior')
-  .addEventListener('click', () => cambiarImagen(-1));
-document
-  .getElementById('siguiente')
-  .addEventListener('click', () => cambiarImagen(1));
+// Event Listeners para cambiar de imagen en el carrusel
+document.getElementById('anterior').addEventListener('click', () => cambiarImagen(-1));
+document.getElementById('siguiente').addEventListener('click', () => cambiarImagen(1));
 
+/**
+ * Cambia la imagen en el carrusel basado en la dirección
+ * @param {number} direccion - Dirección del cambio (+1 o -1)
+ * @returns {void}
+ */
 function cambiarImagen(direccion) {
   imagenActual += direccion;
 
@@ -24,39 +44,61 @@ function cambiarImagen(direccion) {
   actualizarBotones();
 }
 
+/**
+ * Muestra la imagen actual en el carrusel
+ * @param {number} indice - Índice de la imagen a mostrar
+ * @returns {void}
+ */
 function mostrarImagen(indice) {
   carrusel.style.transform = `translateX(-${indice * 100}%)`;
 }
 
+/**
+ * Actualiza el estado de los botones del carrusel
+ * @returns {void}
+ */
 function actualizarBotones() {
   document.getElementById('anterior').disabled = imagenActual === 0;
-  document.getElementById('siguiente').disabled =
-    imagenActual === totalDeImagenes - 1;
+  document.getElementById('siguiente').disabled = imagenActual === totalDeImagenes - 1;
 }
 
+// Listener para cuando clickan en favorito
 favorito.addEventListener('click', gestionarFavorito);
 
+/**
+ * Gestiona el marcado/desmarcado del anuncio como favorito
+ * @async
+ * @returns {void}
+ */
 async function gestionarFavorito() {
-  console.log(favorito.checked);
   if (favorito.checked == false) {
     borrarFavorito();
   } else if (favorito.checked) {
     registrarFavorito();
   }
 }
+
+/**
+ * Obtiene el ID del anuncio desde la URL
+ * @returns {string | null} - ID del anuncio desde la URL
+ */
 function obtenerIdDesdeURL() {
   const urlParams = new URLSearchParams(window.location.search);
   return urlParams.get('id');
 }
+
+/**
+ * Funcion que registra un anuncio como favorito
+ * @async 
+ * @returns {void}
+ */
 async function registrarFavorito() {
-  console.log('EN registro');
   const formData = new FormData();
 
   formData.append('anuncio', obtenerIdDesdeURL());
-
   formData.append('favorito', 'insertar');
 
-  // Validaciones
+  // Enviar solicitud al servidor para registrar el favorito
   try {
     const response = await fetch('/anuncio', {
       method: 'POST',
@@ -64,20 +106,25 @@ async function registrarFavorito() {
     });
     if (response.ok) {
       const data = await response.text();
-      console.log('data');
     }
   } catch (error) {
-    console.log(error);
+    console.error('Error al registrar favorito:', error);
   }
 }
 
+/**
+ * Funcion que borra un anuncio de los favoritos
+ * @async
+ * @returns {void}
+ */
 async function borrarFavorito() {
   const anuncioId = obtenerIdDesdeURL();
-
   const formData = new FormData();
+
   formData.append('anuncio', anuncioId);
   formData.append('favorito', 'borrar');
 
+  // Enviar solicitud al servidor para borrar el favorito
   try {
     const response = await fetch('/anuncio', {
       method: 'POST',
@@ -86,7 +133,6 @@ async function borrarFavorito() {
 
     if (response.ok) {
       const data = await response.text();
-      console.log(data);
     } else {
       console.error('Error al borrar favorito:', response.statusText);
     }

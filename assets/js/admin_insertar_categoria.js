@@ -1,11 +1,22 @@
+/**
+ * Elemento del formulario de registro.
+ * @type {HTMLFormElement}
+ */
 const registroForm = document.getElementById('formAdmin');
 
-registroForm.addEventListener('submit', (e) => e.preventDefault());
-
+/**
+ * Botón para enviar el formulario.
+ * @type {HTMLButtonElement}
+ */
 const insertarBoton = document.getElementById("enviar");
 
+//Listener para evitar el envio default y la funcionalidad en el click en el boton de insertar
+registroForm.addEventListener('submit', (e) => e.preventDefault());
 insertarBoton.addEventListener('click', crearCategoria);
 
+/**
+ * Función para mostrar la imagen seleccionada en el avatar.
+ */
 document.getElementById('imagen').addEventListener('change', () => {
   const file = document.getElementById('imagen').files[0];
   const reader = new FileReader();
@@ -13,13 +24,16 @@ document.getElementById('imagen').addEventListener('change', () => {
   reader.addEventListener('load', () => {
     document.querySelector('#avatar').data = reader.result;
   });
-
-  // Lee el archivo como una URL de datos (data URL)
   reader.readAsDataURL(file);
 });
 
-
+/**
+ * Función asincrona para enviar datos al servidor y crear una categoría.
+ * @async
+ * @returns {Promise<void>} Una promesa sin valor de retorno.
+ */
 async function crearCategoria() {
+  //Variables con los datos del formulario
   const nombre = document.getElementById('nombre').value;
   let imagen = document.getElementById('imagen').files[0];
 
@@ -31,14 +45,12 @@ async function crearCategoria() {
     imagen = new File([imagenPorDefectoBlob], 'default.png', { type: 'image/svg+xml' });
   }
  
-
-
+  //Envio de datos al servidor en FormData
   const formData = new FormData();
   formData.append('nombre', nombre);
   formData.append('imagen', imagen);
   formData.append('categoria', "categoria"); 
 
-  // Validaciones
   try {
     const response = await fetch('/admin/insertar', {
       method: 'POST',
@@ -48,13 +60,11 @@ async function crearCategoria() {
       const data = await response.text();
       if (data === 'CategoriaInsertada') {
         window.location.href = '/admin';
-      } else {
-        console.log(data);
       }
     } else {
-      resultado.textContent = 'Error en la solicitud intentelo mas tarde';
+      alert('Error en la solicitud, inténtelo más tarde');
     }
   } catch (error) {
-    resultado.textContent = 'Error en la solicitud intentelo mas tarde';
+    alert('Error en la solicitud, inténtelo más tarde');
   }
 }
