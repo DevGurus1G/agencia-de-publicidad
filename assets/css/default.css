@@ -196,6 +196,7 @@ header .img-perfil img {
 nav ul {
   display: none;
   list-style: none;
+  z-index: 1000;
 }
 
 .show {

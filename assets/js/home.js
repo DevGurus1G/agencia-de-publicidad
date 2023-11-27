@@ -41,9 +41,11 @@ async function cargarMasAnuncios(fechaCreado) {
     if (response.ok) {
       const data = await response.json();
       // Mostrar los nuevos anuncios cargados
-      mostrarAnunciosCargados(data);
-      // Actualizar la referencia al último anuncio cargado
-      anuncio = document.querySelector('.anuncios .anuncios-card:last-of-type');
+      if(obtenerParametrosDesdeURL() == 0){
+        mostrarAnunciosCargados(data);
+        // Actualizar la referencia al último anuncio cargado
+        anuncio = document.querySelector('.anuncios .anuncios-card:last-of-type');
+      }
     }
   } catch (error) {
     // Manejar errores en la solicitud
@@ -110,6 +112,22 @@ function hideLoader() {
   loader.style.display = 'none';
   btnCargarMas.disabled = false;
 }
+
+  /**
+ * Función para obtener una respuesta de la url
+ * 
+ */
+  function obtenerParametrosDesdeURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('search')){
+      return 1;
+    }else if (urlParams.get('id')) {
+      return 1;
+    }else{
+      return 0
+    }
+  }
+  
 
 // Gestión de cookies
 let aceptado = localStorage.getItem('cookieAceptado');
