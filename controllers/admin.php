@@ -8,34 +8,41 @@ require_once 'db/db_usuarios.php';
 //Para todo lo relacionado a la sesion del usuario
 require_once 'utils/session.php';
 
-//Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
-if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
-  header("Location: /");
-  exit(); 
+/**
+ * Redirige a la página principal si el usuario no es de tipo admin.
+ */
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != 'admin') {
+  header('Location: /');
+  exit();
 }
 
-//BORRAR DESDE ADMIN PHP
-function realizarAccion($conn){
-  switch($_GET['accion']){
-    case "borrar":
-      borrarAdmin($_GET['tipo'],$_GET['id'],$conn);
+/**
+ * Realiza la acción correspondiente según el tipo y la acción proporcionados en la URL.
+ */
+function realizarAccion($conn) {
+  switch ($_GET['accion']) {
+    case 'borrar':
+      borrarAdmin($_GET['tipo'], $_GET['id'], $conn);
       break;
   }
 }
 
-function borrarAdmin($tipo,$id,$conn){
-  switch($tipo){
-    case "anuncio":
-      deleteAnuncioById($id,$conn);
-      header("Location: /admin");
+/**
+ * Borra un elemento administrativo según el tipo proporcionado.
+ */
+function borrarAdmin($tipo, $id, $conn) {
+  switch ($tipo) {
+    case 'anuncio':
+      deleteAnuncioById($id, $conn);
+      header('Location: /admin');
       break;
-    case "user":
-      deleteUsuariosById($id,$conn);
-      header("Location: /admin");
+    case 'user':
+      deleteUsuariosById($id, $conn);
+      header('Location: /admin');
       break;
-    case "categoria":
-      deleteCategoriaById($id,$conn);
-      header("Location: /admin");
+    case 'categoria':
+      deleteCategoriaById($id, $conn);
+      header('Location: /admin');
       break;
   }
 }
@@ -73,10 +80,11 @@ if (!empty($tabla)) {
 switch ($tabla) {
   case 'Usuarios':
   case 'Empresas':
+    $cadena =
+      "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=user'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
 
-    $cadena = "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=user'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
-
-    $cadena .= "<table><tr><th>Username</th><th>Nombre</th><th>Apellido</th><th>Tipo</th><th>Email</th><th>Acciones</th></tr>";
+    $cadena .=
+      '<table><tr><th>Username</th><th>Nombre</th><th>Apellido</th><th>Tipo</th><th>Email</th><th>Acciones</th></tr>';
 
     foreach ($tablas as $celda) {
       $cadena .= '<tr>';
@@ -100,7 +108,7 @@ switch ($tabla) {
       $cadena .= '</tr>';
     }
 
-    $cadena .= "</table>";
+    $cadena .= '</table>';
 
     echo $cadena;
 
@@ -133,9 +141,8 @@ switch ($tabla) {
     break;
 
   case 'Categorias':
-
-    $cadena = "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=categoria'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
-
+    $cadena =
+      "<a class='insertar' href='/admin/insertar?accion=insertar&tipo=categoria'><svg class='icon' width='24' height='24' viewBox='0 0 24 24'><g fill='currentColor' fill-rule='evenodd' clip-rule='evenodd'><path d='M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12Zm10-8a8 8 0 1 0 0 16a8 8 0 0 0 0-16Z'/><path d='M13 7a1 1 0 1 0-2 0v4H7a1 1 0 1 0 0 2h4v4a1 1 0 1 0 2 0v-4h4a1 1 0 1 0 0-2h-4V7Z'/></g></svg></a></td></tr></a>";
 
     $cadena .= '<table><tr><th>Nombre</th><th>Acciones</th></tr>';
 

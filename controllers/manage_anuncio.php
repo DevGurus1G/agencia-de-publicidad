@@ -3,20 +3,36 @@ require 'db/db_anuncios.php';
 require 'db/db_categorias.php';
 require 'db/db_imagenes_anuncios.php';
 require 'utils/db_common.php';
-//Para todo lo relacionado a la sesion del usuario
+// Para todo lo relacionado a la sesión del usuario
 require 'utils/session.php';
 
-//Si el que intenta acceder no es un usuario de tipo tienda se redirecciona a la pagina principal
+/**
+ * Redirecciona a la página principal si el usuario no es de tipo tienda.
+ */
 if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != 'tienda') {
   header('Location: /');
   exit();
 }
 
-//Para que el filtro de categorias del header funcione
+/**
+ * Obtiene todas las categorías disponibles.
+ *
+ * @var array $categorias
+ */
 $categorias = getAllCategorias($conn);
 
+/**
+ * Estilos CSS utilizados en la página.
+ *
+ * @var array $estilos
+ */
 $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
 
+/**
+ * Registra un nuevo anuncio.
+ *
+ * @param PDO $conn La conexión a la base de datos.
+ */
 function registrar($conn) {
   $usuarioId = $_SESSION['usuario']['id'];
   $anuncio = [
@@ -31,6 +47,11 @@ function registrar($conn) {
   die('registrado');
 }
 
+/**
+ * Edita un anuncio existente.
+ *
+ * @param PDO $conn La conexión a la base de datos.
+ */
 function editarAnuncio($conn) {
   $anuncio = getAnunciosById($_GET['editar'], $conn);
   $anuncio_actualizado = [
@@ -41,7 +62,7 @@ function editarAnuncio($conn) {
     'categoria' => $_POST['categoria'],
   ];
 
-  // Llamar a la función updateAnuncio
+  // Llama a la función updateAnuncio
   updateAnuncio($anuncio_actualizado, $conn);
   $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['editar'], $conn);
   $imagen1 = file_get_contents($_FILES['imagen1']['tmp_name']);
@@ -56,6 +77,12 @@ function editarAnuncio($conn) {
   die('actualizado');
 }
 
+/**
+ * Agrega fotos a un anuncio.
+ *
+ * @param int      $anuncioId El ID del anuncio.
+ * @param PDO $conn      La conexión a la base de datos.
+ */
 function agregarFotos($anuncioId, $conn) {
   $imagen1 = file_get_contents($_FILES['imagen1']['tmp_name']);
   $imagen2 = file_get_contents($_FILES['imagen2']['tmp_name']);
@@ -65,16 +92,25 @@ function agregarFotos($anuncioId, $conn) {
   insertImagenAnuncio($imagen3, $anuncioId, $conn);
 }
 
+/**
+ * Obtiene información del anuncio si se está editando.
+ */
 if (isset($_GET['editar'])) {
   $anuncio = getAnunciosById($_GET['editar'], $conn);
   $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['editar'], $conn);
 }
 
+/**
+ * Elimina un anuncio según el ID proporcionado en la URL.
+ */
 if (isset($_GET['borrar'])) {
   deleteAnuncioById($_GET['borrar'], $conn);
   header('Location: /');
 }
 
+/**
+ * Procesa la solicitud POST para registrar o editar un anuncio.
+ */
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($_POST['editar_anuncio'] != -1) {
     editarAnuncio($conn);
@@ -89,5 +125,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   require 'views/manage_anuncio.view.php';
 }
-
 ?>

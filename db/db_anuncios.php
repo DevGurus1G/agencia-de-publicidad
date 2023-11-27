@@ -1,4 +1,9 @@
 <?php
+/**
+ * Para recoger los 6 primeros anuncios
+ * @param PDO $conn      La conexión a la base de datos.
+ * @return array
+ */
 function getAllAnuncios($conn) {
   $stmt = $conn->prepare('SELECT
     anuncios.id AS anuncio_id,
@@ -30,7 +35,12 @@ function getAllAnuncios($conn) {
 
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+/**
+ * Para insertar un anuncio
+ * @param array $anuncios El anuncio con toda su info
+ * @param PDO $conn      La conexión a la base de datos.
+ * @return array
+ */
 function insertAnuncio($anuncio, $conn) {
   $stmt = $conn->prepare(
     'INSERT INTO anuncios (titulo, descripcion, precio, anunciante, categoria_id) 
@@ -48,6 +58,11 @@ function insertAnuncio($anuncio, $conn) {
   return $conn->lastInsertId();
 }
 
+/**
+ * Para buscar por id
+ * @param  $anuncio id del anuncio a buscar
+ * @param PDO $conn La conexion a base de datos
+ */
 function getAnunciosById($anuncio, $conn) {
   $stmt = $conn->prepare('SELECT * FROM anuncios 
                           WHERE id = :id');
@@ -56,7 +71,12 @@ function getAnunciosById($anuncio, $conn) {
   ]);
   return $stmt->fetch();
 }
-
+/**
+ * Para buscar por categoria
+ * @param  $categoria id de categoria a buscar
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function getAnunciosByCategoria($categoria, $conn) {
   $stmt = $conn->prepare('SELECT
     anuncios.id AS anuncio_id,
@@ -99,7 +119,12 @@ function getAnunciosByCategoria($categoria, $conn) {
 
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+/**
+ * Para buscar los anuncion del anunciante
+ * @param $id Id del anunciante
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function getAnunciosByAnunciante($id, $conn) {
   $stmt = $conn->prepare('SELECT
     anuncios.id AS anuncio_id,
@@ -132,6 +157,12 @@ function getAnunciosByAnunciante($id, $conn) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Paara buscar los anuncios favoritos de un usuario
+ * @param $id Id del usuario
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function getAnunciosbyUserIdFavorito($id, $conn) {
   $stmt = $conn->prepare('SELECT
       anuncios.id AS anuncio_id,
@@ -164,6 +195,13 @@ function getAnunciosbyUserIdFavorito($id, $conn) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Para borrar un anuncio
+ * @param $id ID del anuncio
+ * @param PDO $conn La conexion a base de datos
+ *
+ */
+
 function deleteAnuncioById($id, $conn) {
   $stmt = $conn->prepare(
     'DELETE FROM anuncios 
@@ -175,6 +213,12 @@ function deleteAnuncioById($id, $conn) {
   ]);
 }
 
+/**
+ * Para buscar anuncios por titulo o descripcion
+ * @param $buscar Lo que se tiene que buscar
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function searchAnuncios($buscar, $conn) {
   $stmt = $conn->prepare('SELECT
       anuncios.id AS anuncio_id,
@@ -212,6 +256,12 @@ function searchAnuncios($buscar, $conn) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Para buscar los anuncios por anunciante completos
+ * @param $id Id del anunciante
+ * @param PDO $conn
+ * @return array
+ */
 function getAnunciosByIdAnuncianteCompletos($id, $conn) {
   $stmt = $conn->prepare('SELECT
   anuncios.id AS anuncio_id,
@@ -245,6 +295,12 @@ ORDER BY
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Para buscar todas las imagenes de los anuncios
+ * @param $buscar Lo que hay que buscar
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function searchAnunciosImagen($buscar, $conn) {
   $stmt = $conn->prepare('SELECT
   anuncios.id AS anuncio_id,
@@ -278,7 +334,12 @@ ORDER BY
   $stmt->execute(['buscar' => "%$buscar%"]);
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
+/**
+ * Para cargar los anuncios siguientes de la fecha
+ * @param $fecha La ultima fecha del anuncio mostrado
+ * @param PDO $conn La conexion a base de datos
+ * @return array
+ */
 function cargarMasAnuncios($fecha, $conn) {
   $stmt = $conn->prepare('SELECT
   anuncios.id AS anuncio_id,
@@ -311,6 +372,11 @@ LIMIT 6;
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Para actualizar un anuncios
+ * @param array $anuncio El anuncio con su nueva info
+ * @param PDO $conn La conexion a base de datos
+ */
 function updateAnuncio($anuncio, $conn) {
   $stmt = $conn->prepare(
     'UPDATE anuncios SET titulo = :titulo, descripcion = :descripcion, precio = :precio, categoria_id = :categoria WHERE id = :id'
