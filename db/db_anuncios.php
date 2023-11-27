@@ -388,11 +388,39 @@ function updateAnuncio($anuncio, $conn) {
     ':categoria' => $anuncio['categoria'],
     ':id' => $anuncio['id'],
   ]);
+}
+/**
+ * Para recoger los 6 primeros anuncios
+ * @param PDO $conn      La conexión a la base de datos.
+ * @return array
+ */
+function getAllAnunciosTexto($conn) {
+  $stmt = $conn->prepare('SELECT
+    anuncios.id AS anuncio_id,
+    anuncios.titulo,
+    anuncios.descripcion,
+    anuncios.precio,
+    anuncios.anunciante,
+    anuncios.categoria_id,
+    anuncios.creado,
+    categorias.nombre AS nombre_categoria,
+    usuarios.username AS nombre_anunciante,
+  FROM
+    anuncios
+  JOIN
+    categorias ON anuncios.categoria_id = categorias.id
+  JOIN
+    usuarios ON anuncios.anunciante = usuarios.id
+  LEFT JOIN imagenes_anuncios ON anuncios.id = imagenes_anuncios.anuncio_id
+  WHERE imagenes_anuncios.id = (
+    SELECT MIN(id) FROM imagenes_anuncios WHERE anuncio_id = anuncios.id
+  )
+  ORDER BY
+    anuncio_id DESC
+    ');
 
-  // if ($stmt->rowCount() > 0) {
-  //   return true;
-  // } else {
-  //   return false;
-  // }
+  $stmt->execute();
+
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>

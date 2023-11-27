@@ -66,7 +66,7 @@ if (!empty($tabla)) {
       break;
 
     case 'Anuncios':
-      $tablas = getAllAnuncios($conn);
+      $tablas = getAllAnunciosTexto($conn);
       break;
 
     case 'Categorias':
