@@ -93,7 +93,9 @@ async function search() {
     );
     if (response.ok) {
       const data = await response.json();
-      mostrarAnunciosBuscados(data);
+      if(obtenerParametrosDesdeURL() == 0){
+        mostrarAnunciosBuscados(data);
+      }
     } else {
       console.error(
         'Error en la respuesta del servidor:',
@@ -162,4 +164,20 @@ async function mostrarAnunciosBuscados(anuncios) {
     divAnuncio.appendChild(enlaceAnuncio);
     anunciosContenedor.appendChild(divAnuncio);
   }
+
+  /**
+ * Función para obtener una respuesta de la url
+ * 
+ */
+function obtenerParametrosDesdeURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  if(urlParams.get('search')){
+    return 1;
+  }else if (urlParams.get('id')) {
+    return 1;
+  }else{
+    return 0
+  }
+}
+
 }
