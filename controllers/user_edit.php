@@ -4,6 +4,7 @@ require 'utils/db_common.php';
 //Para que el filtro de categorias del header funcione
 require 'db/db_categorias.php';
 $categorias = getAllCategorias($conn);
+$usuario = $_SESSION['usuario'];
 
 //Para todo lo relacionado a la sesion del usuario
 require 'utils/session.php';
@@ -19,7 +20,7 @@ if (!isset($_SESSION['usuario'])) {
 /**
  * Realiza la edición del perfil del usuario.
  *
- * @param resource $conn La conexión a la base de datos.
+ * @param PDO $conn La conexión a la base de datos.
  *
  * @return void
  */
@@ -29,14 +30,8 @@ function editar($conn) {
     session_start();
   }
 
-<<<<<<< HEAD
-$usuario = $_SESSION['usuario'];
-
-function editar($conn) {
-=======
   // Obtener el correo electrónico del usuario
   $email = $_SESSION['usuario']['email'];
->>>>>>> feature-doc-php
 
   // Obtener la información del usuario antes de la edición
   $usuarioViejo = getUsuarioLogin($email, $conn);
