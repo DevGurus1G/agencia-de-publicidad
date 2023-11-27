@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: anuncio.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: anuncio.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Elemento que contiene el carrusel de imágenes
+ * @type {HTMLElement}
+ */
+let carrusel = document.querySelector('.carrusel');
+
+/**
+ * Índice de la imagen actual en el carrusel
+ * @type {number}
+ */
+let imagenActual = 0;
+
+/**
+ * Total de imágenes en el carrusel
+ * @type {number}
+ */
+let totalDeImagenes = 3;
+
+/**
+ * Botón para marcar/desmarcar como favorito
+ * @type {HTMLElement}
+ */
+let favorito = document.querySelector('#favorito');
+
+// Event Listeners para cambiar de imagen en el carrusel
+document.getElementById('anterior').addEventListener('click', () => cambiarImagen(-1));
+document.getElementById('siguiente').addEventListener('click', () => cambiarImagen(1));
+
+/**
+ * Cambia la imagen en el carrusel basado en la dirección
+ * @param {number} direccion - Dirección del cambio (+1 o -1)
+ * @returns {void}
+ */
+function cambiarImagen(direccion) {
+  imagenActual += direccion;
+
+  if (imagenActual >= totalDeImagenes) {
+    imagenActual = 0;
+  } else if (imagenActual &lt; 0) {
+    imagenActual = totalDeImagenes - 1;
+  }
+
+  mostrarImagen(imagenActual);
+  actualizarBotones();
+}
+
+/**
+ * Muestra la imagen actual en el carrusel
+ * @param {number} indice - Índice de la imagen a mostrar
+ * @returns {void}
+ */
+function mostrarImagen(indice) {
+  carrusel.style.transform = `translateX(-${indice * 100}%)`;
+}
+
+/**
+ * Actualiza el estado de los botones del carrusel
+ * @returns {void}
+ */
+function actualizarBotones() {
+  document.getElementById('anterior').disabled = imagenActual === 0;
+  document.getElementById('siguiente').disabled = imagenActual === totalDeImagenes - 1;
+}
+
+// Listener para cuando clickan en favorito
+favorito.addEventListener('click', gestionarFavorito);
+
+/**
+ * Gestiona el marcado/desmarcado del anuncio como favorito
+ * @async
+ * @returns {void}
+ */
+async function gestionarFavorito() {
+  if (favorito.checked == false) {
+    borrarFavorito();
+  } else if (favorito.checked) {
+    registrarFavorito();
+  }
+}
+
+/**
+ * Obtiene el ID del anuncio desde la URL
+ * @returns {string | null} - ID del anuncio desde la URL
+ */
+function obtenerIdDesdeURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('id');
+}
+
+/**
+ * Funcion que registra un anuncio como favorito
+ * @async 
+ * @returns {void}
+ */
+async function registrarFavorito() {
+  const formData = new FormData();
+
+  formData.append('anuncio', obtenerIdDesdeURL());
+  formData.append('favorito', 'insertar');
+
+  // Enviar solicitud al servidor para registrar el favorito
+  try {
+    const response = await fetch('/anuncio', {
+      method: 'POST',
+      body: formData,
+    });
+    if (response.ok) {
+      const data = await response.text();
+    }
+  } catch (error) {
+    console.error('Error al registrar favorito:', error);
+  }
+}
+
+/**
+ * Funcion que borra un anuncio de los favoritos
+ * @async
+ * @returns {void}
+ */
+async function borrarFavorito() {
+  const anuncioId = obtenerIdDesdeURL();
+  const formData = new FormData();
+
+  formData.append('anuncio', anuncioId);
+  formData.append('favorito', 'borrar');
+
+  // Enviar solicitud al servidor para borrar el favorito
+  try {
+    const response = await fetch('/anuncio', {
+      method: 'POST',
+      body: formData,
+    });
+
+    if (response.ok) {
+      const data = await response.text();
+    } else {
+      console.error('Error al borrar favorito:', response.statusText);
+    }
+  } catch (error) {
+    console.error('Error en la solicitud para borrar favorito:', error);
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarAnuncio">actualizarAnuncio</a></li><li><a href="global.html#actualizarBotones">actualizarBotones</a></li><li><a href="global.html#anuncio">anuncio</a></li><li><a href="global.html#b64toBlob">b64toBlob</a></li><li><a href="global.html#borrarFavorito">borrarFavorito</a></li><li><a href="global.html#btnAnuncios">btnAnuncios</a></li><li><a href="global.html#btnCargarMas">btnCargarMas</a></li><li><a href="global.html#btnCategorias">btnCategorias</a></li><li><a href="global.html#btnEmpresas">btnEmpresas</a></li><li><a href="global.html#btnPaso1">btnPaso1</a></li><li><a href="global.html#btnUsuarios">btnUsuarios</a></li><li><a href="global.html#cambiarImagen">cambiarImagen</a></li><li><a href="global.html#cargarMasAnuncios">cargarMasAnuncios</a></li><li><a href="global.html#carrusel">carrusel</a></li><li><a href="global.html#cookieAceptado">cookieAceptado</a></li><li><a href="global.html#crearCategoria">crearCategoria</a></li><li><a href="global.html#edit">edit</a></li><li><a href="global.html#enviarNuevoMensaje">enviarNuevoMensaje</a></li><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#gestionarFavorito">gestionarFavorito</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#imagenActual">imagenActual</a></li><li><a href="global.html#insertarBoton">insertarBoton</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginForm">loginForm</a></li><li><a href="global.html#modo">modo</a></li><li><a href="global.html#mostrarAnunciosBuscados">mostrarAnunciosBuscados</a></li><li><a href="global.html#mostrarAnunciosCargados">mostrarAnunciosCargados</a></li><li><a href="global.html#mostrarImagen">mostrarImagen</a></li><li><a href="global.html#obtenerIdDesdeURL">obtenerIdDesdeURL</a></li><li><a href="global.html#obtenerMensajesNuevos">obtenerMensajesNuevos</a></li><li><a href="global.html#obtenerParaUsuarioIdDesdeURL">obtenerParaUsuarioIdDesdeURL</a></li><li><a href="global.html#obtenerUltimoIdMensajeConocido">obtenerUltimoIdMensajeConocido</a></li><li><a href="global.html#procesarNuevosMensajes">procesarNuevosMensajes</a></li><li><a href="global.html#registrarAnuncio">registrarAnuncio</a></li><li><a href="global.html#registrarFavorito">registrarFavorito</a></li><li><a href="global.html#registro">registro</a></li><li><a href="global.html#registroForm">registroForm</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#searchFormInput">searchFormInput</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#totalDeImagenes">totalDeImagenes</a></li><li><a href="global.html#ultimoIdMensajeConocido">ultimoIdMensajeConocido</a></li><li><a href="global.html#validarAnuncio">validarAnuncio</a></li><li><a href="global.html#validarUsuario">validarUsuario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 10:19:20 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

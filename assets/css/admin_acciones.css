@@ -1,0 +1,116 @@
+main{
+    padding-block: 1em;
+}
+
+.formAdmin {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2em;
+    height: fit-content;
+}
+
+.formAdmin input {
+    background-color: var(--background-color);
+    padding: 1em;
+    border-radius: 0.5em;
+    color: var(--text-color);
+    outline: none;
+}
+
+.formAdmin input[type='submit']  {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+}
+
+.formAdmin [type='submit']:hover {
+    background-color: var(--input-color);
+}
+
+.imagen-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2em;
+  }
+  
+  .imagen-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+  .imagen-input div input {
+    display: none;
+  }
+  .imagen-input div {
+    justify-content: center;
+    align-items: center;
+  }
+  .imagen-input div label {
+    color: var(--text-color);
+    font-size: 1em;
+    background-color: var(--background-color);
+    line-height: normal;
+    text-align: center;
+    padding: 1em;
+    border-radius: 1em;
+    width: 100%;
+    cursor: pointer;
+    border: 2px solid var(--border-color);
+  }
+  .imagen-input div label:hover {
+    background-color: var(--input-color);
+  }
+  #avatar {
+    width: 5em;
+    height: 5em;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    object-fit: cover;
+  }
+
+  .formAdmin a  {
+    background-color: var(--background-color);
+    text-align: center;
+    padding: 1em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 2px solid #e11d48;
+ }
+
+ .formAdmin a:hover {
+    background-color: #e11d48;
+ }
+
+ .tipo {
+  display: flex;
+  gap: 2em;
+ }
+
+ .tipo input[type='radio']{
+  display: none;
+ }
+
+ .tipo label:hover{
+  background-color: var(--input-color);
+}
+
+.tipo input[type='radio']:checked + label {
+  background-color: var(--input-color); 
+}
+
+.tipo label{
+  padding: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}

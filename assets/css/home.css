@@ -1,0 +1,166 @@
+/* Home */
+
+.anuncios {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  height: 100%;
+  grid-template-columns: 1fr;
+  overflow: auto;
+  gap: 2em;
+  padding-block: 0.5em;
+}
+
+.anuncio-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  background-color: var(--background-color);
+  padding: 1em;
+  border-radius: 2em;
+  width: 100%;
+  max-width: 300px;
+  height: 100%;
+  max-height: 600px;
+  border: 2px solid var(--border-color);
+  box-shadow: 0px 0px 4px 4px var(--shadow-color);
+  min-width: 300px;
+  min-height: 400px;
+}
+
+.anuncio-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Número de líneas a mostrar */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: 4em; /* Altura máxima para tres líneas */
+  margin: 0; /* Para eliminar cualquier margen predeterminado */
+  position: relative;
+}
+
+.anuncio-card a {
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+.anuncio-card a span {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.anuncio-card a span:hover {
+  text-decoration: underline;
+  color: var(--primary-color);
+}
+
+.anuncio-card img {
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 1em;
+}
+
+@media screen and (min-width: 650px) {
+  .anuncios {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .anuncios {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+#cargar-mas {
+  background-color: var(--background-color);
+  padding: 1em 2em;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.5em;
+  opacity: 0.5;
+  transition: all 0.25s ease-in-out;
+}
+
+#cargar-mas:hover {
+  opacity: 1;
+  box-shadow: 0px 0px 4px 0 var(--shadow-color);
+}
+
+#cargar-mas {
+  position: relative;
+  display: flex;
+  width: fit-content;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid var(--primary-color);
+  border-radius: 50%;
+  border-top: 4px solid var(--primary-color);
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Para el cuadro de dialogo de la cookie */
+.container-dialogo {
+  display: none;
+  position: fixed;
+  padding: 1em;
+  width: 100%;
+  max-width: 500px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dialogo {
+  background-color: var(--background-color);
+  padding: 3em;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  border-radius: 1em;
+  box-shadow: 0 0 12px 4px var(--shadow-color);
+}
+
+.dialogo .icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(-2em);
+  padding: 1em;
+  cursor: pointer;
+}
+
+.dialogo button:not(.icon) {
+  background-color: var(--primary-color);
+  border: none;
+  outline: none;
+  padding: 1em 2em;
+  color: white;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.dialogo button:not(.icon):hover {
+  background-color: #004fa3;
+}
+
+.active {
+  display: block;
+}

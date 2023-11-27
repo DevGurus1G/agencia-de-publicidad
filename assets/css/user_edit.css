@@ -1,0 +1,133 @@
+/* configPerfil */
+
+.userEditMenu{
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.userEditMenu form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2em;
+  height: fit-content;
+}
+
+.userEditMenu form input {
+  background-color: var(--background-color);
+  padding: 1em;
+  border-radius: 0.5em;
+  color: var(--text-color);
+  outline: none;
+}
+
+.userEditMenu form input[type='button']  {
+  background-color: var(--background-color);
+  text-align: center;
+  padding: 1em;
+  border-radius: 0.5em;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text-color);
+  border: 2px solid var(--border-color);
+}
+
+.userEditMenu form input[type='button']:hover {
+  background-color: var(--input-color);
+}
+
+.radio{
+  display: flex;
+  gap: 2em;
+ 
+}
+
+.radio input[type='radio']{
+  display: none;
+}
+
+.radio label{
+  padding: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}
+
+.radio label:hover{
+  background-color: var(--input-color);
+}
+
+.radio input[type='radio']:checked + label {
+  background-color: var(--input-color); 
+}
+
+.checkbox{
+  display: flex;
+  gap: 2em;
+ 
+}
+
+.checkbox input[type='checkbox']{
+  display: none;
+}
+
+.checkbox label{
+  padding: 1em;
+  background-color: var(--background-color);
+  border-radius: 0.5em;
+  border: 2px solid var(--border-color);
+}
+
+.checkbox label:hover{
+  background-color: var(--input-color);
+}
+
+.checkbox input[type='checkbox']:checked + label {
+  background-color: var(--input-color); /
+}
+
+
+/* Lector de imagenes */
+.imagen-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+
+.imagen-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.imagen-input div input {
+  display: none;
+}
+.imagen-input div {
+  justify-content: center;
+  align-items: center;
+}
+.imagen-input div label {
+  color: var(--text-color);
+  font-size: 1em;
+  background-color: var(--background-color);
+  line-height: normal;
+  text-align: center;
+  padding: 1em;
+  border-radius: 1em;
+  width: 100%;
+  cursor: pointer;
+  border: 2px solid var(--border-color);
+}
+.imagen-input div label:hover {
+  background-color: var(--input-color);
+}
+#avatar {
+  width: 5em;
+  height: 5em;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+  object-fit: cover;
+}

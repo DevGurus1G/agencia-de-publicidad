@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: user_edit.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: user_edit.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//Selecionar los elementos del html
+const btnRegister = document.getElementById('registroUser-btn');
+const formRegister = document.querySelector('form');
+
+//Evento para evitar el submit y enviar el form con el boton de registro
+formRegister.addEventListener('submit', (e) => e.preventDefault);
+btnRegister.addEventListener('click', edit);
+
+//Funcion para mostrar en el avatar la imagen que se va a enviar
+document.querySelector('#imagen').addEventListener('change', () => {
+    const file = document.querySelector('#imagen').files[0];
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      document.querySelector('#avatar').src = reader.result;
+    });
+    reader.readAsDataURL(file);
+});
+
+//Constantes relacionadas a las contraseñas   
+const mostrarContraseñaCheckbox = document.getElementById('cambiarPassword');
+const passwordFields = document.querySelectorAll('.passwordField');
+
+//Funcion que muestra o oculta los campos de contraseñas
+mostrarContraseñaCheckbox.addEventListener('change', function () {
+    passwordFields.forEach(function (field) {
+    field.hidden = !mostrarContraseñaCheckbox.checked;
+    });
+});
+
+
+/**
+ * Funcion que convierte una imagen en formato blob
+ *
+ * @param {*} base64
+ * @param {*} contentType
+ * @returns {*}
+ */
+function b64toBlob(base64, contentType) {
+    contentType = contentType || '';
+    let sliceSize = 1024;
+    let byteCharacters = atob(base64);
+    let byteArrays = [];
+
+    for (let offset = 0; offset &lt; byteCharacters.length; offset += sliceSize) {
+        let slice = byteCharacters.slice(offset, offset + sliceSize);
+        let byteNumbers = new Array(slice.length);
+
+        for (let i = 0; i &lt; slice.length; i++) {
+            byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        let byteArray = new Uint8Array(byteNumbers);
+        byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, { type: contentType });
+}
+
+/**
+ * Función para editar un usuario.
+ * Recoge los valores del formulario y realiza una solicitud de edición al servidor.
+ * @async
+ * @returns {Promise&lt;void>} Una promesa sin valor de retorno.
+ */
+
+async function edit() {
+    //Valores recogidos del formulario
+    const nombre = document.getElementById('nombreUser').value;
+    const apellidos = document.getElementById('apellidosUser').value;
+    const email = document.getElementById('emailUser').value;
+    const username = document.getElementById('usernameUser').value;
+    const passwordActual = document.getElementById('passwordUserActual').value
+    const password = document.getElementById('passwordUser').value;
+    const password2 = document.getElementById('passwordUser2').value;
+    let imagen = document.getElementById('imagen').files[0];
+    const cambiarPassword = document.getElementById('cambiarPassword').checked;
+    
+    //Si no se sube una imagen le agrega una por defecto en formato blob para evitar errores
+    let imagenElemento = document.getElementById('avatar');
+            
+    // Obtiene el contenido de la imagen en base64
+    let imagenBase64 = imagenElemento.src.split(',')[1];
+
+    // Convierte la imagen en base64 a un blob
+    let blob = b64toBlob(imagenBase64, 'image/jpeg');
+
+    // Crea un objeto File a partir del blob
+    let imagenFile = new File([blob], 'nombre_de_archivo.jpg', { type: 'image/jpeg' });
+
+    if(imagen === undefined){
+        imagen = imagenFile
+      }
+
+    //Distintos envios de formulario dependiendo si se cambia o no la contraseña
+    if (cambiarPassword) {
+        if (password == password2 &amp;&amp; password !== "") {
+            const formData = new FormData();
+            formData.append('cambioPassword', "siCambiar");
+            formData.append('nombre', nombre);
+            formData.append('apellidos', apellidos);
+            formData.append('email', email);
+            formData.append('password', password);
+            formData.append('username', username);
+            formData.append('imagen', imagen);
+            formData.append('passwordActual',passwordActual);
+        
+            try {
+            const response = await fetch('/user/edit', {
+                method: 'POST',
+                body: formData,
+            });
+            if (response.ok) {
+                const data = await response.text();
+                if (data === 'editado') {
+                window.location.href = '/user';
+                }
+            } else {
+                console.error(response);
+            }
+            } catch (error) {
+            alert('Error en la solicitud intentelo mas tarde');
+            }
+        }else{
+            alert("Los campos de contaseña nueva debe coincidir o no estar en blanco.");
+        }
+    }else{
+        const formData = new FormData();
+        formData.append('cambioPassword', "noCambiar");
+        formData.append('nombre', nombre);
+        formData.append('apellidos', apellidos);
+        formData.append('email', email);
+        formData.append('username', username);
+        formData.append('imagen', imagen);
+        formData.append('passwordActual',passwordActual);
+    
+        try {
+        const response = await fetch('/user/edit', {
+            method: 'POST',
+            body: formData,
+        });
+        if (response.ok) {
+            const data = await response.text();
+            if (data === 'editado') {
+            window.location.href = '/user';
+            }
+        } else {
+            console.error(response);
+        }
+        } catch (error) {
+            alert('Error en la solicitud intentelo mas tarde');
+        }
+    }          
+  }</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarAnuncio">actualizarAnuncio</a></li><li><a href="global.html#actualizarBotones">actualizarBotones</a></li><li><a href="global.html#anuncio">anuncio</a></li><li><a href="global.html#b64toBlob">b64toBlob</a></li><li><a href="global.html#borrarFavorito">borrarFavorito</a></li><li><a href="global.html#btnAnuncios">btnAnuncios</a></li><li><a href="global.html#btnCargarMas">btnCargarMas</a></li><li><a href="global.html#btnCategorias">btnCategorias</a></li><li><a href="global.html#btnEmpresas">btnEmpresas</a></li><li><a href="global.html#btnPaso1">btnPaso1</a></li><li><a href="global.html#btnUsuarios">btnUsuarios</a></li><li><a href="global.html#cambiarImagen">cambiarImagen</a></li><li><a href="global.html#cargarMasAnuncios">cargarMasAnuncios</a></li><li><a href="global.html#carrusel">carrusel</a></li><li><a href="global.html#cookieAceptado">cookieAceptado</a></li><li><a href="global.html#crearCategoria">crearCategoria</a></li><li><a href="global.html#edit">edit</a></li><li><a href="global.html#enviarNuevoMensaje">enviarNuevoMensaje</a></li><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#gestionarFavorito">gestionarFavorito</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#imagenActual">imagenActual</a></li><li><a href="global.html#insertarBoton">insertarBoton</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginForm">loginForm</a></li><li><a href="global.html#modo">modo</a></li><li><a href="global.html#mostrarAnunciosBuscados">mostrarAnunciosBuscados</a></li><li><a href="global.html#mostrarAnunciosCargados">mostrarAnunciosCargados</a></li><li><a href="global.html#mostrarImagen">mostrarImagen</a></li><li><a href="global.html#obtenerIdDesdeURL">obtenerIdDesdeURL</a></li><li><a href="global.html#obtenerMensajesNuevos">obtenerMensajesNuevos</a></li><li><a href="global.html#obtenerParaUsuarioIdDesdeURL">obtenerParaUsuarioIdDesdeURL</a></li><li><a href="global.html#obtenerUltimoIdMensajeConocido">obtenerUltimoIdMensajeConocido</a></li><li><a href="global.html#procesarNuevosMensajes">procesarNuevosMensajes</a></li><li><a href="global.html#registrarAnuncio">registrarAnuncio</a></li><li><a href="global.html#registrarFavorito">registrarFavorito</a></li><li><a href="global.html#registro">registro</a></li><li><a href="global.html#registroForm">registroForm</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#searchFormInput">searchFormInput</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#totalDeImagenes">totalDeImagenes</a></li><li><a href="global.html#ultimoIdMensajeConocido">ultimoIdMensajeConocido</a></li><li><a href="global.html#validarAnuncio">validarAnuncio</a></li><li><a href="global.html#validarUsuario">validarUsuario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 10:19:20 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
