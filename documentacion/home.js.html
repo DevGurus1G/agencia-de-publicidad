@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: home.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: home.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Elementos del HTML seleccionados.
+ * @type {HTMLElement}
+ */
+const btnCargarMas = document.getElementById('cargar-mas');
+const loader = document.getElementById('loader');
+
+/**
+ * Variable que almacena el último anuncio cargado.
+ * @type {HTMLElement}
+ */
+let anuncio;
+
+/**
+ * Listener para cargar más anuncios al hacer clic en el botón
+ * @listens submit
+ * @param {Event} e - Evento de submit del formulario.
+ */
+btnCargarMas.addEventListener('click', async () => {
+  // Buscar el último anuncio cargado
+  anuncio = document.querySelector('.anuncios .anuncio-card:last-of-type');
+
+  if (anuncio) {
+    let fechaCreado = anuncio.getAttribute('data-fecha-creado');
+    console.log('FECHA: ' + fechaCreado);
+    // Cargar más anuncios basados en la fecha del último anuncio
+    await cargarMasAnuncios(fechaCreado);
+  }
+});
+
+/**
+ * Función asincrónica para cargar más anuncios.
+ * @async
+ * @param {string} fechaCreado - Fecha de creación del último anuncio cargado.
+ */
+async function cargarMasAnuncios(fechaCreado) {
+  // Mostrar la animacion de carga mientras se cargan los anuncios
+  showLoader();
+  try {
+    const response = await fetch(`/?cargar-mas=${fechaCreado}`);
+    if (response.ok) {
+      const data = await response.json();
+      // Mostrar los nuevos anuncios cargados
+      mostrarAnunciosCargados(data);
+      // Actualizar la referencia al último anuncio cargado
+      anuncio = document.querySelector('.anuncios .anuncios-card:last-of-type');
+    }
+  } catch (error) {
+    // Manejar errores en la solicitud
+  } finally {
+    // Cuando todo acaba dejar de mostrar la animacion de carga
+    hideLoader();
+  }
+}
+
+/**
+ * Función para mostrar los anuncios cargados.
+ * @async
+ * @param {Array} anuncios - Array de anuncios a mostrar.
+ */
+async function mostrarAnunciosCargados(anuncios) {
+  let cadena = '';
+
+  for (const anuncio of anuncios) {
+    // Crear el HTML para cada anuncio
+    cadena += `&lt;div class='anuncio-card' data-fecha-creado='${anuncio.creado}' data-id='${anuncio.primera_imagen_id}'>`;
+    cadena += `&lt;a href="/anuncio?id=${anuncio.anuncio_id}" class="enlace-anuncio-card">`;
+
+    // Obtener la imagen del anuncio
+    try {
+      const response = await fetch(`/?img=${anuncio.primera_imagen_id}`);
+
+      if (response.ok) {
+        const imgBase64 = await response.text();
+        cadena += `&lt;img src="data:image/jpeg;base64,${imgBase64}" alt="Foto del anuncio mostrado" />`;
+      } else {
+        console.error('Error en la respuesta del servidor:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('Error al cargar la imagen:', error);
+    }
+
+    // Contenido del anuncio
+    cadena += `&lt;div class="anuncio-card-info">`;
+    cadena += `&lt;h2>${anuncio.titulo}&lt;/h2>`;
+    cadena += `&lt;p>${anuncio.descripcion}&lt;/p>`;
+    cadena += `&lt;a href="/anunciante?id=${anuncio.anunciante}">&lt;span>Publicado por ${anuncio.nombre_anunciante}&lt;/span>&lt;/a>`;
+    cadena += `&lt;/div>`;
+
+    cadena += `&lt;/a>`;
+    cadena += `&lt;/div>`;
+  }
+
+  // Agregar los anuncios al contenedor
+  document.querySelector('.anuncios').appendChild(document.createRange().createContextualFragment(cadena));
+}
+
+/**
+ * Función para mostrar la animación de carga.
+ */
+function showLoader() {
+  loader.style.display = 'inline-block';
+  btnCargarMas.disabled = true;
+}
+
+/**
+ * Función para ocultar la animación de carga.
+ */
+function hideLoader() {
+  loader.style.display = 'none';
+  btnCargarMas.disabled = false;
+}
+
+// Gestión de cookies
+let aceptado = localStorage.getItem('cookieAceptado');
+let cDialogo = document.querySelector('.container-dialogo');
+
+if (aceptado === null) {
+  // Mostrar el diálogo de aceptación de cookies si no se ha aceptado o rechazado antes
+  cDialogo.classList.toggle('active');
+}
+
+// Listeners para el diálogo de cookies
+let btnAceptarCookie = document.querySelector('.dialogo .aceptar');
+let btnDenegarCookie = document.querySelector('.dialogo .denegar');
+let btnCerrar = document.querySelector('.dialogo .icon');
+
+btnAceptarCookie.addEventListener('click', () => {
+  localStorage.setItem('cookieAceptado', true);
+  cDialogo.classList.remove('active');
+});
+
+btnDenegarCookie.addEventListener('click', () => {
+  localStorage.setItem('cookieAceptado', false);
+  cDialogo.classList.remove('active');
+});
+
+btnCerrar.addEventListener('click', () => {
+  cDialogo.classList.remove('active');
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarAnuncio">actualizarAnuncio</a></li><li><a href="global.html#actualizarBotones">actualizarBotones</a></li><li><a href="global.html#anuncio">anuncio</a></li><li><a href="global.html#b64toBlob">b64toBlob</a></li><li><a href="global.html#borrarFavorito">borrarFavorito</a></li><li><a href="global.html#btnAnuncios">btnAnuncios</a></li><li><a href="global.html#btnCargarMas">btnCargarMas</a></li><li><a href="global.html#btnCategorias">btnCategorias</a></li><li><a href="global.html#btnEmpresas">btnEmpresas</a></li><li><a href="global.html#btnPaso1">btnPaso1</a></li><li><a href="global.html#btnUsuarios">btnUsuarios</a></li><li><a href="global.html#cambiarImagen">cambiarImagen</a></li><li><a href="global.html#cargarMasAnuncios">cargarMasAnuncios</a></li><li><a href="global.html#carrusel">carrusel</a></li><li><a href="global.html#cookieAceptado">cookieAceptado</a></li><li><a href="global.html#crearCategoria">crearCategoria</a></li><li><a href="global.html#edit">edit</a></li><li><a href="global.html#enviarNuevoMensaje">enviarNuevoMensaje</a></li><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#gestionarFavorito">gestionarFavorito</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#imagenActual">imagenActual</a></li><li><a href="global.html#insertarBoton">insertarBoton</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginForm">loginForm</a></li><li><a href="global.html#modo">modo</a></li><li><a href="global.html#mostrarAnunciosBuscados">mostrarAnunciosBuscados</a></li><li><a href="global.html#mostrarAnunciosCargados">mostrarAnunciosCargados</a></li><li><a href="global.html#mostrarImagen">mostrarImagen</a></li><li><a href="global.html#obtenerIdDesdeURL">obtenerIdDesdeURL</a></li><li><a href="global.html#obtenerMensajesNuevos">obtenerMensajesNuevos</a></li><li><a href="global.html#obtenerParaUsuarioIdDesdeURL">obtenerParaUsuarioIdDesdeURL</a></li><li><a href="global.html#obtenerUltimoIdMensajeConocido">obtenerUltimoIdMensajeConocido</a></li><li><a href="global.html#procesarNuevosMensajes">procesarNuevosMensajes</a></li><li><a href="global.html#registrarAnuncio">registrarAnuncio</a></li><li><a href="global.html#registrarFavorito">registrarFavorito</a></li><li><a href="global.html#registro">registro</a></li><li><a href="global.html#registroForm">registroForm</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#searchFormInput">searchFormInput</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#totalDeImagenes">totalDeImagenes</a></li><li><a href="global.html#ultimoIdMensajeConocido">ultimoIdMensajeConocido</a></li><li><a href="global.html#validarAnuncio">validarAnuncio</a></li><li><a href="global.html#validarUsuario">validarUsuario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 10:19:20 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

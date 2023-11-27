@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: manage_anuncio.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: manage_anuncio.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * Elementos del HTML seleccionados.
  * @type {HTMLElement}
  */
@@ -54,7 +82,7 @@ document.getElementById('imagen3').addEventListener('change', () => {
 //No dejar incluir puntos o digitos en el precio
 document.getElementById('precioAnuncio').addEventListener('keypress', function (event) {
     const char = event.key;
-    if (isNaN(parseInt(char)) && char !== ',') {
+    if (isNaN(parseInt(char)) &amp;&amp; char !== ',') {
       event.preventDefault();
     }
   });
@@ -84,7 +112,7 @@ function validarAnuncio(titulo, descripcion, precioConPunto) {
     return false;
   }
 
-  if (isNaN(parseFloat(precioConPunto)) || parseFloat(precioConPunto) <= 0) {
+  if (isNaN(parseFloat(precioConPunto)) || parseFloat(precioConPunto) &lt;= 0) {
     alert('Ingrese un precio válido.');
     return false;
   }
@@ -183,7 +211,7 @@ async function actualizarAnuncio(idAnuncio) {
   formData.append('editar_anuncio', idAnuncio);
 
   // Obtener las imágenes existentes y agregarlas al FormData
-  for (let i = 1; i <= 3; i++) {
+  for (let i = 1; i &lt;= 3; i++) {
     const imagenInput = document.getElementById(`imagen${i}`);
     const imagen = imagenInput.files[0];
 
@@ -221,3 +249,26 @@ async function actualizarAnuncio(idAnuncio) {
     console.error('Error en la solicitud. Inténtelo más tarde.');
   }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#actualizarAnuncio">actualizarAnuncio</a></li><li><a href="global.html#actualizarBotones">actualizarBotones</a></li><li><a href="global.html#anuncio">anuncio</a></li><li><a href="global.html#b64toBlob">b64toBlob</a></li><li><a href="global.html#borrarFavorito">borrarFavorito</a></li><li><a href="global.html#btnAnuncios">btnAnuncios</a></li><li><a href="global.html#btnCargarMas">btnCargarMas</a></li><li><a href="global.html#btnCategorias">btnCategorias</a></li><li><a href="global.html#btnEmpresas">btnEmpresas</a></li><li><a href="global.html#btnPaso1">btnPaso1</a></li><li><a href="global.html#btnUsuarios">btnUsuarios</a></li><li><a href="global.html#cambiarImagen">cambiarImagen</a></li><li><a href="global.html#cargarMasAnuncios">cargarMasAnuncios</a></li><li><a href="global.html#carrusel">carrusel</a></li><li><a href="global.html#cookieAceptado">cookieAceptado</a></li><li><a href="global.html#crearCategoria">crearCategoria</a></li><li><a href="global.html#edit">edit</a></li><li><a href="global.html#enviarNuevoMensaje">enviarNuevoMensaje</a></li><li><a href="global.html#favorito">favorito</a></li><li><a href="global.html#gestionarFavorito">gestionarFavorito</a></li><li><a href="global.html#hideLoader">hideLoader</a></li><li><a href="global.html#imagenActual">imagenActual</a></li><li><a href="global.html#insertarBoton">insertarBoton</a></li><li><a href="global.html#login">login</a></li><li><a href="global.html#loginForm">loginForm</a></li><li><a href="global.html#modo">modo</a></li><li><a href="global.html#mostrarAnunciosBuscados">mostrarAnunciosBuscados</a></li><li><a href="global.html#mostrarAnunciosCargados">mostrarAnunciosCargados</a></li><li><a href="global.html#mostrarImagen">mostrarImagen</a></li><li><a href="global.html#obtenerIdDesdeURL">obtenerIdDesdeURL</a></li><li><a href="global.html#obtenerMensajesNuevos">obtenerMensajesNuevos</a></li><li><a href="global.html#obtenerParaUsuarioIdDesdeURL">obtenerParaUsuarioIdDesdeURL</a></li><li><a href="global.html#obtenerUltimoIdMensajeConocido">obtenerUltimoIdMensajeConocido</a></li><li><a href="global.html#procesarNuevosMensajes">procesarNuevosMensajes</a></li><li><a href="global.html#registrarAnuncio">registrarAnuncio</a></li><li><a href="global.html#registrarFavorito">registrarFavorito</a></li><li><a href="global.html#registro">registro</a></li><li><a href="global.html#registroForm">registroForm</a></li><li><a href="global.html#search">search</a></li><li><a href="global.html#searchFormInput">searchFormInput</a></li><li><a href="global.html#showLoader">showLoader</a></li><li><a href="global.html#totalDeImagenes">totalDeImagenes</a></li><li><a href="global.html#ultimoIdMensajeConocido">ultimoIdMensajeConocido</a></li><li><a href="global.html#validarAnuncio">validarAnuncio</a></li><li><a href="global.html#validarUsuario">validarUsuario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon Nov 27 2023 10:19:20 GMT+0100 (hora estándar de Europa central)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
