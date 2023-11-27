@@ -1,4 +1,11 @@
 <?php
+/**
+ * Obtiene los chats del usuario.
+ *
+ * @param PDO      $conn   La conexión a la base de datos.
+ * @param int      $userId El ID del usuario.
+ * @return array Un array con la información de los chats del usuario.
+ */
 function getUserChats($conn, $userId) {
   $stmt = $conn->prepare(
     'SELECT
@@ -43,6 +50,14 @@ ORDER BY
   return $chats;
 }
 
+/**
+ * Obtiene el historial de chat entre dos usuarios.
+ *
+ * @param PDO $conn    La conexión a la base de datos.
+ * @param int $user1Id El ID del primer usuario.
+ * @param int $user2Id El ID del segundo usuario.
+ * @return array Un array con el historial de chat entre los dos usuarios.
+ */
 function getChatHistoryBetweenUsers($conn, $user1Id, $user2Id) {
   $stmt = $conn->prepare(
     'SELECT *
@@ -58,6 +73,15 @@ function getChatHistoryBetweenUsers($conn, $user1Id, $user2Id) {
   return $chatHistory;
 }
 
+/**
+ * Obtiene los nuevos mensajes en una conversación desde un mensaje específico.
+ *
+ * @param PDO $conn           La conexión a la base de datos.
+ * @param int $user1Id        El ID del primer usuario.
+ * @param int $user2Id        El ID del segundo usuario.
+ * @param int $lastMessageId  El ID del último mensaje recibido.
+ * @return array Un array con los nuevos mensajes en la conversación.
+ */
 function getNuevosMensajesConversacion(
   $conn,
   $user1Id,
@@ -80,6 +104,15 @@ function getNuevosMensajesConversacion(
   return $newMessages;
 }
 
+/**
+ * Inserta un nuevo mensaje en el chat.
+ *
+ * @param PDO   $conn          La conexión a la base de datos.
+ * @param int   $deUsuarioId   El ID del usuario que envía el mensaje.
+ * @param int   $paraUsuarioId El ID del usuario que recibe el mensaje.
+ * @param string $mensaje       El contenido del mensaje.
+ * @return bool True si la inserción es exitosa, false en caso contrario.
+ */
 function insertarNuevoMensaje($conn, $deUsuarioId, $paraUsuarioId, $mensaje) {
   try {
     $query = "INSERT INTO chat (de_usuario_id, para_usuario_id, mensaje, fecha_envio) 
@@ -99,6 +132,13 @@ function insertarNuevoMensaje($conn, $deUsuarioId, $paraUsuarioId, $mensaje) {
   }
 }
 
+/**
+ * Obtiene un mensaje por su ID.
+ *
+ * @param PDO $conn      La conexión a la base de datos.
+ * @param int $mensajeId El ID del mensaje.
+ * @return array|bool Un array con la información del mensaje o false si no se encuentra.
+ */
 function obtenerMensajePorId($conn, $mensajeId) {
   try {
     $query = 'SELECT * FROM chat WHERE id = :id';

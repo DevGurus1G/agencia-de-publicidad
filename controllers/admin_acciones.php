@@ -1,117 +1,128 @@
-<?php 
+<?php
+require 'db/db_anuncios.php';
+require 'db/db_categorias.php';
+require 'db/db_imagenes_anuncios.php';
 require 'utils/db_common.php';
-require_once 'db/db_categorias.php';
-//Para todo lo relacionado a la sesion del usuario
+// Para todo lo relacionado a la sesión del usuario
 require 'utils/session.php';
 
-  //Si el que intenta acceder no es un usuario de tipo admin se redirecciona a la pagina principal
-  if(!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != "admin") {
-    header("Location: /");
-    exit(); 
+/**
+ * Redirecciona a la página principal si el usuario no es de tipo tienda.
+ */
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] != 'tienda') {
+  header('Location: /');
+  exit();
+}
+
+/**
+ * Obtiene todas las categorías disponibles.
+ *
+ * @var array $categorias
+ */
+$categorias = getAllCategorias($conn);
+
+/**
+ * Estilos CSS utilizados en la página.
+ *
+ * @var array $estilos
+ */
+$estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
+
+/**
+ * Registra un nuevo anuncio.
+ *
+ * @param PDO $conn La conexión a la base de datos.
+ */
+function registrar($conn) {
+  $usuarioId = $_SESSION['usuario']['id'];
+  $anuncio = [
+    'titulo' => $_POST['titulo'],
+    'descripcion' => $_POST['descripcion'],
+    'precio' => $_POST['precio'],
+    'anunciante' => $usuarioId,
+    'categoria' => $_POST['categoria'],
+  ];
+  $anuncioId = insertAnuncio($anuncio, $conn);
+  agregarFotos($anuncioId, $conn);
+  die('registrado');
+}
+
+/**
+ * Edita un anuncio existente.
+ *
+ * @param PDO $conn La conexión a la base de datos.
+ */
+function editarAnuncio($conn) {
+  $anuncio = getAnunciosById($_GET['editar'], $conn);
+  $anuncio_actualizado = [
+    'id' => $anuncio['id'],
+    'titulo' => $_POST['titulo'],
+    'descripcion' => $_POST['descripcion'],
+    'precio' => $_POST['precio'],
+    'categoria' => $_POST['categoria'],
+  ];
+
+  // Llama a la función updateAnuncio
+  updateAnuncio($anuncio_actualizado, $conn);
+  $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['editar'], $conn);
+  $imagen1 = file_get_contents($_FILES['imagen1']['tmp_name']);
+  $imagen2 = file_get_contents($_FILES['imagen2']['tmp_name']);
+  $imagen3 = file_get_contents($_FILES['imagen3']['tmp_name']);
+  $imagenes_nuevas = [$imagen1, $imagen2, $imagen3];
+  $cont = 0;
+  foreach ($imagenes as $imagen) {
+    updateImagenAnuncio($imagen['id'], $imagenes_nuevas[$cont], $conn);
+    $cont++;
   }
-  
-
-if (isset($_GET['accion'])) {
-
-    $accion = $_GET['accion'];
-
-    $tipo = $_GET['tipo'];
-
-    $id = $_GET['id'];
-
-
-    if($accion == 'editar'){
-    
-    $categorias = getAllCategorias($conn);
-    
-        switch ($tipo) {
-            case 'user':
-                
-                $campos= [
-                    'username' => 'text',
-                    'email' => 'email',
-                    'nombre'=> 'text' ,
-                    'apellidos' => 'text',
-                ];
-    
-                require 'db/db_usuarios.php';
-    
-                $u = getUsernameById($id,$conn);
-    
-                $datos = [$u['username'], $u['email'], $u['nombre'], $u['apellidos']];
-     
-                $titulo = 'Editar Usuario | Gasteiz Denda';
-                $scripts = ['../assets/js/nav.js'];
-                $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
-    
-                $hidden = "<input type='hidden' name='editar_usuario'>";
-                $hiddenId = "<input type='hidden' name='id' value=" .  $id .">"; 
-    
-                require "views/admin_editar.view.php";
-    
-                break;
-        
-            case 'categoria':
-                
-                $campos= [
-                    'icono' => 'file',
-                    'nombre' => 'text',  
-                ];
-
-                $c = getCategoriaNameById($id,$conn);
-
-                $datos = [$c['nombre']];
-
-                $imagen = $c['imagen'];
-    
-                $titulo = 'Editar Categoría | Gasteiz Denda';
-                $scripts = ['../assets/js/nav.js'];
-                $estilos = ['../assets/css/default.css','../assets/css/admin_acciones.css'];
-    
-                $hidden = "<input type='hidden' name='editar_categoria'>";
-                $hiddenId = "<input type='hidden' name='id' value=" .  $id .">"; 
-
-                require "views/admin_editar.view.php";
-    
-                break;
-                
-        }
-    
-    }
-
+  die('actualizado');
 }
 
-
-
-if (isset($_POST['editar_usuario'])) {
-    require 'db/db_usuarios.php';
-
-    $usuario = ['id' => $_POST['id'],
-    'username' => $_POST['username'],
-    'email' => $_POST['email'],
-    'nombre' => $_POST['nombre'],
-    'apellidos' => $_POST['apellidos'],
-    ];
-
-    updateUsuarioAdmin($usuario,$conn);
-
-    header('Location:/admin');
-
+/**
+ * Agrega fotos a un anuncio.
+ *
+ * @param int      $anuncioId El ID del anuncio.
+ * @param PDO $conn      La conexión a la base de datos.
+ */
+function agregarFotos($anuncioId, $conn) {
+  $imagen1 = file_get_contents($_FILES['imagen1']['tmp_name']);
+  $imagen2 = file_get_contents($_FILES['imagen2']['tmp_name']);
+  $imagen3 = file_get_contents($_FILES['imagen3']['tmp_name']);
+  insertImagenAnuncio($imagen1, $anuncioId, $conn);
+  insertImagenAnuncio($imagen2, $anuncioId, $conn);
+  insertImagenAnuncio($imagen3, $anuncioId, $conn);
 }
 
-if (isset($_POST['editar_categoria'])) {
-
-    $imagen = file_get_contents($_FILES['imagen']['tmp_name']);
-    $categoria = ['id' => $_POST['id'],
-    'imagen' => $imagen,
-    'nombre' => $_POST['nombre'],
-    
-    ];
-
-    updateCategoria($categoria,$conn);
-
-    header('Location:/admin');
-
+/**
+ * Obtiene información del anuncio si se está editando.
+ */
+if (isset($_GET['editar'])) {
+  $anuncio = getAnunciosById($_GET['editar'], $conn);
+  $imagenes = getAllImagenesAnuncioByIdAnuncio($_GET['editar'], $conn);
 }
 
+/**
+ * Elimina un anuncio según el ID proporcionado en la URL.
+ */
+if (isset($_GET['borrar'])) {
+  deleteAnuncioById($_GET['borrar'], $conn);
+  header('Location: /');
+}
+
+/**
+ * Procesa la solicitud POST para registrar o editar un anuncio.
+ */
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  if ($_POST['editar_anuncio'] != -1) {
+    editarAnuncio($conn);
+  } else {
+    registrar($conn);
+  }
+} else {
+  $titulo = 'Registro anuncio | Gasteiz Denda';
+  $scripts = ['../assets/js/nav.js', '../assets/js/manage_anuncio.js'];
+  $estilos = ['../assets/css/default.css', '../assets/css/manage_anuncio.css'];
+  $categorias = getAllCategorias($conn);
+
+  require 'views/manage_anuncio.view.php';
+}
 ?>
