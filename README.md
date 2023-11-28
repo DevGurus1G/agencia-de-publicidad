@@ -36,3 +36,5 @@ docker-compose up -d
 ## Diagrama de gantt (Temporizacion)
 
 [Diagrama](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+
+**LOS ARCHIVOS DE INSTALACIÓN SE ENCUENTRAN TANTO EN ESTA RAMA JUNTO A TODO EL CODIGO COMO SEPARADOS SOLO LOS DE INSTALACIÓN EN LA RAMA INSTALACION**
