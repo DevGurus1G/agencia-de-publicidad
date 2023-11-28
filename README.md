@@ -36,7 +36,7 @@ docker-compose up -d
 
 **LOS ARCHIVOS DE INSTALACIÓN SE ENCUENTRAN TANTO EN ESTA RAMA JUNTO A TODO EL CODIGO COMO SEPARADOS SOLO LOS DE INSTALACIÓN EN LA RAMA INSTALACION**
 
-## Diagrama de gantt (Temporizacion)
+## Estilos
 
-[Diagrama](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+[Guia de estilos](https://docs.google.com/document/d/1ykp-xvtZ5E23l5XP3fbsld7uoXApwiq8ZbI0BwW7yds/edit?usp=sharing)
 
