@@ -13,7 +13,7 @@ services:
     networks:
       - default
     volumes:
-      - ./db/sql/:/docker-entrypoint-initdb.d
+      - ./db/:/docker-entrypoint-initdb.d
 
   apache:
     build:
