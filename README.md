@@ -32,9 +32,11 @@ Depues, ejecutar este comando en powershell desde la raiz donde hayamos guardado
 ```bash
 docker-compose up -d
 ```
+## ARCHIVOS DE INSTALACION
+
+**LOS ARCHIVOS DE INSTALACIÓN SE ENCUENTRAN TANTO EN ESTA RAMA JUNTO A TODO EL CODIGO COMO SEPARADOS SOLO LOS DE INSTALACIÓN EN LA RAMA INSTALACION**
 
 ## Diagrama de gantt (Temporizacion)
 
 [Diagrama](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
 
-**LOS ARCHIVOS DE INSTALACIÓN SE ENCUENTRAN TANTO EN ESTA RAMA JUNTO A TODO EL CODIGO COMO SEPARADOS SOLO LOS DE INSTALACIÓN EN LA RAMA INSTALACION**
