@@ -36,3 +36,6 @@ docker-compose up -d
 ## Diagrama de gantt (Temporizacion)
 
 [Diagrama](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+
+
+**Esta rama solo cuenta con los archivos necesarios para la instalación del servidor en docker con los datos iniciales, no cuenta con nada de codigo de la aplicación web**
