@@ -40,3 +40,7 @@ docker-compose up -d
 
 [Guia de estilos](https://docs.google.com/document/d/1ykp-xvtZ5E23l5XP3fbsld7uoXApwiq8ZbI0BwW7yds/edit?usp=sharing)
 
+## Presentacion
+
+[Presentacion](https://docs.google.com/presentation/d/1dDhonrFhX_5zJJwE7Ay_BDxZnEJIc17N5iJ3c21cab8/edit?usp=sharing)
+
