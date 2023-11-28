@@ -1,7 +1,0 @@
-{
-  "plugins": ["@prettier/plugin-php"],
-  "tabWidth": 2,
-  "singleQuote": true,
-  "trailingCommaPHP": true,
-  "braceStyle": "1tbs"
-}
