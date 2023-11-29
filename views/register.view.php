@@ -54,10 +54,6 @@
               </div>
             </div>
             <div class="radio">
-              <label for="admin">Admin</label>
-              <input type="radio" name="tipo" id="admin" value="admin" />
-            </div>
-            <div class="radio">
               <label for="comprador">Comprador</label>
               <input type="radio" name="tipo" id="comprador" value="comprador" />
             </div>
