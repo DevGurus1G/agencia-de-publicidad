@@ -91,6 +91,12 @@ body.dark {
   stroke: var(--primary-color);
 }
 
+.icon g > * {
+  color: var(--primary-color);
+  fill: var(--primary-color);
+  stroke: var(--primary-color);
+}
+
 /* Estilos para el header */
 
 header {
