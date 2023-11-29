@@ -7,7 +7,7 @@ Es un sitio web donde se puede publicar, gestionar anuncios para la sociedad de 
 | Email              | Contraseña | Tipo      |
 | ------------------ | ---------- | --------- |
 | jaime@gmail.com    | jaime      | comprador |
-| admin@admin.com    | admin      | admin     |
+| admin@gmail.com    | admin      | admin     |
 | nintento@gmail.com | nintendo   | tienda    |
 | elkar@gmail.com    | elkar      | tienda    |
 
